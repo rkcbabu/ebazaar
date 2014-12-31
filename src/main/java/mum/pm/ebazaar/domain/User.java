@@ -6,6 +6,7 @@
 package mum.pm.ebazaar.domain;
 
 import java.io.Serializable;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -32,6 +33,7 @@ public class User implements Serializable {
     }
     private String name;
 
+    @Embedded
     private Address address;
 
     private String phone;
@@ -47,6 +49,9 @@ public class User implements Serializable {
     }
 
     public Address getAddress() {
+        if(address == null){
+            address = new Address();
+        }
         return address;
     }
 

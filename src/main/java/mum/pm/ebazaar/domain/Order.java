@@ -7,10 +7,15 @@ package mum.pm.ebazaar.domain;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Temporal;
 
 /**
  *
@@ -18,6 +23,9 @@ import javax.persistence.Id;
  */
 @Entity
 public class Order implements Serializable {
+
+    @OneToMany(mappedBy = "order")
+    private List<Customer> customers;
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -31,21 +39,25 @@ public class Order implements Serializable {
         this.id = id;
     }
 
-	private String OrderID;
+    private String OrderID;
 
-	private Date dateOrder;
+    @Temporal(javax.persistence.TemporalType.DATE)
+    private Date dateOrder;
 
-	private Date dateShip;
+    @Temporal(javax.persistence.TemporalType.DATE)
+    private Date dateShip;
 
-	private OrderStatus status;
+    private OrderStatus status;
 
-	private Customer customer;
+    @ManyToOne
+    private Customer customer;
 
-	private OrderItem[] orderItem;
+    private OrderItem[] orderItem;
 
-	private ShoppingCart shoppingCart;
+    @OneToOne
+    private ShoppingCart shoppingCart;
 
-	private Payment payment;
+    private Payment payment;
 
     public String getOrderID() {
         return OrderID;
@@ -110,7 +122,7 @@ public class Order implements Serializable {
     public void setPayment(Payment payment) {
         this.payment = payment;
     }
-        
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -135,5 +147,5 @@ public class Order implements Serializable {
     public String toString() {
         return "mum.pm.ebazaar.domain.Order[ id=" + id + " ]";
     }
-    
+
 }

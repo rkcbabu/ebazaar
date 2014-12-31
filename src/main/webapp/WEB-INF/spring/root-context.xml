@@ -36,7 +36,7 @@
 
 		<property name="packagesToScan">
 			<list>
-				<value>mum.pm.ebazaar.model</value>
+				<value>mum.pm.ebazaar.domain</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">
