@@ -27,13 +27,51 @@ public class User implements Serializable {
     private Long id;
     private String firstName;
     private String lastName;
+    
+    private String username; 
+    private String password; 
+    private boolean enabled; 
+    private String role; 
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+    
     @Embedded
     private Address address;
     private String phone;
     private String email;
 
-    @OneToOne
-    private Credential credential;
+//    @OneToOne
+//    private Credential credential;
     
     public Long getId() {
         return id;
@@ -59,16 +97,6 @@ public class User implements Serializable {
         this.lastName = lastName;
     }
     
-    public Address getAddress() {
-        if(address == null){
-            address = new Address();
-        }
-        return address;
-    }
-
-    public void setAddress(Address address) {
-        this.address = address;
-    }
 
     public String getPhone() {
         return phone;
@@ -84,14 +112,6 @@ public class User implements Serializable {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public Credential getCredential() {
-        return credential;
-    }
-
-    public void setCredential(Credential credential) {
-        this.credential = credential;
     }
 
     

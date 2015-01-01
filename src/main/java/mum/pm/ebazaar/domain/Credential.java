@@ -35,8 +35,9 @@ public class Credential implements Serializable {
 
     private String password;
 
-    @OneToOne
-    private User user; 
+//    @OneToOne
+//    private User user; 
+    
     public String getUsername() {
         return username;
     }
@@ -53,13 +54,6 @@ public class Credential implements Serializable {
         this.password = password;
     }
 
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
 
     
     @Override
