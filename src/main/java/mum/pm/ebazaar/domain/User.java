@@ -6,11 +6,13 @@
 package mum.pm.ebazaar.domain;
 
 import java.io.Serializable;
+import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 /**
  *
@@ -23,7 +25,16 @@ public class User implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    private String firstName;
+    private String lastName;
+    @Embedded
+    private Address address;
+    private String phone;
+    private String email;
 
+    @OneToOne
+    private Credential credential;
+    
     public Long getId() {
         return id;
     }
@@ -31,23 +42,23 @@ public class User implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
-    private String name;
 
-    @Embedded
-    private Address address;
-
-    private String phone;
-
-    private String email;
-
-    public String getName() {
-        return name;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+    
     public Address getAddress() {
         if(address == null){
             address = new Address();
@@ -75,6 +86,15 @@ public class User implements Serializable {
         this.email = email;
     }
 
+    public Credential getCredential() {
+        return credential;
+    }
+
+    public void setCredential(Credential credential) {
+        this.credential = credential;
+    }
+
+    
     @Override
     public int hashCode() {
         int hash = 0;

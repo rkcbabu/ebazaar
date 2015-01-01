@@ -7,10 +7,16 @@ package mum.pm.ebazaar.domain;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.LinkedList;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
 
 /**
  *
@@ -18,7 +24,7 @@ import javax.persistence.Id;
  */
 @Entity
 public class Card implements Serializable {
-
+    
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -29,10 +35,19 @@ public class Card implements Serializable {
 
     private String cardCV;
 
+    @Temporal(javax.persistence.TemporalType.DATE)
     private Date expiryDate;
+    
+    @ManyToOne
+    @JoinColumn(name="customer_id")
+    private Customer customer;                      
 
-    private Customer customer;
+    @OneToMany(mappedBy="card")
+    private List<Payment> payments;
 
+    
+    public Card() {
+    }
     public Long getId() {
         return id;
     }
@@ -79,6 +94,14 @@ public class Card implements Serializable {
 
     public void setCustomer(Customer customer) {
         this.customer = customer;
+    }
+
+    public List<Payment> getPayments() {
+        return payments;
+    }
+
+    public void setPayments(List<Payment> payments) {
+        this.payments = payments;
     }
 
     @Override

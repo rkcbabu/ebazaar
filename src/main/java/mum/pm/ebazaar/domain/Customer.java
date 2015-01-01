@@ -26,13 +26,20 @@ public class Customer extends User implements Serializable {
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date dateRegister;
 
-    @OneToMany
+    @OneToMany(mappedBy="customer")
     private List<Order> orders;
 
-    private ShoppingCart shoppingCart;
+    @OneToMany(mappedBy="customer")
+    private List<ShoppingCart> shoppingCarts;
 
-    private Card card;
+    @OneToMany(mappedBy="customer")
+    private List<Card> cards ;
 
+    public Customer() {
+        super();
+    }
+    
+    
     public String getStutus() {
         return stutus;
     }
@@ -49,21 +56,31 @@ public class Customer extends User implements Serializable {
         this.dateRegister = dateRegister;
     }
 
-    public ShoppingCart getShoppingCart() {
-        return shoppingCart;
+    public List<ShoppingCart> getShoppingCarts() {
+        return shoppingCarts;
     }
 
-    public void setShoppingCart(ShoppingCart shoppingCart) {
-        this.shoppingCart = shoppingCart;
+    public void setShoppingCarts(List<ShoppingCart> shoppingCarts) {
+        this.shoppingCarts = shoppingCarts;
     }
 
-    public Card getCard() {
-        return card;
+   
+    public List<Order> getOrders() {
+        return orders;
     }
 
-    public void setCard(Card card) {
-        this.card = card;
+    public void setOrders(List<Order> orders) {
+        this.orders = orders;
     }
 
+//    public List<Card> getCards() {
+//        return cards;
+//    }
+//
+//    public void setCards(List<Card> cards) {
+//        this.cards = cards;
+//    }
+
+  
 
 }

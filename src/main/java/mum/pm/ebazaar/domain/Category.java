@@ -6,10 +6,12 @@
 package mum.pm.ebazaar.domain;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 /**
  *
@@ -26,6 +28,8 @@ public class Category implements Serializable {
 
     private String description;
 
+    @OneToMany(mappedBy="category")
+    private List<Product> products;
     public Long getId() {
         return id;
     }
@@ -50,6 +54,15 @@ public class Category implements Serializable {
         this.description = description;
     }
 
+    public List<Product> getProducts() {
+        return products;
+    }
+
+    public void setProducts(List<Product> products) {
+        this.products = products;
+    }
+
+    
     @Override
     public int hashCode() {
         int hash = 0;

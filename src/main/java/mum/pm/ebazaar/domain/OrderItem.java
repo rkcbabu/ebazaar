@@ -10,6 +10,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 /**
  *
@@ -23,6 +26,18 @@ public class OrderItem implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    private Integer quantity;
+    private Double price;
+    
+    @ManyToOne
+    @JoinColumn(name="order_id")
+    private Order order;
+    @OneToOne
+    private Product product;
+
+    @ManyToOne
+    @JoinColumn(name="shoppingCart_id")
+    private ShoppingCart shoppingCart;
     public Long getId() {
         return id;
     }
@@ -30,12 +45,6 @@ public class OrderItem implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
-    private Integer quantity;
-
-    private Double price;
-
-    private Product product;
-
     public Integer getQuantity() {
         return quantity;
     }
@@ -60,6 +69,23 @@ public class OrderItem implements Serializable {
         this.product = product;
     }
 
+    public ShoppingCart getShoppingCart() {
+        return shoppingCart;
+    }
+
+    public void setShoppingCart(ShoppingCart shoppingCart) {
+        this.shoppingCart = shoppingCart;
+    }
+
+    public Order getOrder() {
+        return order;
+    }
+
+    public void setOrder(Order order) {
+        this.order = order;
+    }
+    
+    
     @Override
     public int hashCode() {
         int hash = 0;

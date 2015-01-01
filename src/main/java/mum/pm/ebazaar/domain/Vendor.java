@@ -6,7 +6,10 @@
 package mum.pm.ebazaar.domain;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 /**
  *
  * @author Chaulagai
@@ -16,16 +19,16 @@ public class Vendor extends User implements Serializable {
 
     private static final long serialVersionUID = 1L;
    
-    private Product[] product;
+    @OneToMany(mappedBy="vendor")
+    private List<Product> products;
 
-    public Product[] getProduct() {
-        return product;
+    public List<Product> getProducts() {
+        return products;
     }
 
-    public void setProduct(Product[] product) {
-        this.product = product;
+    public void setProducts(List<Product> products) {
+        this.products = products;
     }
-
     
 
 }

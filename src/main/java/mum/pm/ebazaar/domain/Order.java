@@ -12,9 +12,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 
 /**
@@ -24,20 +24,10 @@ import javax.persistence.Temporal;
 @Entity
 public class Order implements Serializable {
 
-    @OneToMany(mappedBy = "order")
-    private List<Customer> customers;
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     private String OrderID;
 
@@ -48,17 +38,18 @@ public class Order implements Serializable {
     private Date dateShip;
 
     private OrderStatus status;
-
+        
     @ManyToOne
-    private Customer customer;
-
-    private OrderItem[] orderItem;
-
-    @OneToOne
-    private ShoppingCart shoppingCart;
-
+    @JoinColumn(name="payment_id")
     private Payment payment;
-
+    
+    @ManyToOne
+    @JoinColumn(name="customer_id")
+    private Customer customer;
+    @OneToMany(mappedBy="order")
+    private List<OrderItem> orderItems; 
+    
+   
     public String getOrderID() {
         return OrderID;
     }
@@ -99,22 +90,6 @@ public class Order implements Serializable {
         this.customer = customer;
     }
 
-    public OrderItem[] getOrderItem() {
-        return orderItem;
-    }
-
-    public void setOrderItem(OrderItem[] orderItem) {
-        this.orderItem = orderItem;
-    }
-
-    public ShoppingCart getShoppingCart() {
-        return shoppingCart;
-    }
-
-    public void setShoppingCart(ShoppingCart shoppingCart) {
-        this.shoppingCart = shoppingCart;
-    }
-
     public Payment getPayment() {
         return payment;
     }
@@ -123,6 +98,24 @@ public class Order implements Serializable {
         this.payment = payment;
     }
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public List<OrderItem> getOrderItems() {
+        return orderItems;
+    }
+
+    public void setOrderItems(List<OrderItem> orderItems) {
+        this.orderItems = orderItems;
+    }
+
+
+    
     @Override
     public int hashCode() {
         int hash = 0;

@@ -11,6 +11,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
 
 /**
  *
@@ -24,6 +27,17 @@ public class Payment implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    private int paymentID;
+
+    @Temporal(javax.persistence.TemporalType.DATE)
+    private Date paidDate;
+
+    @ManyToOne
+    @JoinColumn(name="card_id")
+    private Card card;
+    private double total;
+
+    
     public Long getId() {
         return id;
     }
@@ -31,14 +45,6 @@ public class Payment implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
-    private int paymentID;
-
-    private Date paidDate;
-
-    private Card card;
-
-    private double total;
-
     public int getPaymentID() {
         return paymentID;
     }

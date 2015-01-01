@@ -7,10 +7,16 @@ package mum.pm.ebazaar.domain;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Temporal;
 
 /**
  *
@@ -24,6 +30,17 @@ public class ShoppingCart implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @Temporal(javax.persistence.TemporalType.DATE)
+    private Date dateCreate;
+
+    @OneToMany(mappedBy="shoppingCart")
+    private List<OrderItem> orderItems;
+
+    @ManyToOne
+    @JoinColumn(name="customer_id")
+    private Customer customer;
+
+    
     public Long getId() {
         return id;
     }
@@ -31,12 +48,6 @@ public class ShoppingCart implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
-    private Date dateCreate;
-
-    private Order order;
-
-    private Customer customer;
-
     public Date getDateCreate() {
         return dateCreate;
     }
@@ -45,14 +56,15 @@ public class ShoppingCart implements Serializable {
         this.dateCreate = dateCreate;
     }
 
-    public Order getOrder() {
-        return order;
+    public List<OrderItem> getOrderItems() {
+        return orderItems;
     }
 
-    public void setOrder(Order order) {
-        this.order = order;
+    public void setOrderItems(List<OrderItem> orderItems) {
+        this.orderItems = orderItems;
     }
 
+    
     public Customer getCustomer() {
         return customer;
     }

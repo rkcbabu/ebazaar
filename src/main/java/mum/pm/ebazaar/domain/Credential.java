@@ -10,6 +10,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 /**
  *
@@ -34,6 +35,8 @@ public class Credential implements Serializable {
 
     private String password;
 
+    @OneToOne
+    private User user; 
     public String getUsername() {
         return username;
     }
@@ -50,6 +53,15 @@ public class Credential implements Serializable {
         this.password = password;
     }
 
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    
     @Override
     public int hashCode() {
         int hash = 0;
