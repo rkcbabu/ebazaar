@@ -206,7 +206,7 @@
                                     </span>
                                     <p><b>Availability:</b> In Stock</p>
                                     <p><b>Condition:</b> New</p>
-                                    <p><b>Brand:</b> E-Shop</p>
+                                    <p><b>Brand:</b> E-bazaar</p>
                                     <a href=""><img src="<c:url value="/web-resources/images/product-details/share.png" />" class="share img-responsive"  alt="" /></a>
                                 </div><!--/product-information-->
                             </div>
