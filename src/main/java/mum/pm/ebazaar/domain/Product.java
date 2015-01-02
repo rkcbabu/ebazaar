@@ -12,7 +12,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 
 /**
  *
@@ -34,8 +33,6 @@ public class Product implements Serializable {
     @ManyToOne
     @JoinColumn(name="vendor_id")
     private Vendor vendor;
-    @OneToOne(mappedBy="product")
-    private OrderItem orderItem;
     @ManyToOne
     private Category category;
 
@@ -102,15 +99,6 @@ public class Product implements Serializable {
         this.category = category;
     }
 
-    public OrderItem getOrderItem() {
-        return orderItem;
-    }
-
-    public void setOrderItem(OrderItem orderItem) {
-        this.orderItem = orderItem;
-    }
-
-    
     @Override
     public int hashCode() {
         int hash = 0;

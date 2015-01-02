@@ -22,10 +22,10 @@ public class HomeController {
         return "index";
     }
 
-    @RequestMapping(value="/login", method=RequestMethod.GET)
-    public String login(@ModelAttribute ("newAdmin") Admin admin) {
-        return "templates/login";
-    }
+//    @RequestMapping(value="/login", method=RequestMethod.GET)
+//    public String login(@ModelAttribute ("newAdmin") Admin admin) {
+//        return "templates/login";
+//    }
 
     @RequestMapping("/page404")
     public String page404() {

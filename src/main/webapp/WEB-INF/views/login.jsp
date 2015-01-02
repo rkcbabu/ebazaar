@@ -1,4 +1,4 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+++++++++<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -14,15 +14,15 @@
                     <div class="col-sm-4 col-sm-offset-1">
                         <div class="login-form"><!--login form-->
                             <h2>Login to your account</h2>
-                            <form action="#">
-                                <input type="text" placeholder="Name" />
-                                <input type="email" placeholder="Email Address" />
+                            <form:form method="POST" action="user/loginA" commandName="user">
+                                <form:input path="username" placeholder="Username"/>
+                                <form:password path="password" placeholder="password" />
                                 <span>
                                     <input type="checkbox" class="checkbox"> 
                                     Keep me signed in
                                 </span>
                                 <button type="submit" class="btn btn-default">Login</button>
-                            </form>
+                            </form:form>
                         </div><!--/login form-->
                     </div>
                     <div class="col-sm-1">

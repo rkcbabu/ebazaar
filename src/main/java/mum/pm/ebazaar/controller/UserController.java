@@ -50,7 +50,7 @@ public class UserController {
         }
         return "redirect:/login";
     }
-    
+        
 //    @RequestMapping(value = "/user/list")
 //    public String listUsers(Model model)
 //    {

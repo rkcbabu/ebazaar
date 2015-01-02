@@ -60,11 +60,29 @@
                         <div class="col-sm-8">
                             <div class="shop-menu pull-right">
                                 <ul class="nav navbar-nav">
-                                    <li><a href="#"><i class="fa fa-user"></i> Account</a></li>
+                                    
+                                        <c:if test="${userIN != null}">
+                                            <li><a href="#"><i class="fa fa-user"></i><c:out value="${userIN.firstName}"></a></c:out></li>
+                                        </c:if>
+                                        <c:if test="${userIN == null}">
+                                            <li><a href="#"><i class="fa fa-user"></i> Guest</a></li>
+                                    </c:if>
                                     <li><a href="#"><i class="fa fa-star"></i> Wishlist</a></li>
                                     <li><a href="<c:url value="/checkout"/>"><i class="fa fa-crosshairs"></i> Checkout</a></li>
                                     <li><a href="<c:url value="/cart"/>"><i class="fa fa-shopping-cart"></i> Cart</a></li>
-                                    <li><a href="<c:url value="/login"/>"><i class="fa fa-lock"></i> Login</a></li>
+                                    <li><c:if test="${userIN != null}">
+                                            <%--<c:out value="${userIN.firstName}"></c:out>--%>
+                                            <form action="<c:url value="/j_spring_security_logout"/>" method="post" id="logoutForm">
+                                                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+                                            </form>
+                                        <a onclick="document.getElementById('logoutForm').submit()" href="#"><i class="fa fa-lock"></i>Logout</a>
+
+                                       
+                                    </c:if>
+                                        <c:if test="${userIN == null}">
+                                            <a href="<c:url value="/login"/>"><i class="fa fa-lock"></i> Login</a>
+                                        </c:if>
+                                    </li>
                                 </ul>
                             </div>
                         </div>
