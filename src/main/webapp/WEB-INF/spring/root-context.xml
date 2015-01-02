@@ -13,7 +13,7 @@
 
 	<!-- Root Context: defines shared resources visible to all other web components -->
 
-	<context:component-scan base-package="mum.pm.ebazaar" />
+	<context:component-scan base-package="mum.pm.ebazaar.*" />
 
 	<bean id="propertyConfigurer"
 		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
@@ -41,7 +41,7 @@
 		</property>
 		<property name="hibernateProperties">
 			<props>
-				<prop key="hibernate.hbm2ddl.auto">update</prop>
+				<prop key="hibernate.hbm2ddl.auto">create-drop</prop>
 				<prop key="hibernate.dialect">${hibernate.dialect}</prop>
 				<prop key="hibernate.show_sql">false</prop>
 			</props>

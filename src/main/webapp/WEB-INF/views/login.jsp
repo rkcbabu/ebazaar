@@ -31,14 +31,22 @@
                     <div class="col-sm-4">
                         <div class="signup-form"><!--sign up form-->
                             <h2>New User Signup!</h2>
-                            <form:form modelAttribute="newAdmin" method="post">
-                                <form:input path="username" />
-                                <form:input path="password" />
-                                <form:input path="street" />
-                                <form:input path="city" />
-                                <form:input path="state" />
-                                <form:input path="zipcode" />
+                            <%--<form:form modelAttribute="newAdmin" method="post">--%>
+                            <form:form method="POST" action="user/save" commandName="user">
+                                <%--<form:errors element="div" cssClass="errors" path="*"/>--%>
                                 
+                                <form:input path="firstName"  placeholder="First Name" />
+                                <form:input path="lastName" placeholder="Last Name" />
+                                <form:input path="username" placeholder="Username"/>
+                                <form:password path="password" placeholder="password" />
+                                <%--<form:errors path="username" element="div" cssClass="error" />--%>
+
+                                <form:input path="phone" placeholder="Phone"/>
+                                <form:input path="email" placeholder="Email"/>
+                                <%--<form:input path="city" />--%>
+                                <%--<form:input path="state" />--%>
+                                <%--<form:input path="zipcode" />--%>
+
                                 <!-- <input type="text" placeholder="Name"/>
                                 <input type="email" placeholder="Email Address"/>
                                 <input type="password" placeholder="Password"/> -->
@@ -51,6 +59,6 @@
         </section><!--/form-->
 
 
-         <jsp:include page="/WEB-INF/views/includes/footer.jsp"/>
+        <jsp:include page="/WEB-INF/views/includes/footer.jsp"/>
     </body>
 </html>
