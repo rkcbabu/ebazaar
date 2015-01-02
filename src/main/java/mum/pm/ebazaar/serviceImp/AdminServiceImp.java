@@ -7,9 +7,8 @@ import mum.pm.ebazaar.repository.AdminDao;
 import mum.pm.ebazaar.service.AdminService;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
-@Service
+//@Service
 public class AdminServiceImp implements AdminService {
 	
 	

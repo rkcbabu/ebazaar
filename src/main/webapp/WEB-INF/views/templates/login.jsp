@@ -1,5 +1,4 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -31,19 +30,12 @@
                     <div class="col-sm-4">
                         <div class="signup-form"><!--sign up form-->
                             <h2>New User Signup!</h2>
-                            <form:form modelAttribute="newAdmin" method="post">
-                                <form:input path="username" />
-                                <form:input path="password" />
-                                <form:input path="street" />
-                                <form:input path="city" />
-                                <form:input path="state" />
-                                <form:input path="zipcode" />
-                                
-                                <!-- <input type="text" placeholder="Name"/>
+                            <form action="#">
+                                <input type="text" placeholder="Name"/>
                                 <input type="email" placeholder="Email Address"/>
-                                <input type="password" placeholder="Password"/> -->
+                                <input type="password" placeholder="Password"/>
                                 <button type="submit" class="btn btn-default">Signup</button>
-                            </form:form>
+                            </form>
                         </div><!--/sign up form-->
                     </div>
                 </div>
@@ -51,6 +43,6 @@
         </section><!--/form-->
 
 
-         <jsp:include page="/WEB-INF/views/includes/footer.jsp"/>
+        <jsp:include page="/WEB-INF/views/includes/footer.jsp"/>
     </body>
 </html>
