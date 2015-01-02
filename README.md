@@ -1,4 +1,4 @@
-ebazaar
+E-bazaar
 =======
 
 Project Management Seminar Project
@@ -6,9 +6,9 @@ Project Management Seminar Project
 Git Command : 
 
 1st time only : 
-git clone https://github.com/rkcbabu/ebazaar.git 
+# git clone https://github.com/rkcbabu/ebazaar.git 
 
-Every time PULL ; then only PUSH action ; 
+# Every time PULL ; then only PUSH  ; 
 
 
 
