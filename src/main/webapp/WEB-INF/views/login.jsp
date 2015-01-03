@@ -14,15 +14,17 @@
                     <div class="col-sm-4 col-sm-offset-1">
                         <div class="login-form"><!--login form-->
                             <h2>Login to your account</h2>
-                            <form:form method="POST" action="user/loginA" commandName="user">
-                                <form:input path="username" placeholder="Username"/>
-                                <form:password path="password" placeholder="password" />
+                                <form name='loginForm'  action="<c:url value='/j_spring_security_check' />" method='POST'>
+                                <%--<form:input path="username" placeholder="Username"/>--%>
+                                <input  type='text' name='username' placeholder="Username">
+                                <input  type='password' name='password' placeholder="Username">
+                                <%--<form:password path="password" placeholder="password" />--%>
                                 <span>
                                     <input type="checkbox" class="checkbox"> 
                                     Keep me signed in
                                 </span>
                                 <button type="submit" class="btn btn-default">Login</button>
-                            </form:form>
+                                </form>
                         </div><!--/login form-->
                     </div>
                     <div class="col-sm-1">

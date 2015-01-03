@@ -5,6 +5,7 @@ import mum.pm.ebazaar.domain.User;
 import mum.pm.ebazaar.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.DigestUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -44,6 +45,9 @@ public class UserController {
         if(result.hasErrors())
             return "login";
         else{
+            String md5password = DigestUtils.md5DigestAsHex(user.getPassword().getBytes());
+            user.setPassword(md5password);
+        
             user.setEnabled(true);
             user.setRole("ROLE_ADMIN");
            userservice.saveUser(user); 

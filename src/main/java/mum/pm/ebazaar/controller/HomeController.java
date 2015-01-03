@@ -9,23 +9,23 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 public class HomeController {
-
+    
+    @RequestMapping("/")
+    public String homePage() {
+        return "index";
+    }
+    
     @RequestMapping("/welcome")
-    public String welcome(Model model) {
+    public String welcomePage(Model model) {
         model.addAttribute("greeting", "Welcome to Web Store!");
         model.addAttribute("tagline", "The one and only amazing web store");
         return "welcome";
     }
 
-    @RequestMapping("/")
-    public String greeting() {
-        return "index";
+    @RequestMapping("/template/login")
+    public String login() {
+        return "templates/login";
     }
-
-//    @RequestMapping(value="/login", method=RequestMethod.GET)
-//    public String login(@ModelAttribute ("newAdmin") Admin admin) {
-//        return "templates/login";
-//    }
 
     @RequestMapping("/page404")
     public String page404() {
