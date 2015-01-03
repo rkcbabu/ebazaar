@@ -112,6 +112,14 @@ public class User implements Serializable {
         this.email = email;
     }
 
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
+    }
+
     
     @Override
     public int hashCode() {

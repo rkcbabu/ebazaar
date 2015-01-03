@@ -17,7 +17,7 @@
                                 <form name='loginForm'  action="<c:url value='/j_spring_security_check' />" method='POST'>
                                 <%--<form:input path="username" placeholder="Username"/>--%>
                                 <input  type='text' name='username' placeholder="Username">
-                                <input  type='password' name='password' placeholder="Username">
+                                <input  type='password' name='password' placeholder="Password">
                                 <%--<form:password path="password" placeholder="password" />--%>
                                 <span>
                                     <input type="checkbox" class="checkbox"> 
@@ -45,13 +45,11 @@
 
                                 <form:input path="phone" placeholder="Phone"/>
                                 <form:input path="email" placeholder="Email"/>
-                                <%--<form:input path="city" />--%>
-                                <%--<form:input path="state" />--%>
-                                <%--<form:input path="zipcode" />--%>
-
-                                <!-- <input type="text" placeholder="Name"/>
-                                <input type="email" placeholder="Email Address"/>
-                                <input type="password" placeholder="Password"/> -->
+                                <form:input path="address.street" placeholder="Street"/>
+                                <form:input path="address.city" placeholder="City"/>
+                                <form:input path="address.state" placeholder="State"/>
+                                <form:input path="address.zipcode" placeholder="Zipcode"/>
+                                
                                 <button type="submit" class="btn btn-default">Signup</button>
                             </form:form>
                         </div><!--/sign up form-->

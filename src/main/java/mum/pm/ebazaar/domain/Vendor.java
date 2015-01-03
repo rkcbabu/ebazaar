@@ -8,7 +8,6 @@ package mum.pm.ebazaar.domain;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 /**
  *
