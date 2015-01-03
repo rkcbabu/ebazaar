@@ -1,20 +1,37 @@
 package mum.pm.ebazaar.controller;
 
-import mum.pm.ebazaar.domain.Admin;
+import javax.servlet.http.HttpServletRequest;
+import mum.pm.ebazaar.domain.User;
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 public class HomeController {
-    
+
     @RequestMapping("/")
     public String homePage() {
         return "index";
     }
     
+    @RequestMapping("/successPage")
+    public String successPage(HttpServletRequest request) {
+        if (request.isUserInRole("ROLE_ADMIN")) {
+            return "redirect:/admin";
+        } else if (request.isUserInRole("ROLE_CUSTOMER")) {
+            return "redirect:/search-product";
+        } else if (request.isUserInRole("ROLE_VENDOR")) {
+            return "redirect:/vendor";
+        } else {
+            return "redirect:/";
+        }
+
+    }
+
     @RequestMapping("/welcome")
     public String welcomePage(Model model) {
         model.addAttribute("greeting", "Welcome to Web Store!");
