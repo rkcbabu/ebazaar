@@ -13,9 +13,8 @@ import org.hibernate.criterion.Criterion;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
 
-@Repository
+//@Repository
 public abstract class GenericHibernateDaoImpl<T, ID extends Serializable>
 		implements GenericDAO<T, ID> {
 

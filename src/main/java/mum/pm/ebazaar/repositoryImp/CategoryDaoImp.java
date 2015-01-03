@@ -8,7 +8,6 @@ import mum.pm.ebazaar.repository.AdminDao;
 import mum.pm.ebazaar.repository.CategoryDao;
 
 //@Repository
-//public class CategoryDaoImp extends GenericHibernateDaoImpl<Category, Long> 
-                               // implements CategoryDao {
-
+//public class CategoryDaoImp extends GenericHibernateDaoImpl<Category, Long> implements CategoryDao {
+//
 //}
