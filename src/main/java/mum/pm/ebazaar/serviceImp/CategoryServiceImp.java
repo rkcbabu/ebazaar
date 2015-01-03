@@ -14,34 +14,36 @@ public class CategoryServiceImp implements CategoryService {
 	private CategoryDao categoryDao;
 
 	@Override
-	public Category create(Category category) {
-		//categoryDao.save(category);
-		return category;
-		
+	public Category get(long id) {
+	//	Category category = categoryDao.get(id);
+		return null;
 	}
 
 	@Override
-	public Category read(long categoryId) {
+	public List<Category> getAll() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public void update(long categoryId, Category card) {
+	public void create(Category category) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void delete(int categoryId) {
+	public void update(Category category) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public List<Category> findAll() {
+	public void delete(Category category) {
 		// TODO Auto-generated method stub
-		return null;
+		
 	}
+
+
+
 
 }

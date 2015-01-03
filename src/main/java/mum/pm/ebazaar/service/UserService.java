@@ -11,3 +11,10 @@ public interface UserService {
     public User getUserByUsername(String username);
 //    public User getUserByVerification(String code);
 }
+
+//public interface UserService {
+//	public List<User> getAll();
+//	public void create(User user);
+//	public void update(User user);
+//	public void delete(User user);
+//}

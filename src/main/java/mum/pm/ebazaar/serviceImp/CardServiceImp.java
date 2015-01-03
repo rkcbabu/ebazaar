@@ -3,44 +3,50 @@ package mum.pm.ebazaar.serviceImp;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import mum.pm.ebazaar.domain.Card;
 import mum.pm.ebazaar.repository.CardDao;
 import mum.pm.ebazaar.service.CardService;
-
+@Service
+@Transactional(propagation = Propagation.REQUIRES_NEW)
 public class CardServiceImp implements CardService {
 	
 	@Autowired
 	private CardDao cardDao;
 
 	@Override
-	public Card create(Card card) {
-		cardDao.save(card);
+	public Card get(long id) {
+		Card card = cardDao.get(id);
 		return card;
 	}
 
 	@Override
-	public Card read(long cardId) {
-		Card card = cardDao.findOne(cardId);
-		return card;
-	}
-
-	@Override
-	public void update(long cardId, Card card) {
-		// TODO Auto-generated method stub
+	public List<Card> getAll() {
+		List<Card> listCard = cardDao.getAll();
 		
-	}
-
-	@Override
-	public void delete(int cardId) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public List<Card> findAll() {
-		List<Card> listCard = (List<Card>)cardDao.findAll();
 		return listCard;
 	}
 
+	@Override
+	public void create(Card card) {
+	      
+		cardDao.create(card);
+	}
+
+	@Override
+	public void update(Card card) {
+		cardDao.update(card);
+		
+	}
+
+	@Override
+	public void delete(Card card) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	
 }

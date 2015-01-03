@@ -12,3 +12,6 @@ public interface UserDao {
     public User getUserByUsername(String username);
 //    public User getUserByVerification(String code);
 }
+//public interface UserDao extends GenericDAO<User, Long> {
+//
+//}

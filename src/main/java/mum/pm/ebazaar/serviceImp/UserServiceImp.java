@@ -46,3 +46,37 @@ public class UserServiceImp implements UserService {
 //    }
     
 }
+
+//@Service
+//@Transactional(propagation = Propagation.REQUIRES_NEW)
+//
+//public class UserServiceImp implements UserService {
+//	
+//	@Autowired
+//    private UserDao userDao;
+//
+//	@Override
+//	public List<User> getAll() {
+//		List<User> listUser = userDao.getAll();
+//		return listUser;
+//	}
+//
+//	@Override
+//	public void create(User user) {
+//	
+//		userDao.create(user);
+//	}
+//
+//	@Override
+//	public void update(User user) {
+//		userDao.update(user);
+//		
+//	}
+//
+//	@Override
+//	public void delete(User user) {
+//		userDao.delete(user);
+//		
+//	}
+//
+//}

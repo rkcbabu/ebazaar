@@ -3,18 +3,20 @@ package mum.pm.ebazaar.service;
 import java.util.List;
 
 
+
+import mum.pm.ebazaar.domain.Admin;
 import mum.pm.ebazaar.domain.Category;
 
 public interface CategoryService {
 	
-	Category create(Category category);
+	public Category get(long id);
 
-	Category read(long categoryId);
+	public List<Category> getAll();
 
-	void update(long categoryId, Category card);
-
-	void delete(int categoryId);
-
-	public List<Category> findAll();
+	public void create(Category category);
+	
+	public void update(Category category);
+	
+	public void delete(Category category);
 
 }

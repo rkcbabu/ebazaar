@@ -8,14 +8,14 @@ import mum.pm.ebazaar.domain.Admin;
 
 public interface AdminService {
 	
-	Admin create(Admin admin);
+	public Admin get(long id);
 
-	Admin read(long adminId);
+	public List<Admin> getAll();
 
-	void update(long adminId, Admin admin);
-
-	void delete(int adminId);
-
-	public List<Admin> findAll();
+	public void create(Admin entity);
+	
+	public void update(Admin entity);
+	
+	public void delete(Admin entity);
 
 }

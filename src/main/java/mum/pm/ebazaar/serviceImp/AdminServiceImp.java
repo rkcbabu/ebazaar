@@ -7,42 +7,49 @@ import mum.pm.ebazaar.repository.AdminDao;
 import mum.pm.ebazaar.service.AdminService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
-//@Service
+@Service
+@Transactional(propagation = Propagation.REQUIRES_NEW)
 public class AdminServiceImp implements AdminService {
 	
-	
 	@Autowired
-	private AdminDao  adminDao;
+    private AdminDao adminDao;
 
 	@Override
-	public Admin create(Admin admin) {
-		adminDao.save(admin);
+	public Admin get(long id) {
+		Admin admin =adminDao.get(id);
 		return admin;
 	}
 
 	@Override
-	public Admin read(long adminId) {
-		Admin admin = adminDao.findOne(adminId);
-		return admin;
+	public List<Admin> getAll() {
+		List<Admin> listAdmin = adminDao.getAll();
+		return listAdmin;
 	}
 
 	@Override
-	public void update(long adminId, Admin admin) {
-		 List<Admin> listAdmin = (List<Admin>)adminDao.findAll();
-				
+	public void create(Admin admin) {
+		adminDao.create(admin);
+		
 	}
 
 	@Override
-	public void delete(int adminId) {
+	public void update(Admin admin) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public List<Admin> findAll() {
-		List<Admin> listAdmin = (List<Admin>)adminDao.findAll();
-		return listAdmin;	
-		}
+	public void delete(Admin entity) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	
+	
+	
 
 }
