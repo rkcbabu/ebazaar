@@ -11,7 +11,7 @@ import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 /**
  *
- * @author Chaulagai
+ * @author Ram
  */
 @Entity
 public class Vendor extends User implements Serializable {

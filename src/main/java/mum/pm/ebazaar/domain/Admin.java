@@ -10,7 +10,7 @@ import javax.persistence.Entity;
 
 /**
  *
- * @author Chaulagai
+ * @author Ram
  */
 @Entity
 public class Admin extends User implements Serializable {

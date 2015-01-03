@@ -9,7 +9,7 @@ import java.io.Serializable;
 import javax.persistence.Embeddable;
 /**
  *
- * @author Chaulagai
+ * @author Ram
  */
 @Embeddable
 public class Address implements Serializable {

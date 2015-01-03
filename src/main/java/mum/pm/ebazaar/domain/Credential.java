@@ -14,7 +14,7 @@ import javax.persistence.OneToOne;
 
 /**
  *
- * @author Chaulagai
+ * @author Ram
  */
 @Entity
 public class Credential implements Serializable {

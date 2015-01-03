@@ -15,7 +15,7 @@ import javax.persistence.ManyToOne;
 
 /**
  *
- * @author Chaulagai
+ * @author Ram
  */
 @Entity
 public class Product implements Serializable {
