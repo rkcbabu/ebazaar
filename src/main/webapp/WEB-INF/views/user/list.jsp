@@ -63,7 +63,7 @@
                     <td>${customer.city}</td>
                     <td>${customer.state}</td>
                     <td>${customer.zipcode}</td>
-                    </td><td><a href="customer/edit/${customer.id}">Edit</a></td><td><a href="customer/delete/${customer.id}">Delete</a></td></tr>
+                    <td><a href="customer/edit/${customer.id}">Edit</a></td><td><a href="customer/delete/${customer.id}">Delete</a></td></tr>
                     </c:forEach>          
             
         </table>
