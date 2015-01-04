@@ -9,12 +9,13 @@
 	<http auto-config="true" use-expressions="true">
             
             <intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')" />
-            <intercept-url pattern="/order/**" access="hasRole('ROLE_USER')" />
+            <intercept-url pattern="/customer/**" access="hasRole('ROLE_USER')" />
+            <intercept-url pattern="/vendor/**" access="hasRole('ROLE_VENDOR')" />
 		<!-- access denied page -->
 		<access-denied-handler error-page="/403" />
 		<form-login 
 		    login-page="/login" 
-		    default-target-url="/" 
+		    default-target-url="/successPage" 
 			authentication-failure-url="/login?error" 
 			username-parameter="username"
 			password-parameter="password" />
