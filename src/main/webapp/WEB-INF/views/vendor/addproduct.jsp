@@ -35,6 +35,7 @@
                                 </form:select>
                                 <hr>
                                 <form:select path="category.id">
+                                <form:option value="NONE" label="--- Select category ---"/>
                                     <form:options items="${categoryList}" itemValue="id" itemLabel="name"/>
                                 </form:select>
                                 <hr>
