@@ -15,7 +15,7 @@ import javax.persistence.OneToMany;
 
 /**
  *
- * @author Chaulagai
+ * @author Ram
  */
 @Entity
 public class Category implements Serializable {

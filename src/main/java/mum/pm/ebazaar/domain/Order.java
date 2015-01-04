@@ -19,7 +19,7 @@ import javax.persistence.Temporal;
 
 /**
  *
- * @author Chaulagai
+ * @author Ram
  */
 @Entity
 public class Order implements Serializable {

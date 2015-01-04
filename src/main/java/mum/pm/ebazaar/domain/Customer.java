@@ -13,7 +13,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 /**
  *
- * @author Chaulagai
+ * @author Ram
  */
 @Entity
 public class Customer extends User implements Serializable {

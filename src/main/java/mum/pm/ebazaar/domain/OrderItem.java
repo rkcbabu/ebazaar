@@ -16,7 +16,7 @@ import javax.persistence.OneToOne;
 
 /**
  *
- * @author Chaulagai
+ * @author Ram
  */
 @Entity
 public class OrderItem implements Serializable {
