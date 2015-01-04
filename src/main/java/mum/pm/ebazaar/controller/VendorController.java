@@ -41,17 +41,33 @@ public class VendorController {
     @RequestMapping()
     public String vendorHome(Model model) {
         model.addAttribute("products", productService.getAll());
-        return "product/vendor-index";
+        return "vendor/vendor-index";
     }
 
     @RequestMapping(value = "/editproduct/{id}", method = RequestMethod.GET)
     public String editProduct(@ModelAttribute("vendor") Vendor vendor, @PathVariable long id, Model model) {
         model.addAttribute("product", productService.findById(id));
-        return "product/addproduct";
+        return "vendor/editproduct";
     }
+    @RequestMapping(value = "/editproduct/{id}", method = RequestMethod.POST)
+    public String editProduct(@ModelAttribute("product") Product product, BindingResult result,
+            @PathVariable long id, HttpServletRequest request, @RequestParam("file") MultipartFile file) {
+        /*if(result.hasErrors()){
+         return "vendor/addproduct";
+         }	*/
+        product.setId(id);
+        try {
+            product.setProductImage(file.getBytes());
 
-    @RequestMapping(value = "/deleteproduct/{id}", method = RequestMethod.GET)
-    public String deleteproduct(@PathVariable long id, Model model) {
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        productService.update(product);
+        return "redirect:/vendor";
+    }
+    @RequestMapping(value = "/deleteproduct", method = RequestMethod.POST)
+    public String deleteproduct( @RequestParam(value = "productId") long id) {
         Product p = productService.findById(id);
         if (p != null) {
             productService.delete(p);
@@ -62,14 +78,14 @@ public class VendorController {
     @RequestMapping(value = "/addproduct", method = RequestMethod.GET)
     public String getadmin(@ModelAttribute("vendor") Vendor vendor, Model model) {
         model.addAttribute("product", new Product());
-        return "product/addproduct";
+        return "vendor/addproduct";
     }
 
     @RequestMapping(value = "/addproduct", method = RequestMethod.POST)
     public String postadmin(@ModelAttribute("product") Product product, BindingResult result,
             HttpServletRequest request, @RequestParam("file") MultipartFile file) {
         /*if(result.hasErrors()){
-         return "product/addproduct";
+         return "vendor/addproduct";
          }	*/
         try {
             product.setProductImage(file.getBytes());
@@ -79,7 +95,7 @@ public class VendorController {
         }
 
         productService.create(product);
-        return "product/vendor-index";
+        return "redirect:/vendor";
     }
 
     @RequestMapping(value = "/productpic/{id}")

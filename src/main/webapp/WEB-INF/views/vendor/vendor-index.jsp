@@ -52,9 +52,10 @@
                                     <td class="cart_delete">
                                         <a class="cart_quantity_button" href="<c:url value="/vendor/editproduct"/>/${product.id}" >
                                             <i class="fa fa-edit"></i></a>
-                                        <a class="cart_quantity_delete" href=""  onclick="$(this).closest('form').submit();">
+                                        <a class="cart_quantity_delete" href="#"  onclick='$("#FormId${product.id}").submit()'>
                                                 <i class="fa fa-times"></i></a>
-                                        <form action="<c:url value="/vendor/deleteproduct"/>/${product.id}" method="get" id="deleteForm">
+                                        <form id="FormId${product.id}" action="<c:url value="/vendor/deleteproduct"/>" method="post">
+                                            <input type="hidden" name="productId" value="${product.id}"/>
                                         </form>
                                     </td>
                                 </tr>
