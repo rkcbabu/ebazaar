@@ -2,7 +2,7 @@
 <%@taglib  prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html lang="en">
-        <jsp:include page="/WEB-INF/views/includes/head.jsp"/>
+    <jsp:include page="/WEB-INF/views/includes/head.jsp"/>
 
     <body>
         <jsp:include page="/WEB-INF/views/includes/header.jsp"/>
@@ -11,8 +11,8 @@
             <div class="container">
                 <div class="breadcrumbs">
                     <ol class="breadcrumb">
-                        <li><a href="#">Home</a></li>
-                        <li class="active">Vendor Home </li>
+                        <li><a href="<c:url value="/vendor/"/>">Home</a></li>
+                        <li class="active">Vendor Panel</li>
                     </ol>
                 </div>
                 <a class="btn btn-default update" href='<c:url value="/vendor/addproduct"/>'>Add Product</a>
@@ -21,98 +21,53 @@
                     <table class="table table-condensed">
                         <thead>
                             <tr class="cart_menu">
-                                <td class="image">Item</td>
-                                <td class="description"></td>
+                                <!--<td class="image">Item</td>-->
+                                <td class="description">Product Title</td>
                                 <td class="price">Price</td>
                                 <td class="quantity">Quantity</td>
-                                <td class="total">Total</td>
+                                <td class="total">Availability</td>
                                 <td></td>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td class="cart_product">
-                                    <a href=""><img src="<c:url value="/web-resources/images/cart/one.png" />" alt=""></a>
-                                </td>
-                                <td class="cart_description">
-                                    <h4><a href="">Colorblock Scuba</a></h4>
-                                    <p>Web ID: 1089772</p>
-                                </td>
-                                <td class="cart_price">
-                                    <p>$59</p>
-                                </td>
-                                <td class="cart_quantity">
-                                    <div class="cart_quantity_button">
-                                        <a class="cart_quantity_up" href=""> + </a>
-                                        <input class="cart_quantity_input" type="text" name="quantity" value="1" autocomplete="off" size="2">
-                                        <a class="cart_quantity_down" href=""> - </a>
-                                    </div>
-                                </td>
-                                <td class="cart_total">
-                                    <p class="cart_total_price">$59</p>
-                                </td>
-                                <td class="cart_delete">
-                                    <a class="cart_quantity_delete" href=""><i class="fa fa-times"></i></a>
-                                </td>
-                            </tr>
+                            <c:forEach items="${products}" var="product">
+                                <tr>
+<!--                                    <td class="cart_product">
+                                        <a href=""><img src="../productpic/${product.id}" alt=""></a>
+                                    </td>-->
 
-                            <tr>
-                                <td class="cart_product">
-                                    <a href=""><img src="<c:url value="/web-resources/images/cart/two.png" />" alt=""></a>
-                                </td>
-                                <td class="cart_description">
-                                    <h4><a href="">Colorblock Scuba</a></h4>
-                                    <p>Web ID: 1089772</p>
-                                </td>
-                                <td class="cart_price">
-                                    <p>$59</p>
-                                </td>
-                                <td class="cart_quantity">
-                                    <div class="cart_quantity_button">
-                                        <a class="cart_quantity_up" href=""> + </a>
-                                        <input class="cart_quantity_input" type="text" name="quantity" value="1" autocomplete="off" size="2">
-                                        <a class="cart_quantity_down" href=""> - </a>
-                                    </div>
-                                </td>
-                                <td class="cart_total">
-                                    <p class="cart_total_price">$59</p>
-                                </td>
-                                <td class="cart_delete">
-                                    <a class="cart_quantity_delete" href=""><i class="fa fa-times"></i></a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="cart_product">
-                                    <a href=""><img src="<c:url value="/web-resources/images/cart/three.png" />" alt=""></a>
-                                </td>
-                                <td class="cart_description">
-                                    <h4><a href="">Colorblock Scuba</a></h4>
-                                    <p>Web ID: 1089772</p>
-                                </td>
-                                <td class="cart_price">
-                                    <p>$59</p>
-                                </td>
-                                <td class="cart_quantity">
-                                    <div class="cart_quantity_button">
-                                        <a class="cart_quantity_up" href=""> + </a>
-                                        <input class="cart_quantity_input" type="text" name="quantity" value="1" autocomplete="off" size="2">
-                                        <a class="cart_quantity_down" href=""> - </a>
-                                    </div>
-                                </td>
-                                <td class="cart_total">
-                                    <p class="cart_total_price">$59</p>
-                                </td>
-                                <td class="cart_delete">
-                                    <a class="cart_quantity_delete" href=""><i class="fa fa-times"></i></a>
-                                </td>
-                            </tr>
+                                    <td class="cart_description">
+                                        <p>${product.name}</p>
+                                    </td>
+                                    <td class="cart_price">
+                                        <!--<p>$59</p>-->
+                                        <p>${product.price}</p>
+                                    </td>
+                                    <td class="cart_quantity">
+                                        <p>${product.quantity}</p>
+                                    </td>
+                                    <td class="cart_total">
+                                        <p>${product.availability}</p>
+                                    </td>
+                                    <td class="cart_delete">
+                                        <a class="cart_quantity_button" href="<c:url value="/vendor/editproduct"/>/${product.id}" >
+                                            <i class="fa fa-edit"></i></a>
+                                        <a class="cart_quantity_delete" href=""  onclick="$(this).closest('form').submit();">
+                                                <i class="fa fa-times"></i></a>
+                                        <form action="<c:url value="/vendor/deleteproduct"/>/${product.id}" method="get" id="deleteForm">
+                                        </form>
+                                    </td>
+                                </tr>
+                            </c:forEach>
+
+
                         </tbody>
                     </table>
                 </div>
             </div>
         </section> <!--/#cart_items-->
 
-        
+
 
         <jsp:include page="/WEB-INF/views/includes/footer.jsp"/>
     </body>

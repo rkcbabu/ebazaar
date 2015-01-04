@@ -29,61 +29,71 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
-
-
 @Controller
 @RequestMapping("/vendor")
 public class VendorController {
-	
-	@Autowired
-	VendorService vendorService;
-	@Autowired
-	ProductService productService;
-	
 
-	@RequestMapping("")
-	public String vendorHome() {
-		
-	return "product/vendor-index";
-	}
-	
-	@RequestMapping(value="/addproduct", method=RequestMethod.GET)
-	public String getadmin(@ModelAttribute ("vendor") Vendor vendor,Model model) {
-		model.addAttribute("product", new Product());
-		return "product/addproduct";
-	}
-	
-	
-	@RequestMapping(value="/addproduct", method=RequestMethod.POST)
-	public String postadmin(@ModelAttribute ("product") Product product,BindingResult result, 
-			HttpServletRequest request, @RequestParam("file") MultipartFile file) {   
-		/*if(result.hasErrors()){
-			return "product/addproduct";
-		}	*/					
-		try {
-			product.setProductImage(file.getBytes());
-			
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		
-		productService.create(product);
-		return "product/vendor-index";
-	}
-	
-	@RequestMapping(value="/productpic/{id}")
-	public void getImage(@PathVariable int id,HttpServletResponse response){
-		try{
-			Product p = productService.findById(id);
-			if(p!=null){
-				OutputStream out = response.getOutputStream();
-				out.write(p.getProductImage());
-				response.flushBuffer();
-			}
-		}catch(IOException ex){
-			
-		}
-	}
-	
-	
+    @Autowired
+    VendorService vendorService;
+    @Autowired
+    ProductService productService;
+
+    @RequestMapping()
+    public String vendorHome(Model model) {
+        model.addAttribute("products", productService.getAll());
+        return "product/vendor-index";
+    }
+
+    @RequestMapping(value = "/editproduct/{id}", method = RequestMethod.GET)
+    public String editProduct(@ModelAttribute("vendor") Vendor vendor, @PathVariable long id, Model model) {
+        model.addAttribute("product", productService.findById(id));
+        return "product/addproduct";
+    }
+
+    @RequestMapping(value = "/deleteproduct/{id}", method = RequestMethod.GET)
+    public String deleteproduct(@PathVariable long id, Model model) {
+        Product p = productService.findById(id);
+        if (p != null) {
+            productService.delete(p);
+        }
+        return "redirect:/vendor";
+    }
+
+    @RequestMapping(value = "/addproduct", method = RequestMethod.GET)
+    public String getadmin(@ModelAttribute("vendor") Vendor vendor, Model model) {
+        model.addAttribute("product", new Product());
+        return "product/addproduct";
+    }
+
+    @RequestMapping(value = "/addproduct", method = RequestMethod.POST)
+    public String postadmin(@ModelAttribute("product") Product product, BindingResult result,
+            HttpServletRequest request, @RequestParam("file") MultipartFile file) {
+        /*if(result.hasErrors()){
+         return "product/addproduct";
+         }	*/
+        try {
+            product.setProductImage(file.getBytes());
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        productService.create(product);
+        return "product/vendor-index";
+    }
+
+    @RequestMapping(value = "/productpic/{id}")
+    public void getImage(@PathVariable long id, HttpServletResponse response) {
+        try {
+            Product p = productService.findById(id);
+            if (p != null) {
+                OutputStream out = response.getOutputStream();
+                out.write(p.getProductImage());
+                response.flushBuffer();
+            }
+        } catch (IOException ex) {
+
+        }
+    }
+
 }
