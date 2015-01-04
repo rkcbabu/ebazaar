@@ -34,6 +34,10 @@
                                     <form:option value="NO" />
                                 </form:select>
                                 <hr>
+                                <form:select path="category.id">
+                                    <form:options items="${categoryList}" itemValue="id" itemLabel="name"/>
+                                </form:select>
+                                <hr>
                                 <input type="file" name="file" id="file" />
                                 <button type="submit" class="btn btn-primary">Save</button>
                             </form:form>

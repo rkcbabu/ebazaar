@@ -14,6 +14,7 @@ import javax.validation.Valid;
 import mum.pm.ebazaar.domain.Admin;
 import mum.pm.ebazaar.domain.Product;
 import mum.pm.ebazaar.domain.Vendor;
+import mum.pm.ebazaar.service.CategoryService;
 import mum.pm.ebazaar.service.ProductService;
 import mum.pm.ebazaar.service.VendorService;
 
@@ -37,6 +38,8 @@ public class VendorController {
     VendorService vendorService;
     @Autowired
     ProductService productService;
+    @Autowired
+    CategoryService categoryService;
 
     @RequestMapping()
     public String vendorHome(Model model) {
@@ -44,40 +47,10 @@ public class VendorController {
         return "vendor/vendor-index";
     }
 
-    @RequestMapping(value = "/editproduct/{id}", method = RequestMethod.GET)
-    public String editProduct(@ModelAttribute("vendor") Vendor vendor, @PathVariable long id, Model model) {
-        model.addAttribute("product", productService.findById(id));
-        return "vendor/editproduct";
-    }
-    @RequestMapping(value = "/editproduct/{id}", method = RequestMethod.POST)
-    public String editProduct(@ModelAttribute("product") Product product, BindingResult result,
-            @PathVariable long id, HttpServletRequest request, @RequestParam("file") MultipartFile file) {
-        /*if(result.hasErrors()){
-         return "vendor/addproduct";
-         }	*/
-        product.setId(id);
-        try {
-            product.setProductImage(file.getBytes());
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        productService.update(product);
-        return "redirect:/vendor";
-    }
-    @RequestMapping(value = "/deleteproduct", method = RequestMethod.POST)
-    public String deleteproduct( @RequestParam(value = "productId") long id) {
-        Product p = productService.findById(id);
-        if (p != null) {
-            productService.delete(p);
-        }
-        return "redirect:/vendor";
-    }
-
     @RequestMapping(value = "/addproduct", method = RequestMethod.GET)
     public String getadmin(@ModelAttribute("vendor") Vendor vendor, Model model) {
         model.addAttribute("product", new Product());
+        model.addAttribute("categoryList",categoryService.getAll());
         return "vendor/addproduct";
     }
 
@@ -98,6 +71,40 @@ public class VendorController {
         return "redirect:/vendor";
     }
 
+    @RequestMapping(value = "/editproduct/{id}", method = RequestMethod.GET)
+    public String editProduct(@ModelAttribute("vendor") Vendor vendor, @PathVariable long id, Model model) {
+        model.addAttribute("product", productService.findById(id));
+        model.addAttribute("categoryList", categoryService.getAll());
+        return "vendor/editproduct";
+    }
+
+    @RequestMapping(value = "/editproduct/{id}", method = RequestMethod.POST)
+    public String editProduct(@ModelAttribute("product") Product product, BindingResult result,
+            @PathVariable long id, HttpServletRequest request, @RequestParam("file") MultipartFile file) {
+        /*if(result.hasErrors()){
+         return "vendor/addproduct";
+         }	*/
+        product.setId(id);
+        try {
+            product.setProductImage(file.getBytes());
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        productService.update(product);
+        return "redirect:/vendor";
+    }
+
+    @RequestMapping(value = "/deleteproduct", method = RequestMethod.POST)
+    public String deleteproduct(@RequestParam(value = "productId") long id) {
+        Product p = productService.findById(id);
+        if (p != null) {
+            productService.delete(p);
+        }
+        return "redirect:/vendor";
+    }
+
     @RequestMapping(value = "/productpic/{id}")
     public void getImage(@PathVariable long id, HttpServletResponse response) {
         try {
@@ -107,6 +114,7 @@ public class VendorController {
                 out.write(p.getProductImage());
                 response.flushBuffer();
             }
+            System.out.println("here");
         } catch (IOException ex) {
 
         }
