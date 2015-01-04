@@ -11,7 +11,7 @@
             <div class="container">
                 <div class="breadcrumbs">
                     <ol class="breadcrumb">
-                        <li><a href="#">Admin</a></li>
+                        <li><a href="<c:url value="/admin"/>">Admin</a></li>
                         <li class="active">Panel</li>
                     </ol>
                 </div>
