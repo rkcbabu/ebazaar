@@ -21,7 +21,7 @@
                     <table class="table table-condensed">
                         <thead>
                             <tr class="cart_menu">
-                                <!--<td class="image">Item</td>-->
+                                <td class="image">Item</td>
                                 <td class="description">Product Title</td>
                                 <td class="price">Price</td>
                                 <td class="quantity">Quantity</td>
@@ -32,9 +32,11 @@
                         <tbody>
                             <c:forEach items="${products}" var="product">
                                 <tr>
-<!--                                    <td class="cart_product">
-                                        <a href=""><img src="../productpic/${product.id}" alt=""></a>
-                                    </td>-->
+                                    <td class="cart_product">
+                                        <!--<a href="">-->
+                                            <img style="height: 100px; width: 100px;" src="<c:url value="/vendor/productpic/"/>${product.id}" alt="">
+                                        <!--</a>-->
+                                    </td>
 
                                     <td class="cart_description">
                                         <p>${product.name}</p>
