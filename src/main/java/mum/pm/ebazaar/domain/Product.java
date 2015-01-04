@@ -6,12 +6,15 @@
 package mum.pm.ebazaar.domain;
 
 import java.io.Serializable;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+
 
 /**
  *
@@ -25,16 +28,37 @@ public class Product implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    private String ProductID;
+    private String productID;
     private String name;
     private Integer quantity;
     private Double price;
-    private String description;
-    @ManyToOne
+    private String availability;
+    @Column(columnDefinition="longblob")
+    private byte[] productImage;
+    
+
+	public byte[] getProductImage() {
+		return productImage;
+	}
+
+	public void setProductImage(byte[] productImage) {
+		this.productImage = productImage;
+	}
+
+	@ManyToOne
     @JoinColumn(name="vendor_id")
     private Vendor vendor;
     @ManyToOne
     private Category category;
+    
+    
+    public String getAvailability() {
+		return availability;
+	}
+
+	public void setAvailability(String availability) {
+		this.availability = availability;
+	}
 
      public Long getId() {
         return id;
@@ -43,12 +67,12 @@ public class Product implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
-    public String getProductID() {
-        return ProductID;
+    public String getproductID() {
+        return productID;
     }
 
-    public void setProductID(String ProductID) {
-        this.ProductID = ProductID;
+    public void setProductID(String productID) {
+        this.productID = productID;
     }
 
     public String getName() {
@@ -75,14 +99,6 @@ public class Product implements Serializable {
         this.price = price;
     }
 
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
     public Vendor getVendor() {
         return vendor;
     }
@@ -99,7 +115,8 @@ public class Product implements Serializable {
         this.category = category;
     }
 
-    @Override
+
+	@Override
     public int hashCode() {
         int hash = 0;
         hash += (id != null ? id.hashCode() : 0);
@@ -123,5 +140,6 @@ public class Product implements Serializable {
     public String toString() {
         return "mum.pm.ebazaar.domain.Product[ id=" + id + " ]";
     }
+
 
 }
