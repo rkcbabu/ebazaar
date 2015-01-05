@@ -75,8 +75,13 @@
                                 <li><a href="#"><i class="fa fa-user"></i> Guest</a></li>
                                 </c:if>
                             <!--<li><a href="#"><i class="fa fa-star"></i> Wishlist</a></li>-->
-                            <li><a href="<c:url value="/checkout"/>"><i class="fa fa-crosshairs"></i> Checkout</a></li>
-                            <li><a href="<c:url value="/cart"/>"><i class="fa fa-shopping-cart"></i> Cart</a></li>
+                            <li><a href="<c:url value="/checkout"/>"><i class="fa fa-crosshairs"></i>Checkout</a></li>
+                            <li><a href="<c:url value="/cart"/>"><i class="fa fa-shopping-cart"></i>Cart
+                                    <c:if test="${not empty cartItemCount}">
+                                    (${cartItemCount})
+                                    </c:if></a>
+                                    </li>
+                            
                             <li><c:if test="${pageContext.request.userPrincipal.name != null}">
                                     <form action="<c:url value="/j_spring_security_logout"/>" method="post" id="logoutForm">
                                         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />

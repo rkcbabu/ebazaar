@@ -26,7 +26,7 @@ public class OrderItem implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    private Integer quantity;
+    private int quantity;
     private Double price;
     
     @ManyToOne
@@ -45,11 +45,11 @@ public class OrderItem implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
-    public Integer getQuantity() {
+    public int getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(Integer quantity) {
+    public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
 

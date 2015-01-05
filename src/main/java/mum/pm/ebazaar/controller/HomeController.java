@@ -6,6 +6,7 @@ import java.security.Principal;
 import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import mum.pm.ebazaar.domain.Product;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,8 +20,8 @@ import org.springframework.web.servlet.ModelAndView;
 public class HomeController  extends GenericController{
     
     @RequestMapping("/")
-    public String homePage(Model model) {
-        pageSetup(model);
+    public String homePage(Model model,HttpServletRequest request) {
+        pageSetup(model,request);
         return "index";
     }
     
@@ -96,7 +97,7 @@ public class HomeController  extends GenericController{
         return "templates/blog";
     }
 
-    @RequestMapping("/cart")
+    @RequestMapping("/template/cart")
     public String cart() {
         return "templates/cart";
     }

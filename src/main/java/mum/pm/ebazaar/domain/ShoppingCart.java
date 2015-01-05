@@ -6,6 +6,7 @@
 package mum.pm.ebazaar.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Entity;
@@ -57,6 +58,9 @@ public class ShoppingCart implements Serializable {
     }
 
     public List<OrderItem> getOrderItems() {
+        if(orderItems==null){
+            orderItems= new ArrayList<OrderItem>();
+        }
         return orderItems;
     }
 

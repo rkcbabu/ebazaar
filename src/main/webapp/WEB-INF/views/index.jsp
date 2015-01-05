@@ -48,13 +48,13 @@
                                                 <img src="<c:url value="/productpic"/>/${product.id}" alt="" />
                                                 <h2>$ ${product.price}</h2>
                                                 <p>${product.name}</p>
-                                                <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                                                <a href="<c:url value="/addtocart"/>/${product.id}" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
                                             </div>
                                             <div class="product-overlay">
                                                 <div class="overlay-content">
                                                     <h2>$ ${product.price}</h2>
                                                     <p>${product.name}</p>
-                                                    <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                                                    <a href="<c:url value="/addtocart"/>/${product.id}" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
                                                 </div>
                                             </div>
                                         </div>
