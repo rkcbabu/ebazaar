@@ -6,11 +6,18 @@
 package mum.pm.ebazaar.domain;
 
 import java.io.Serializable;
+
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.Valid;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotEmpty;
 
 /**
  *
@@ -23,13 +30,42 @@ public class User implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    
+    @NotEmpty(message = "Please enter your firstName.")
+    @Size(min=2, max=10,message = "Your firstName must between 6 and 15 characters")
     private String firstName;
+    
+    @NotEmpty(message = "Please enter your password.")
+    @Size(min=2, max=10,message = "plz enter correct")
+    @Pattern(regexp="[a-zA-Z]")
     private String lastName;
     
+    @NotEmpty(message = "Please enter your username.")
+    @Size(min=2, max=10,message = "Your username must between 6 and 15 characters")
+    @Pattern(regexp ="[a-zA-Z0-9]")
     private String username; 
+   
+    
+    @NotEmpty(message = "Please enter your password.")
+    @Size(min = 6, max = 15, message = "Your password must between 6 and 15 characters")
     private String password; 
+    
+    
     private boolean enabled; 
     private String role; 
+    
+    @Embedded
+    @Valid
+    private Address address;
+    
+    @Pattern(regexp ="[0-9]")
+    @Size(min = 10, max = 10, message = "Your phone number must be of 10 digits")
+    private String phone;
+    
+    @NotEmpty(message = "Please enter your email address")
+    @Email
+    private String email;
+
 
     public String getUsername() {
         return username;
@@ -63,11 +99,7 @@ public class User implements Serializable {
         this.role = role;
     }
     
-    @Embedded
-    private Address address;
-    private String phone;
-    private String email;
-
+   
 //    @OneToOne
 //    private Credential credential;
     

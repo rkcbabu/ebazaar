@@ -5,6 +5,11 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <title>Home | E-bazaar</title>
+    <style>
+    .error {
+        color: red; font-weight: bold;
+    }
+   </style>
     <link href="<c:url value="/web-resources/css/bootstrap.min.css"/>" rel="stylesheet">
     <link href="<c:url value="/web-resources/css/font-awesome.min.css"/>" rel="stylesheet">
     <link href="<c:url value="/web-resources/css/prettyPhoto.css"/>" rel="stylesheet">

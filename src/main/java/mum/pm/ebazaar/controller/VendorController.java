@@ -2,8 +2,11 @@ package mum.pm.ebazaar.controller;
 
 import java.io.IOException;
 import java.io.OutputStream;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
+
 import mum.pm.ebazaar.domain.Product;
 import mum.pm.ebazaar.domain.User;
 import mum.pm.ebazaar.service.CategoryService;
@@ -50,11 +53,11 @@ public class VendorController {
     }
 
     @RequestMapping(value = "/addproduct", method = RequestMethod.POST)
-    public String postadmin(@ModelAttribute("product") Product product, BindingResult result,
+    public String postadmin(@Valid @ModelAttribute("product") Product product, BindingResult result,
             HttpServletRequest request, @RequestParam("file") MultipartFile file) {
-        /*if(result.hasErrors()){
+        if(result.hasErrors()){
          return "vendor/addproduct";
-         }	*/
+         }	
         try {
             product.setProductImage(file.getBytes());
 
@@ -77,11 +80,11 @@ public class VendorController {
     }
 
     @RequestMapping(value = "/editproduct/{id}", method = RequestMethod.POST)
-    public String editProduct(@ModelAttribute("product") Product product, BindingResult result,
+    public String editProduct(@Valid @ModelAttribute("product") Product product, BindingResult result,
             @PathVariable long id, HttpServletRequest request, @RequestParam("file") MultipartFile file) {
-        /*if(result.hasErrors()){
-         return "vendor/addproduct";
-         }	*/
+        if(result.hasErrors()){
+         return "vendor/editproduct";
+         }	
         product.setId(id);
         try {
             product.setProductImage(file.getBytes());

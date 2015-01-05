@@ -6,7 +6,11 @@
 package mum.pm.ebazaar.domain;
 
 import java.io.Serializable;
+
 import javax.persistence.Embeddable;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.NotEmpty;
 /**
  *
  * @author Ram
@@ -14,13 +18,16 @@ import javax.persistence.Embeddable;
 @Embeddable
 public class Address implements Serializable {
 
-   
+	@NotEmpty(message = "Please enter your street.")
     private String street;
 
+	@NotEmpty(message = "Please enter your city.")
     private String city;
 
+	@NotEmpty(message = "Please enter your state.")
     private String state;
 
+	@NotEmpty(message = "Please enter your zipcode.")
     private String zipcode;
 
 

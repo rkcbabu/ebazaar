@@ -25,13 +25,15 @@
                 </c:choose>
                 
                 
-                <p class="error">${message}</p>
+                <%-- <p class="error">${message}</p> --%>
                 
                 <form:form modelAttribute="newUser" method="post" enctype="multipart/form-data">
-                    <form:errors path="*" cssClass="error" element="p"/>
+                    <form:errors path="*" cssClass="error" />
                 <p>
                     <label>First Name : </label>
                     <form:input path="firstName" cssClass="form-control short" />
+                    <form:errors path="firstName" cssClass="error"/>
+                    hi
                 </p>
                 <p>
                     <label>Last Name : </label>

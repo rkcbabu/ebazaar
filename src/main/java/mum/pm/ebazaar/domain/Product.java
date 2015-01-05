@@ -12,8 +12,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.NotEmpty;
 
 
 /**
@@ -28,11 +30,22 @@ public class Product implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @NotEmpty(message = "Please enter your productID.")
     private String productID;
+    
+    @NotEmpty(message = "Please enter name.")
     private String name;
+    
+    @NotNull(message = "quantity can not be null.")
     private Integer quantity;
+    
+    @NotNull(message = "price can not be null.")
     private Double price;
+    
+
     private String availability;
+    
+    
     @Column(columnDefinition="longblob")
     private byte[] productImage;
     
