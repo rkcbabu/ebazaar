@@ -1,5 +1,6 @@
 package mum.pm.ebazaar.controller;
 
+import java.security.Principal;
 import javax.servlet.http.HttpServletRequest;
 import mum.pm.ebazaar.domain.User;
 import org.springframework.security.access.annotation.Secured;
@@ -10,6 +11,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class HomeController {
@@ -31,7 +34,7 @@ public class HomeController {
             return "redirect:/";
         }
 
-    }
+    }   
 
     @RequestMapping("/welcome")
     public String welcomePage(Model model) {
@@ -49,6 +52,23 @@ public class HomeController {
     public String page404() {
         return "templates/page404";
     }
+    @RequestMapping(value = "/403", method = RequestMethod.GET)
+	public ModelAndView accesssDenied(Principal user) {
+ 
+		ModelAndView model = new ModelAndView();
+ 
+		if (user != null) {
+			model.addObject("msg", "Hi " + user.getName() 
+			+ ", you do not have permission to access this page!");
+		} else {
+			model.addObject("msg", 
+			"You do not have permission to access this page!");
+		}
+ 
+		model.setViewName("403");
+		return model;
+ 
+	}
 
     @RequestMapping("/blog-single")
     public String blogsingle() {
