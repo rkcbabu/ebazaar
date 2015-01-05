@@ -15,7 +15,7 @@ public class UserServiceImp implements UserService {
 
     @Autowired
     UserDao userDao;
-    
+
     @Override
     public User getUserByUsername(String username) {
         return userDao.findByUsername(username);
@@ -25,7 +25,6 @@ public class UserServiceImp implements UserService {
 //    public User getUserByVerification(String code) {
 //        return userDao.getUserByVerification(code);
 //    }
-
     @Override
     public void update(User user) {
         User exisUser = userDao.get(user.getId());
@@ -35,13 +34,18 @@ public class UserServiceImp implements UserService {
         exisUser.setFirstName(user.getFirstName());
         exisUser.setLastName(user.getLastName());
         exisUser.setPhone(user.getPhone());
-        
+
         userDao.update(exisUser);
     }
 
     @Override
     public List<User> getAll() {
         return userDao.getAll();
+    }
+
+    @Override
+    public List<User> getVendors() {
+        return userDao.getVendors();
     }
 
     @Override
@@ -58,5 +62,5 @@ public class UserServiceImp implements UserService {
     public User findById(long id) {
         return userDao.get(id);
     }
-    
+
 }

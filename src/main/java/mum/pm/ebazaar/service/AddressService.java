@@ -1,9 +1,7 @@
 package mum.pm.ebazaar.service;
 
-import java.util.List;
 
 import mum.pm.ebazaar.domain.Address;
-import mum.pm.ebazaar.domain.Admin;
 
 public interface AddressService {
 	public Address get(long id);

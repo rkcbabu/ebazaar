@@ -4,7 +4,6 @@ import java.util.List;
 
 
 
-import mum.pm.ebazaar.domain.Admin;
 import mum.pm.ebazaar.domain.Card;
 
 public interface CardService {

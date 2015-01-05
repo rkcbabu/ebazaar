@@ -1,9 +1,7 @@
 package mum.pm.ebazaar.serviceImp;
 
 import mum.pm.ebazaar.domain.Address;
-import mum.pm.ebazaar.domain.Admin;
 import mum.pm.ebazaar.service.AddressService;
-import mum.pm.ebazaar.service.AdminService;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;

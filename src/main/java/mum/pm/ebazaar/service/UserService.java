@@ -4,7 +4,7 @@ import java.util.List;
 import mum.pm.ebazaar.domain.User;
 
 public interface UserService {
-        
+
     public List<User> getAll();
 
     public void create(User user);
@@ -17,5 +17,6 @@ public interface UserService {
 
     public User getUserByUsername(String username);
 
+    public List<User> getVendors();
 
 }

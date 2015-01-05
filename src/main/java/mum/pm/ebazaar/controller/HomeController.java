@@ -3,6 +3,10 @@ package mum.pm.ebazaar.controller;
 import java.security.Principal;
 import javax.servlet.http.HttpServletRequest;
 import mum.pm.ebazaar.domain.User;
+import mum.pm.ebazaar.service.CategoryService;
+import mum.pm.ebazaar.service.ProductService;
+import mum.pm.ebazaar.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -17,8 +21,18 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class HomeController {
 
+    @Autowired
+    ProductService productService; 
+    @Autowired
+    CategoryService categoryService; 
+    @Autowired
+    UserService userService; 
+    
     @RequestMapping("/")
-    public String homePage() {
+    public String homePage(Model model) {
+        model.addAttribute("productList", productService.getAll());
+        model.addAttribute("categoryList", categoryService.getAll());
+        model.addAttribute("vendorList", userService.getVendors());
         return "index";
     }
     

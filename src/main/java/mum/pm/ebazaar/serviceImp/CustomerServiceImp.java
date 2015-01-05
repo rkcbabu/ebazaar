@@ -3,7 +3,6 @@ package mum.pm.ebazaar.serviceImp;
 import java.util.List;
 
 import mum.pm.ebazaar.domain.Customer;
-import mum.pm.ebazaar.repository.AdminDao;
 import mum.pm.ebazaar.repository.CustomerDao;
 import mum.pm.ebazaar.service.CustomerService;
 

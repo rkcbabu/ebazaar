@@ -1,25 +1,18 @@
 package mum.pm.ebazaar.controller;
 
-import java.io.File;
 import java.io.IOException;
 import java.io.OutputStream;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-
-import javax.enterprise.inject.New;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.validation.Valid;
-
-import mum.pm.ebazaar.domain.Admin;
 import mum.pm.ebazaar.domain.Product;
-import mum.pm.ebazaar.domain.Vendor;
+import mum.pm.ebazaar.domain.User;
 import mum.pm.ebazaar.service.CategoryService;
 import mum.pm.ebazaar.service.ProductService;
-import mum.pm.ebazaar.service.VendorService;
+import mum.pm.ebazaar.service.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -34,8 +27,10 @@ import org.springframework.web.multipart.MultipartFile;
 @RequestMapping("/vendor")
 public class VendorController {
 
+//    @Autowired
+//    VendorService vendorService;
     @Autowired
-    VendorService vendorService;
+    UserService userService;
     @Autowired
     ProductService productService;
     @Autowired
@@ -48,9 +43,9 @@ public class VendorController {
     }
 
     @RequestMapping(value = "/addproduct", method = RequestMethod.GET)
-    public String getadmin(@ModelAttribute("vendor") Vendor vendor, Model model) {
+    public String getadmin(@ModelAttribute("vendor") User user, Model model) {
         model.addAttribute("product", new Product());
-        model.addAttribute("categoryList",categoryService.getAll());
+        model.addAttribute("categoryList", categoryService.getAll());
         return "vendor/addproduct";
     }
 
@@ -66,13 +61,16 @@ public class VendorController {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User user = userService.getUserByUsername(auth.getName());
+        product.setUser(user);
+//        productService.update(product);
         productService.create(product);
         return "redirect:/vendor";
     }
 
     @RequestMapping(value = "/editproduct/{id}", method = RequestMethod.GET)
-    public String editProduct(@ModelAttribute("vendor") Vendor vendor, @PathVariable long id, Model model) {
+    public String editProduct(@ModelAttribute("user") User user, @PathVariable long id, Model model) {
         model.addAttribute("product", productService.findById(id));
         model.addAttribute("categoryList", categoryService.getAll());
         return "vendor/editproduct";
@@ -92,6 +90,9 @@ public class VendorController {
             e.printStackTrace();
         }
 
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User user = userService.getUserByUsername(auth.getName());
+        product.setUser(user);
         productService.update(product);
         return "redirect:/vendor";
     }

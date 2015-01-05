@@ -45,9 +45,10 @@ public class Product implements Serializable {
 		this.productImage = productImage;
 	}
 
-	@ManyToOne
-    @JoinColumn(name="vendor_id")
-    private Vendor vendor;
+    @ManyToOne
+//    @JoinColumn(name="vendor_id")
+    private User user;
+        
     @ManyToOne
     private Category category;
     
@@ -99,12 +100,12 @@ public class Product implements Serializable {
         this.price = price;
     }
 
-    public Vendor getVendor() {
-        return vendor;
+    public User getUser() {
+        return user;
     }
 
-    public void setVendor(Vendor vendor) {
-        this.vendor = vendor;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public Category getCategory() {
