@@ -63,9 +63,13 @@
                         <ul class="nav navbar-nav">
 
                             <c:if test="${pageContext.request.userPrincipal.name != null}">
-                                <li><a href="#"><i class="fa fa-user"></i><c:out value="${pageContext.request.userPrincipal.name}"></a></c:out></li>
+                                            <li><a href="<c:url value="/profile"/>"><i class="fa fa-user"></i><c:out value="${pageContext.request.userPrincipal.name}"></a></c:out></li>
+                                        </c:if>
+                                        <c:if test="${pageContext.request.userPrincipal.name == null}">
+                                            <li><a href="<c:url value="/register"/>"><i class="fa fa-user"></i>Register</a></li>
+
                                     </c:if>
-                                    <c:if test="${pageContext.request.userPrincipal.name == null}">
+                                            <c:if test="${pageContext.request.userPrincipal.name == null}">
                                 <li><a href="#"><i class="fa fa-user"></i> Guest</a></li>
                                 </c:if>
                             <li><a href="#"><i class="fa fa-star"></i> Wishlist</a></li>

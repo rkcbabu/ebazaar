@@ -105,6 +105,12 @@ public abstract class GenericHibernateDaoImpl<T, ID extends Serializable>
 		return crit.list();
 	}
 
+               @Override
+    public T findByUsername(String userName) {
+        return (T) sessionFactory.getCurrentSession().createQuery("SELECT u FROM User u WHERE u.username = ?").setParameter(0, userName).uniqueResult();
+
+    }
+
 	public SessionFactory getSessionFactory() {
 		return sessionFactory;
 	}

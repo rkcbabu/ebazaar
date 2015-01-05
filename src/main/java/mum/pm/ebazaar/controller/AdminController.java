@@ -27,7 +27,7 @@ public class AdminController {
     @RequestMapping()
     public String getadmin(Model model) {
 
-        model.addAttribute("users", userService.listAllUsers());
+        model.addAttribute("users", userService.getAll());
         return "admin/admin-index";
     }
 

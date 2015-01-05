@@ -50,7 +50,7 @@ public class UserController {
         
             user.setEnabled(true);
             user.setRole("ROLE_ADMIN");
-           userservice.saveUser(user); 
+           userservice.create(user); 
         }
         return "redirect:/login";
     }

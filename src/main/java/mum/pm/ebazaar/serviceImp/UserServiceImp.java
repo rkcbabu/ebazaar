@@ -6,77 +6,57 @@ import mum.pm.ebazaar.repository.UserDao;
 import mum.pm.ebazaar.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
-@Transactional
+@Transactional(propagation = Propagation.REQUIRES_NEW)
 public class UserServiceImp implements UserService {
 
     @Autowired
     UserDao userDao;
     
     @Override
-    public void saveUser(User user) {
-        userDao.saveUser(user);
-    }
-
-    @Override
-    public void deleteUser(int id) {
-        userDao.deleteUser(id);
-    }
-
-    @Override
-    public List<User> listAllUsers() {
-        return userDao.listAllUsers();
-    }
-
-    @Override
-    public User getUserById(int id) {
-        return userDao.getUserById(id);
-    }
-
-    @Override
     public User getUserByUsername(String username) {
-        return userDao.getUserByUsername(username);
+        return userDao.findByUsername(username);
     }
 
 //    @Override
 //    public User getUserByVerification(String code) {
 //        return userDao.getUserByVerification(code);
 //    }
+
+    @Override
+    public void update(User user) {
+        User exisUser = userDao.get(user.getId());
+        exisUser.setAddress(user.getAddress());
+        exisUser.setUsername(user.getUsername());
+        exisUser.setEmail(user.getEmail());
+        exisUser.setFirstName(user.getFirstName());
+        exisUser.setLastName(user.getLastName());
+        exisUser.setPhone(user.getPhone());
+        
+        userDao.update(exisUser);
+    }
+
+    @Override
+    public List<User> getAll() {
+        return userDao.getAll();
+    }
+
+    @Override
+    public void create(User user) {
+        userDao.create(user);
+    }
+
+    @Override
+    public void delete(User user) {
+        userDao.delete(user);
+    }
+
+    @Override
+    public User findById(long id) {
+        return userDao.get(id);
+    }
     
 }
-
-//@Service
-//@Transactional(propagation = Propagation.REQUIRES_NEW)
-//
-//public class UserServiceImp implements UserService {
-//	
-//	@Autowired
-//    private UserDao userDao;
-//
-//	@Override
-//	public List<User> getAll() {
-//		List<User> listUser = userDao.getAll();
-//		return listUser;
-//	}
-//
-//	@Override
-//	public void create(User user) {
-//	
-//		userDao.create(user);
-//	}
-//
-//	@Override
-//	public void update(User user) {
-//		userDao.update(user);
-//		
-//	}
-//
-//	@Override
-//	public void delete(User user) {
-//		userDao.delete(user);
-//		
-//	}
-//
-//}
