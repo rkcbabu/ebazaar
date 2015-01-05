@@ -109,8 +109,8 @@ public class HomeController {
         return "templates/contact-us";
     }
 
-    @RequestMapping("/product-details")
-    public String productdetails() {
+    @RequestMapping("/template/product-details")
+    public String templateProductdetails() {
         return "templates/product-details";
     }
 

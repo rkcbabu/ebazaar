@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html>
 <html lang="en">
         <jsp:include page="/WEB-INF/views/includes/head.jsp"/>
@@ -151,9 +152,10 @@
 
                     <div class="col-sm-9 padding-right">
                         <div class="product-details"><!--product-details-->
+                            <form:form modelAttribute="product" enctype="multipart/form-data" method="POST" action="${Url}">
                             <div class="col-sm-5">
                                 <div class="view-product">
-                                    <img src="<c:url value="/web-resources/images/product-details/1.jpg" />" alt="" />
+                                  <img src="<c:url value="/vendor/productpic/"/>${product.id}" alt=""> 
                                     <h3>ZOOM</h3>
                                 </div>
                                 <div id="similar-product" class="carousel slide" data-ride="carousel">
@@ -161,19 +163,19 @@
                                     <!-- Wrapper for slides -->
                                     <div class="carousel-inner">
                                         <div class="item active">
-                                            <a href=""><img src="<c:url value="/web-resources/images/product-details/similar1.jpg" />" alt=""></a>
-                                            <a href=""><img src="<c:url value="/web-resources/images/product-details/similar2.jpg" />" alt=""></a>
-                                            <a href=""><img src="<c:url value="/web-resources/images/product-details/similar3.jpg" />" alt=""></a>
+                                            <c:forEach items="${similar}" var="similar">
+                                                <a href=""><img style="height: 100px; width: 80px;" src="<c:url value="/vendor/productpic/"/>${similar.id}" alt=""></a>
+                                            </c:forEach>
                                         </div>
                                         <div class="item">
-                                            <a href=""><img src="<c:url value="/web-resources/images/product-details/similar1.jpg" />" alt=""></a>
-                                            <a href=""><img src="<c:url value="/web-resources/images/product-details/similar2.jpg" />" alt=""></a>
-                                            <a href=""><img src="<c:url value="/web-resources/images/product-details/similar3.jpg" />" alt=""></a>
+                                            <c:forEach items="${similar}" var="similar">
+                                                <a href=""><img style="height: 100px; width: 80px;" src="<c:url value="/vendor/productpic/"/>${similar.id}" alt=""></a>
+                                            </c:forEach> 
                                         </div>
                                         <div class="item">
-                                            <a href=""><img src="<c:url value="/web-resources/images/product-details/similar1.jpg" />" alt=""></a>
-                                            <a href=""><img src="<c:url value="/web-resources/images/product-details/similar2.jpg" />" alt=""></a>
-                                            <a href=""><img src="<c:url value="/web-resources/images/product-details/similar3.jpg" />" alt=""></a>
+                                           <c:forEach items="${similar}" var="similar">
+                                                <a href=""><img style="height: 100px; width: 80px;" src="<c:url value="/vendor/productpic/"/>${similar.id}" alt=""></a>
+                                            </c:forEach>
                                         </div>
 
                                     </div>
@@ -191,13 +193,14 @@
                             <div class="col-sm-7">
                                 <div class="product-information"><!--/product-information-->
                                     <img src="<c:url value="/web-resources/images/product-details/new.jpg" />" class="newarrival" alt="" />
-                                    <h2>Anne Klein Sleeveless Colorblock Scuba</h2>
-                                    <p>Web ID: 1089772</p>
+                                    <h2>${product.name}</h2>
+                                    <p>Web ID: ${product.productID}</p>
                                     <img src="<c:url value="/web-resources/images/product-details/rating.png" />" alt="" />
                                     <span>
-                                        <span>US $59</span>
+                                        <span>US $${product.price}</span>
                                         <label>Quantity:</label>
                                         <input type="text" value="3" />
+                                        
                                         <button type="button" class="btn btn-fefault cart">
                                             <i class="fa fa-shopping-cart"></i>
                                             Add to cart
@@ -209,6 +212,7 @@
                                     <a href=""><img src="<c:url value="/web-resources/images/product-details/share.png" />" class="share img-responsive"  alt="" /></a>
                                 </div><!--/product-information-->
                             </div>
+                        </form:form>
                         </div><!--/product-details-->
 
                         <div class="category-tab shop-details-tab"><!--category-tab-->
