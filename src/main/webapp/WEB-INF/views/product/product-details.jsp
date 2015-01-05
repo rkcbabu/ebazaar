@@ -155,7 +155,7 @@
                             <form:form modelAttribute="product" enctype="multipart/form-data" method="POST" action="${Url}">
                             <div class="col-sm-5">
                                 <div class="view-product">
-                                  <img src="<c:url value="/vendor/productpic/"/>${product.id}" alt=""> 
+                                  <img src="<c:url value="/productpic/"/>${product.id}" alt=""> 
                                     <h3>ZOOM</h3>
                                 </div>
                                 <div id="similar-product" class="carousel slide" data-ride="carousel">
@@ -164,17 +164,17 @@
                                     <div class="carousel-inner">
                                         <div class="item active">
                                             <c:forEach items="${similar}" var="similar">
-                                                <a href=""><img style="height: 100px; width: 80px;" src="<c:url value="/vendor/productpic/"/>${similar.id}" alt=""></a>
+                                                <a href=""><img style="height: 100px; width: 80px;" src="<c:url value="/productpic/"/>${similar.id}" alt=""></a>
                                             </c:forEach>
                                         </div>
                                         <div class="item">
                                             <c:forEach items="${similar}" var="similar">
-                                                <a href=""><img style="height: 100px; width: 80px;" src="<c:url value="/vendor/productpic/"/>${similar.id}" alt=""></a>
+                                                <a href=""><img style="height: 100px; width: 80px;" src="<c:url value="/productpic/"/>${similar.id}" alt=""></a>
                                             </c:forEach> 
                                         </div>
                                         <div class="item">
                                            <c:forEach items="${similar}" var="similar">
-                                                <a href=""><img style="height: 100px; width: 80px;" src="<c:url value="/vendor/productpic/"/>${similar.id}" alt=""></a>
+                                                <a href=""><img style="height: 100px; width: 80px;" src="<c:url value="/productpic/"/>${similar.id}" alt=""></a>
                                             </c:forEach>
                                         </div>
 

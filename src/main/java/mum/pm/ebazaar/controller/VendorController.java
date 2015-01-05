@@ -106,19 +106,6 @@ public class VendorController {
         return "redirect:/vendor";
     }
 
-    @RequestMapping(value = "/productpic/{id}")
-    public void getImage(@PathVariable long id, HttpServletResponse response) {
-        try {
-            Product p = productService.findById(id);
-            if (p != null) {
-                OutputStream out = response.getOutputStream();
-                out.write(p.getProductImage());
-                response.flushBuffer();
-            }
-            System.out.println("here");
-        } catch (IOException ex) {
-
-        }
-    }
+    
 
 }

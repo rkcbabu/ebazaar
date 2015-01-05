@@ -1,40 +1,29 @@
 package mum.pm.ebazaar.controller;
 
+import java.io.IOException;
+import java.io.OutputStream;
 import java.security.Principal;
+import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletRequest;
-import mum.pm.ebazaar.domain.User;
-import mum.pm.ebazaar.service.CategoryService;
-import mum.pm.ebazaar.service.ProductService;
-import mum.pm.ebazaar.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.annotation.Secured;
-import org.springframework.security.authentication.AnonymousAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
+import javax.servlet.http.HttpServletResponse;
+import mum.pm.ebazaar.domain.Product;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-public class HomeController {
-
-    @Autowired
-    ProductService productService; 
-    @Autowired
-    CategoryService categoryService; 
-    @Autowired
-    UserService userService; 
+public class HomeController  extends GenericController{
     
     @RequestMapping("/")
     public String homePage(Model model) {
-        model.addAttribute("productList", productService.getAll());
-        model.addAttribute("categoryList", categoryService.getAll());
-        model.addAttribute("vendorList", userService.getVendors());
+        pageSetup(model);
         return "index";
     }
+    
     
     @RequestMapping("/successPage")
     public String successPage(HttpServletRequest request,ModelMap model) {
@@ -57,6 +46,19 @@ public class HomeController {
         return "welcome";
     }
 
+    @RequestMapping(value = "/productpic/{id}")
+    public void getImage(@PathVariable long id, HttpServletResponse response) {
+        try {
+            Product p = productService.findById(id);
+            if (p != null) {
+                OutputStream out = response.getOutputStream();
+                out.write(p.getProductImage());
+                response.flushBuffer();
+            }
+        } catch (IOException ex) {
+
+        }
+    }
     @RequestMapping("/template/login")
     public String login() {
         return "templates/login";

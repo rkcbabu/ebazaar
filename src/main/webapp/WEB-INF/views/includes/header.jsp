@@ -8,7 +8,7 @@
                     <div class="contactinfo">
                         <ul class="nav nav-pills">
                             <li><a href="#"><i class="fa fa-phone"></i> +2 95 01 88 821</a></li>
-                            <li><a href="#"><i class="fa fa-envelope"></i> info@domain.com</a></li>
+                            <li><a href="#"><i class="fa fa-envelope"></i> info@ebazaar.com</a></li>
                         </ul>
                     </div>
                 </div>
@@ -34,45 +34,47 @@
                     <div class="logo pull-left">
                         <a href="<c:url value="/"/>"><span>E</span>-bazaar</a>
                     </div>
-                    <div class="btn-group pull-right">
-                        <div class="btn-group">
-                            <button type="button" class="btn btn-default dropdown-toggle usa" data-toggle="dropdown">
-                                USA
-                                <span class="caret"></span>
-                            </button>
-                            <ul class="dropdown-menu">
-                                <li><a href="#">Canada</a></li>
-                                <li><a href="#">UK</a></li>
-                            </ul>
-                        </div>
-
-                        <div class="btn-group">
-                            <button type="button" class="btn btn-default dropdown-toggle usa" data-toggle="dropdown">
-                                DOLLAR
-                                <span class="caret"></span>
-                            </button>
-                            <ul class="dropdown-menu">
-                                <li><a href="#">Canadian Dollar</a></li>
-                                <li><a href="#">Pound</a></li>
-                            </ul>
-                        </div>
-                    </div>
+                    <!--                    <div class="btn-group pull-right">
+                                            <div class="btn-group">
+                                                <button type="button" class="btn btn-default dropdown-toggle usa" data-toggle="dropdown">
+                                                    USA
+                                                    <span class="caret"></span>
+                                                </button>
+                                                <ul class="dropdown-menu">
+                                                    <li><a href="#">Canada</a></li>
+                                                    <li><a href="#">UK</a></li>
+                                                </ul>
+                                            </div>
+                    
+                                            <div class="btn-group">
+                                                <button type="button" class="btn btn-default dropdown-toggle usa" data-toggle="dropdown">
+                                                    DOLLAR
+                                                    <span class="caret"></span>
+                                                </button>
+                                                <ul class="dropdown-menu">
+                                                    <li><a href="#">Canadian Dollar</a></li>
+                                                    <li><a href="#">Pound</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>-->
                 </div>
                 <div class="col-sm-8">
                     <div class="shop-menu pull-right">
                         <ul class="nav navbar-nav">
 
                             <c:if test="${pageContext.request.userPrincipal.name != null}">
-                                            <li><a href="<c:url value="/profile"/>"><i class="fa fa-user"></i><c:out value="${pageContext.request.userPrincipal.name}"></a></c:out></li>
-                                        </c:if>
-                                        <c:if test="${pageContext.request.userPrincipal.name == null}">
-                                            <li><a href="<c:url value="/register"/>"><i class="fa fa-user"></i>Register</a></li>
+                                <li><a href="<c:url value="/profile"/>">
+                                        <i class="fa fa-user"></i>${pageContext.request.userPrincipal.name}</a>
+                                </li>
+                            </c:if>
+                            <c:if test="${pageContext.request.userPrincipal.name == null}">
+                                <li><a href="<c:url value="/register"/>"><i class="fa fa-user"></i>Register</a></li>
 
-                                    </c:if>
-                                            <c:if test="${pageContext.request.userPrincipal.name == null}">
+                            </c:if>
+                            <c:if test="${pageContext.request.userPrincipal.name == null}">
                                 <li><a href="#"><i class="fa fa-user"></i> Guest</a></li>
                                 </c:if>
-                            <li><a href="#"><i class="fa fa-star"></i> Wishlist</a></li>
+                            <!--<li><a href="#"><i class="fa fa-star"></i> Wishlist</a></li>-->
                             <li><a href="<c:url value="/checkout"/>"><i class="fa fa-crosshairs"></i> Checkout</a></li>
                             <li><a href="<c:url value="/cart"/>"><i class="fa fa-shopping-cart"></i> Cart</a></li>
                             <li><c:if test="${pageContext.request.userPrincipal.name != null}">
