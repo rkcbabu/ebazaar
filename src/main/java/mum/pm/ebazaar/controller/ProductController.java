@@ -6,7 +6,9 @@ import mum.pm.ebazaar.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 public class ProductController {
@@ -19,9 +21,9 @@ public class ProductController {
 
     }
 
-    @RequestMapping("/product-details")
-    public String productdetails(Model model) {
-        Product product = productservice.findById(3);
+    @RequestMapping(value="/product-details/{id}", method = RequestMethod.GET)
+    public String productdetails(Model model, @PathVariable long id) {
+        Product product = productservice.findById(id);
         List <Product> similar = productservice.getAll();
         model.addAttribute("product", product);
         model.addAttribute("similar", similar);
