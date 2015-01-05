@@ -27,13 +27,16 @@ public class ShoppingCartController extends GenericController {
         List<OrderItem> orderItems = cart.getOrderItems();
         boolean found = false;
         Integer cartItemCount=(Integer)session.getAttribute("cartItemCount");
+        Double totalPrice=(Double)session.getAttribute("totalPrice");
         if(cartItemCount==null){
             cartItemCount=0;
+            totalPrice=0.0;
         }
         if (!orderItems.isEmpty()) {
             for (OrderItem o : orderItems) {
                 if (o.getProduct().getId() == id) {
                     o.setQuantity(o.getQuantity() + 1);
+                    totalPrice=totalPrice+o.getProduct().getPrice();
                     cartItemCount++;
                     found = true;
                 }
@@ -44,11 +47,13 @@ public class ShoppingCartController extends GenericController {
             OrderItem oi = new OrderItem();
             oi.setProduct(productService.findById(id));
             oi.setQuantity(1);
+            totalPrice=totalPrice+oi.getProduct().getPrice();
             cartItemCount++;
             orderItems.add(oi);
         }
         
         session.setAttribute("cart", cart);
+        session.setAttribute("totalPrice", totalPrice);
         session.setAttribute("cartItemCount", cartItemCount);
         return "redirect:/cart";
     }
@@ -56,12 +61,12 @@ public class ShoppingCartController extends GenericController {
     @RequestMapping("/cart")
     public String shoppingCart(Model model, HttpSession session) {
         
-        ShoppingCart cart = (ShoppingCart) session.getAttribute("cart");
-        int orderCount = 0;
-        if (cart != null) {
-            orderCount = cart.getOrderItems().size();
-        }
-        model.addAttribute("orderCount", orderCount);
+//        ShoppingCart cart = (ShoppingCart) session.getAttribute("cart");
+//        int orderCount = 0;
+//        if (cart != null) {
+//            orderCount = cart.getOrderItems().size();
+//        }
+//        model.addAttribute("orderCount", orderCount);
         return "cart";
     }
 }

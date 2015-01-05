@@ -2,6 +2,7 @@
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html>
 <html lang="en">
+
     <jsp:include page="/WEB-INF/views/includes/head.jsp" />
 
     <body>
@@ -27,6 +28,8 @@
                                 <form:input path="address.zipcode" placeholder="Zipcode"/>
                                 <hr>
                                 <button type="submit" class="btn btn-primary">Update</button>
+                                <!--<button type="submit" class="btn btn-primary">Cancel</button>-->
+                                <a href="<c:url value="/successPage"/>" class="btn btn-primary">Cancel</a>
                             </form:form>
                         </div>
                     </div>

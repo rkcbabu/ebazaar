@@ -27,14 +27,14 @@
                                 <form:input path="quantity" placeholder="quantity" />
                                 <form:input path="price" placeholder="price" />
                                 <form:select path="availability"  >
-                                    <form:option value="NONE" label="--- Availability ---"/>
+                                    <%--<form:option value="NONE" label="--- Availability ---"/>--%>
                                     <form:option value="YES" />
                                     <form:option value="NO" />
                                 </form:select>
                                 
                                  <hr>
                                 <form:select path="category.id">
-                                <form:option value="NONE" label="--- Select category ---"/>
+                                <%--<form:option value="NONE" label="--- Select category ---"/>--%>
                                     <form:options items="${categoryList}" itemValue="id" itemLabel="name"/>
                                 </form:select>                                                                                     
                                 <hr>
