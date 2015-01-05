@@ -58,13 +58,14 @@
                                         </div>
                                         <div class="choose">
                                             <ul class="nav nav-pills nav-justified">
-                                                <li><a href="#"><i class="fa fa-plus-square"></i>Add to wishlist</a></li>
-                                                <li><a href="#"><i class="fa fa-plus-square"></i>Add to compare</a></li>
+                                                <li><a href="<c:url value="/product-details"/>/${product.id}"><i class="fa fa-plus-square"></i>Product Details</a></li>
+                                               <li><a href="#"><i class="fa fa-plus-square"></i>Add to wishlist</a></li>
                                             </ul>
                                         </div>
                                     </div>
+                                                    </div>
                                 </c:forEach>
-                            </div>
+                            
 
                         </div><!--features_items-->
 
