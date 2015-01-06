@@ -102,7 +102,7 @@ public class HomeController  extends GenericController{
         return "templates/cart";
     }
 
-    @RequestMapping("/checkout")
+    @RequestMapping("template/checkout")
     public String checkout() {
         return "templates/checkout";
     }

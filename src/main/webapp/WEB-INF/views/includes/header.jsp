@@ -75,7 +75,7 @@
                                 <li><a href="#"><i class="fa fa-user"></i> Guest</a></li>
                                 </c:if>
                             <!--<li><a href="#"><i class="fa fa-star"></i> Wishlist</a></li>-->
-                            <li><a href="<c:url value="/checkout"/>"><i class="fa fa-crosshairs"></i>Checkout</a></li>
+                            <li><a href="<c:url value="/template/checkout"/>"><i class="fa fa-crosshairs"></i>Checkout</a></li>
                             <li><a href="<c:url value="/cart"/>"><i class="fa fa-shopping-cart"></i>Cart
                                     <c:if test="${not empty cartItemCount}">
                                     (${cartItemCount})
@@ -135,7 +135,7 @@
                                 <ul role="menu" class="sub-menu">
                                     <li><a href="<c:url value="/shop"/>">Products</a></li>
                                     <li><a href="<c:url value="/product-details"/>">Product Details</a></li> 
-                                    <li><a href="<c:url value="/checkout"/>">Checkout</a></li> 
+                                    <li><a href="<c:url value="/template/checkout"/>">Checkout</a></li> 
                                     <li><a href="<c:url value="/cart"/>">Cart</a></li> 
                                     <li><a href="<c:url value="/login"/>">Login</a></li> 
                                 </ul>

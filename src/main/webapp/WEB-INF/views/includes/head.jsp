@@ -17,12 +17,9 @@
     <link href="<c:url value="/web-resources/css/animate.css"/>" rel="stylesheet">
     <link href="<c:url value="/web-resources/css/main.css"/>" rel="stylesheet">
     <link href="<c:url value="/web-resources/css/responsive.css"/>" rel="stylesheet">
-    <script type="text/javascript" src="scripts/jquery.js"></script>
-    <script type = "text/javascript" src = "http://code.jquery.com/jquery-1.10.1.min.js" ></script>
-    <!--[if lt IE 9]>
-    <script src="<c:url value="/web-resources/js/html5shiv.js"/>"></script>
-    <script src="<c:url value="/web-resources/js/respond.min.js"/>"></script>
-    <![endif]-->       
+<!--    <script type="text/javascript" src="scripts/jquery.js"></script>
+    <script type = "text/javascript" src = "http://code.jquery.com/jquery-1.10.1.min.js" ></script>-->
+   
     <link rel="shortcut icon" href="<c:url value="/web-resources/css/images/ico/favicon.ico" />">
     <link rel="apple-touch-icon-precomposed" sizes="144x144" href="<c:url value="/web-resources/css/images/ico/apple-touch-icon-144-precomposed.png" />">
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="<c:url value="/web-resources/css/images/ico/apple-touch-icon-114-precomposed.png" />" >
