@@ -29,16 +29,34 @@ public class HomeController  extends GenericController{
     @RequestMapping("/successPage")
     public String successPage(HttpServletRequest request,ModelMap model) {
         if (request.isUserInRole("ROLE_ADMIN")) {
-            return "redirect:/admin";
+             String referrer = request.getHeader("referer");
+             if(referrer.contains("/cart")){
+                 return "redirect:/checkout";
+             }
+             else{
+                  return "redirect:/admin";
+             }
         } else if (request.isUserInRole("ROLE_CUSTOMER")) {
+            String referrer = request.getHeader("referer");
+             if(referrer.contains("/cart")){
+                 return "redirect:/checkout";
+             }
+             else{
             return "redirect:/search-product";
+             }
         } else if (request.isUserInRole("ROLE_VENDOR")) {
-            return "redirect:/vendor";
+           String referrer = request.getHeader("referer");
+             if(referrer.contains("/cart")){
+                 return "redirect:/checkout";
+             }
+             else{
+                 return "redirect:/vendor";
+             }
         } else {
             return "redirect:/";
         }
 
-    }   
+    }     
 
     @RequestMapping("/welcome")
     public String welcomePage(Model model) {

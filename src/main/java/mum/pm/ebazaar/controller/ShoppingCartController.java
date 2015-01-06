@@ -74,20 +74,24 @@ public class ShoppingCartController extends GenericController {
 //        model.addAttribute("orderCount", orderCount);
         return "order/cart";
     }
-
     @RequestMapping("/checkout")
-    public String checkoutCust(Model model) {
-        model.addAttribute("user", new User());
-        Map modelMap = model.asMap();
-        if (!modelMap.isEmpty()) {
-            for (Object modelKey : modelMap.keySet()) {
-                Object modelValue = modelMap.get(modelKey);
-                model.addAttribute("user", new User());
-            }
-           
-        }
-         return "order/checkout";
+    public String checkoutRedirect(Model model) {
+        return "/order/checkout";
     }
+
+//    @RequestMapping("/checkout")
+//    public String checkoutCust(Model model) {
+//        model.addAttribute("user", new User());
+//        Map modelMap = model.asMap();
+//        if (!modelMap.isEmpty()) {
+//            for (Object modelKey : modelMap.keySet()) {
+//                Object modelValue = modelMap.get(modelKey);
+//                model.addAttribute("user", new User());
+//            }
+//           
+//        }
+//         return "redirect:/order/checkout";
+//    }
 //     @RequestMapping(value = "/profile", method = RequestMethod.GET)
 //    public String editUser(Model model) {
 //        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -103,7 +107,7 @@ public class ShoppingCartController extends GenericController {
         session.setAttribute("cart", null);
             session.setAttribute("totalPrice", null);
             session.setAttribute("cartItemCount", null);
-            return "/order/checkout";
+            return "/checkout";
         }
 
     }

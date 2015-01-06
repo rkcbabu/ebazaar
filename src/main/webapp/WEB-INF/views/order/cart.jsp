@@ -17,7 +17,10 @@
                 </div>
                 <div class="chose_area">
                     <a class="btn btn-default check_out" href="<c:url value="/"/>">Continue Shopping</a>
-                    <a class="btn btn-default check_out" href="<c:url value="/checkout"/>">Checkout</a>
+                    <button type="button" class="btn btn-default check_out pull-right" data-toggle="modal" data-target="#myModal" >
+                                Checkout
+                            </button>
+<!--                    <a class="btn btn-default check_out" href="<c:url value="/checkout"/>">Checkout</a>-->
                 </div>
                 <hr>
 
@@ -103,12 +106,14 @@
                                     <div class="modal-content">
                                         <div class="modal-header">
                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                            <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+                                            <!--<h4 class="modal-title" id="myModalLabel">Modal title</h4>-->
+                                             <h5>RETURN CUSTOMERS</h5>  
+                                             <span style="font-size: 9px; float: left; font-weight: bold;"> Sign in now to check out using your saved info</span>
                                         </div>
                                         <div class="modal-body">
-                                            <div style="width: 45%; float: left">
-                                                <h1>RETURN CUSTOMERS</h1>
-                                                <span style="font-size: 8px;"> Sign in now to check out using your saved info</span>
+                                            <div class="login-form" style="width: 49%; float: left">
+                                               
+                                                
                                                <form name='loginForm'
 							action="<c:url value='/j_spring_security_check' />" method='POST'>
 							<%--<form:input path="username" placeholder="Username"/>--%>
@@ -116,21 +121,24 @@
 							<br/>
                                                         <input type='password' name='password' placeholder="Password">
 							<%--<form:password path="password" placeholder="password" />--%>
-							<span> <input type="checkbox" class="checkbox">
-								Keep me signed in
-							</span>
+							
 							<button type="submit" class="btn btn-default">Login</button>
 						</form> 
                                         </div>
-                                                        <div style="width: 45%; float: left">
-                                                            Register
+                                                        <div style="width: 49%; float: left; padding-left: 10px; text-align: center;">
+                                                            <h5>GUESTS</h5>  
+                                                            <span>
+                                                                check out fast and secure. You can create and account later.
+                                                            </span>
+                                                             <a  class="btn btn-default check_out" href="<c:url value="/checkout"/>">Continue</a>
                                                         </div>
+                                        
+                                        </div>
                                         <div class="modal-footer">
-                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                            <button type="button" class="btn btn-primary">Save changes</button>
+<!--                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                            <button type="button" class="btn btn-primary">Save changes</button>-->
                                         </div>
                                     </div>
-                                </div>
                             </div>
                         </div>
 
