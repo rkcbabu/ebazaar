@@ -42,7 +42,7 @@ public class HomeController  extends GenericController{
                  return "redirect:/checkout";
              }
              else{
-            return "redirect:/search-product";
+            return "redirect:/";
              }
         } else if (request.isUserInRole("ROLE_VENDOR")) {
            String referrer = request.getHeader("referer");

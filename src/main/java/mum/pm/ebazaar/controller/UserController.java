@@ -13,13 +13,14 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class UserController {
-    
+
     @Autowired
     UserService userservice;
-    
+
 //    @InitBinder
 //    public void initConverter(WebDataBinder binder)
 //    {
@@ -28,57 +29,71 @@ public class UserController {
 //        binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));
 //        binder.registerCustomEditor(Vendor.class, new UserPropertyEditor(userservice));        
 //    } 
-    
-    @RequestMapping(value = "/vendorRegistration")
-   public String vendorRegister(Model model)
-    {
-    	model.addAttribute("user", new User());
-    return "vendor/vendorRegistration";
+    @RequestMapping(value = "/register")
+    public String vendorRegister(@RequestParam("user") String type, Model model) {
+        User user = new User();
+        model.addAttribute("user", user);
+        if (type == null) {
+            return "user/customerForm";
+        } else if (type.equalsIgnoreCase("vendor")) {
+            return "user/vendorForm";
+        } else if (type.equalsIgnoreCase("admin")) {
+            return "user/adminForm";
+        } else {
+            return "user/customerForm";
+        }
     }
-    
-    @RequestMapping(value = "/userRegistration")
-    public String userRegister(Model model)
-     {
-    	model.addAttribute("user", new User());
-     return "user/userRegistration";
-     }
-    
-    @RequestMapping(value = "/register", method = RequestMethod.GET)
-    public String register(@ModelAttribute("user") User user)
-    {
-//            user.setUsername("admin");
-//            user.setPassword("admin");
-//            user.setEnabled(true);
-//            user.setRole("ROLE_ADMIN");
-//            userservice.saveUser(user);    
-            
-//            return "templates/login";
-            return "login";
-    }
-    
-    @RequestMapping(value = "/user/save", method = RequestMethod.POST)
-    public String saveUser(@Valid @ModelAttribute("user") User user, BindingResult result)
-    {
-        if(result.hasErrors())
-            return "login";
-        else{
+
+//    @RequestMapping(value = "/userRegistration")
+//    public String userRegister(Model model) {
+//        model.addAttribute("user", new User());
+//        return "user/userRegistration";
+//    }
+
+//    @RequestMapping(value = "/register", method = RequestMethod.GET)
+//    public String register(@ModelAttribute("user") User user) {
+//        return "login";
+//    }
+    @RequestMapping(value = "/register", method = RequestMethod.POST)
+    public String saveUser(@Valid @ModelAttribute("user") User user, BindingResult result) {
+        if (result.hasErrors()) {
+            if (user.getRole() == null) {
+                return "user/customerForm";
+            } else if (user.getRole().equalsIgnoreCase("ROLE_VENDOR")) {
+                
+                return "user/vendorForm";
+            } else if (user.getRole().equalsIgnoreCase("ROLE_ADMIN")) {
+                return "user/adminForm";
+            } else {
+                return "user/customerForm";
+            }
+        } else {
+             user.setEnabled(true);
+             if (user.getRole().equalsIgnoreCase("ROLE_VENDOR")) {
+                user.setEnabled(true); // we have to disable it later.
+                return "user/vendorForm";
+            } else if (user.getRole().equalsIgnoreCase("ROLE_ADMIN")) {
+                user.setEnabled(false);
+                return "user/adminForm";
+            } 
             String md5password = DigestUtils.md5DigestAsHex(user.getPassword().getBytes());
             user.setPassword(md5password);
-        
-            user.setEnabled(true);
-            user.setRole("ROLE_ADMIN");
-           userservice.create(user); 
+
+           
+            if (user.getRole() == null) {
+                user.setRole("ROLE_CUSTOMER");
+            }
+            userservice.create(user);
         }
         return "redirect:/login";
     }
-        
+
 //    @RequestMapping(value = "/user/list")
 //    public String listUsers(Model model)
 //    {
 //        model.addAttribute("users", userservice.getAllUser());
 //        return "user/userList";
 //    }
-    
 //    @RequestMapping("/user/edit/{userid}")
 //    public String editUser(@PathVariable("userid") int id, Model model)
 //    {
@@ -92,5 +107,4 @@ public class UserController {
 //        userservice.deleteUser(id);
 //        return "redirect:/user/list";
 //    }
-    
 }

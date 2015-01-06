@@ -35,8 +35,8 @@ public class User implements Serializable {
     @Size(min=2, max=10,message = "Your firstName must between 2 and 10 characters")
     private String firstName;
     
-    @NotEmpty(message = "Please enter your Last Name.")
-    @Size(min=2, max=10,message = "plz enter correct")
+//    @NotEmpty(message = "Please enter your Last Name.")
+//    @Size(min=2, max=10,message = "plz enter correct")
 //    @Pattern(regexp="[a-zA-Z]")
     private String lastName;
     
