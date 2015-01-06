@@ -34,9 +34,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <c:set var="sum" value="0.0"></c:set>
                             <c:forEach items="${cart.orderItems}" var="item">
-                                <c:set var="sum" value="${s+item.product.price*item.quantity}"></c:set>
                                 <tr>
                                     <td class="cart_product">
                                         <a href=""><img  style="height: 100px; width: 100px;" src="<c:url 
@@ -78,12 +76,12 @@
                         <div class="total_area">
                             <ul>
                                 <li>Cart Sub Total <span>$ <fmt:formatNumber type="number" 
-                                                  maxFractionDigits="3" value="${sum}" /></span></li>
+                                                  maxFractionDigits="3" value="${totalPrice}" /></span></li>
                                 <li>Sales Tax <span>$ <fmt:formatNumber type="number" 
-                                                  maxFractionDigits="3" value="${sum*0.1}" /></span></li>
+                                                  maxFractionDigits="3" value="${totalPrice*0.1}" /></span></li>
                                 <li>Shipping Cost <span>Free</span></li>
                                 <li>Total <span>$<fmt:formatNumber type="number" 
-                                                  maxFractionDigits="3" value="${(sum*0.1)+sum}"/></span></li>
+                                                  maxFractionDigits="3" value="${(totalPrice*0.1)+totalPrice}"/></span></li>
                             </ul>
                             <a  class="btn btn-default check_out pull-right" href="<c:url value="/checkout"/>">Checkout</a>
                         </div>

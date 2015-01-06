@@ -45,13 +45,37 @@
                         <div class="col-sm-3">
                             <div class="shopper-info">
                                 <p>Shopper Information</p>
-                                <form>
-                                    <input type="text" placeholder="Display Name">
-                                    <input type="text" placeholder="User Name">
-                                    <input type="password" placeholder="Password">
-                                    <input type="password" placeholder="Confirm password">
-                                </form>
-                                <a class="btn btn-primary" href="">Get Quotes</a>
+                                <form:form commandName="user" method="post" action="/userRegistration">
+
+
+                                    <form:errors path="firstName" element="div" cssClass="error" />
+                                    <form:input path="firstName" placeholder="First Name" />
+
+                                    <form:errors path="lastName" element="div" cssClass="error" />
+                                    <form:input path="lastName" placeholder="Last Name" />
+
+                                    <form:errors path="username" element="div" cssClass="error" />
+                                    <form:input path="username" placeholder="Username" />
+
+                                    <form:errors path="address.street" element="div" cssClass="error" />
+                                    <form:input path="address.street" placeholder="Street" />
+
+                                    <form:errors path="address.city" element="div" cssClass="error" />
+                                    <form:input path="address.city" placeholder="City" />
+
+                                    <form:errors path="address.state" element="div" cssClass="error" />
+                                    <form:input path="address.state" placeholder="State" />
+
+                                    <form:errors path="address.zipcode" element="div"
+                                                 cssClass="error" />
+                                    <form:input path="address.zipcode" placeholder="Zipcode" />
+
+                                    <button type="submit" id="ppp"  class="btn btn-default popup">Signup</button>
+                                </form:form>
+                                    <div id="divdeps" style="display:none" title="">
+                                        ajaxpopup
+                                    </div>
+                                <a class="btn btn-primary" href="" data-selector>Get Quotes</a>
                                 <a class="btn btn-primary" href="">Continue</a>
                             </div>
                         </div>

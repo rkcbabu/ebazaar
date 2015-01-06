@@ -7,7 +7,7 @@
     <body>
         <jsp:include page="/WEB-INF/views/includes/header.jsp"/>
 
-        <section id="cart_items">
+<!--        <section id="cart_items">
             <div class="container">
                 <div class="breadcrumbs">
                     <ol class="breadcrumb">
@@ -67,7 +67,7 @@
                     </table>
                 </div>
             </div>
-        </section> <!--/#cart_items-->
+        </section> /#cart_items
 
         <section id="do_action">
             <div class="container">
@@ -89,7 +89,7 @@
                     </div>
                 </div>
             </div>
-        </section><!--/#do_action-->
+        </section>/#do_action-->
 
         <jsp:include page="/WEB-INF/views/includes/footer.jsp"/>
     </body>
