@@ -83,7 +83,55 @@
                                 <li>Total <span>$<fmt:formatNumber type="number" 
                                                   maxFractionDigits="3" value="${(totalPrice*0.1)+totalPrice}"/></span></li>
                             </ul>
-                            <a  class="btn btn-default check_out pull-right" href="<c:url value="/checkout"/>">Checkout</a>
+                            <script>
+                                $('#myModal').on('shown.bs.modal', function () {
+                                    $('#myInput').focus();
+                                });
+
+                            </script>
+<!--                            <a  class="btn btn-default check_out pull-right" ata-toggle="modal" data-target="#myModal"
+                                href="<c:url value="/checkout"/>">Checkout</a>
+                            -->
+                            <!-- Button trigger modal -->
+                            <button type="button" class="btn btn-default check_out pull-right" data-toggle="modal" data-target="#myModal" >
+                                Checkout
+                            </button>
+
+                            <!-- Modal -->
+                            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                            <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div style="width: 45%; float: left">
+                                                <h1>RETURN CUSTOMERS</h1>
+                                                <span style="font-size: 8px;"> Sign in now to check out using your saved info</span>
+                                               <form name='loginForm'
+							action="<c:url value='/j_spring_security_check' />" method='POST'>
+							<%--<form:input path="username" placeholder="Username"/>--%>
+							<input type='text' name='username' placeholder="Username">
+							<br/>
+                                                        <input type='password' name='password' placeholder="Password">
+							<%--<form:password path="password" placeholder="password" />--%>
+							<span> <input type="checkbox" class="checkbox">
+								Keep me signed in
+							</span>
+							<button type="submit" class="btn btn-default">Login</button>
+						</form> 
+                                        </div>
+                                                        <div style="width: 45%; float: left">
+                                                            Register
+                                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                            <button type="button" class="btn btn-primary">Save changes</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
 
                     </div>
