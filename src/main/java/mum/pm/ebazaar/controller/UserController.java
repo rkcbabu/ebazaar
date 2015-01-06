@@ -1,10 +1,13 @@
 package mum.pm.ebazaar.controller;
 
 import javax.validation.Valid;
+
 import mum.pm.ebazaar.domain.User;
 import mum.pm.ebazaar.service.UserService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.util.DigestUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -26,6 +29,20 @@ public class UserController {
 //        binder.registerCustomEditor(Vendor.class, new UserPropertyEditor(userservice));        
 //    } 
     
+    @RequestMapping(value = "/vendorRegistration")
+   public String vendorRegister(Model model)
+    {
+    	model.addAttribute("user", new User());
+    return "vendor/vendorRegistration";
+    }
+    
+    @RequestMapping(value = "/userRegistration")
+    public String userRegister(Model model)
+     {
+    	model.addAttribute("user", new User());
+     return "user/userRegistration";
+     }
+    
     @RequestMapping(value = "/register", method = RequestMethod.GET)
     public String register(@ModelAttribute("user") User user)
     {
@@ -40,7 +57,7 @@ public class UserController {
     }
     
     @RequestMapping(value = "/user/save", method = RequestMethod.POST)
-    public String saveUser(@Valid User user, BindingResult result)
+    public String saveUser(@Valid @ModelAttribute("user") User user, BindingResult result)
     {
         if(result.hasErrors())
             return "login";

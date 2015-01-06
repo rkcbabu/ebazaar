@@ -12,38 +12,32 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-sm-4 col-sm-offset-1">
-					<div class="login-form">
-						<!--login form-->
-						<h2>Login to your account</h2>
-						<form name='loginForm'
+				<h2>User Registration</h2>
+				
+					<%-- <div class="login-form">			      
+						 <form name='loginForm'
 							action="<c:url value='/j_spring_security_check' />" method='POST'>
-							<%--<form:input path="username" placeholder="Username"/>--%>
+							<form:input path="username" placeholder="Username"/>
 							<input type='text' name='username' placeholder="Username">
 							<input type='password' name='password' placeholder="Password">
-							<%--<form:password path="password" placeholder="password" />--%>
+							<form:password path="password" placeholder="password" />
 							<span> <input type="checkbox" class="checkbox">
 								Keep me signed in
 							</span>
 							<button type="submit" class="btn btn-default">Login</button>
-						</form>
-					</div>
+						</form> 
+					</div> --%>
 					<!--/login form-->
+					
 				</div>
-				<div class="col-sm-1">
-					<h2 class="or-class">OR</h2>
-				</div>
+				
 				<div class="col-sm-4">
 					<div class="signup-form">
-						<!--sign up form-->
-						<h2>New User ?</h2>
-						<%--<form:form modelAttribute="newAdmin" method="post">--%>
+						
+					<form:form commandName="user" method="post" action="/userRegistration">
 
-					
-						<a href="<c:url value="/vendorRegistration"/>">Vendor SignUp</a> 
-						<p></p>
-						<a href="<c:url value="/userRegistration"/>">User SignUp</a> 
 
-							<%-- <form:errors path="firstName" element="div" cssClass="error" />
+							<form:errors path="firstName" element="div" cssClass="error" />
 							<form:input path="firstName" placeholder="First Name" />
 
 							<form:errors path="lastName" element="div" cssClass="error" />
@@ -77,7 +71,7 @@
 							<button type="submit" class="btn btn-default">Signup</button>
 						</form:form>
 					</div>
-					/sign up form--> --%>
+				
 				</div>
 			</div>
 		</div>
