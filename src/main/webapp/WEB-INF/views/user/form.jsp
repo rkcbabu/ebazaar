@@ -5,10 +5,10 @@
 
 <!DOCTYPE html>
 <html lang="en">
-    <jsp:include page="/WEB-INF/views/includes/head.jsp"/>
+    <c:import url="/layout/head"/>
 
     <body>
-        <jsp:include page="/WEB-INF/views/includes/header.jsp"/>
+        <c:import url="/layout/header"/>
         <!-- Main Menu Ends -->
 
         <h1>Customer Registration Form</h1>
@@ -31,6 +31,6 @@
 
         </form:form>
 
-        <jsp:include page="/WEB-INF/views/includes/footer.jsp"/>                   
+        <c:import url="/layout/footer"/>                   
     </body>
 </html>

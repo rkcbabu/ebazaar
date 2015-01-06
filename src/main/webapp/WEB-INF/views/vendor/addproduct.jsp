@@ -2,10 +2,10 @@
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html>
 <html lang="en">
-<jsp:include page="/WEB-INF/views/includes/head.jsp" />
+<c:import url="/layout/head"/>
 
 <body>
-	<jsp:include page="/WEB-INF/views/includes/header.jsp" />
+	<c:import url="/layout/header"/>
 
 	<section id="cart_items">
 		<div class="container">
@@ -65,6 +65,6 @@
 	</section>
 	<!--/#cart_items-->
 
-	<jsp:include page="/WEB-INF/views/includes/footer.jsp" />
+	<c:import url="/layout/footer"/>
 </body>
 </html>

@@ -128,8 +128,7 @@
                                     </sec:authorize>
                                 </c:if>
                                 <c:if test="${pageContext.request.userPrincipal == null}" >
-                                    <a class="active" href="<c:url value="/"/>">Home</a>
-                                    <!--<a  class="active" href="<c:url value="/"/>">Home</a>-->
+                                    <a href="<c:url value="/"/>" class="active">Home</a>
                                 </c:if>
                             </li>
                             <li class="dropdown"><a href="#">Shop<i class="fa fa-angle-down"></i></a>

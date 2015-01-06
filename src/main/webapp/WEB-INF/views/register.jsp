@@ -5,10 +5,10 @@
 
 <!DOCTYPE html>
 <html lang="en">
-    <jsp:include page="/WEB-INF/views/includes/head.jsp"/>
+    <c:import url="/layout/head"/>
 
     <body>
-        <jsp:include page="/WEB-INF/views/includes/header.jsp"/>
+        <c:import url="/layout/header"/>
 <!-- Begin Body -->
 <div class="container">
     <div class="row">
@@ -94,6 +94,6 @@
         </div> 
     </div>
 </div>
-                <jsp:include page="/WEB-INF/views/includes/footer.jsp"/>                 
+                <c:import url="/layout/footer"/>                 
 </body>
 </html>

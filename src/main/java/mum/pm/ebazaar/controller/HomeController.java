@@ -20,8 +20,8 @@ import org.springframework.web.servlet.ModelAndView;
 public class HomeController  extends GenericController{
     
     @RequestMapping("/")
-    public String homePage(Model model,HttpServletRequest request) {
-        pageSetup(model,request);
+    public String homePage(Model model) {
+        pageSetup(model);
         return "index";
     }
     

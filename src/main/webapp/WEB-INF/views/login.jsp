@@ -3,9 +3,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<jsp:include page="/WEB-INF/views/includes/head.jsp" />
+<c:import url="/layout/head"/>
 <body>
-	<jsp:include page="/WEB-INF/views/includes/header.jsp" />
+	<c:import url="/layout/header"/>
 
 	<section id="form">
 		<!--form-->
@@ -35,13 +35,12 @@
 				<div class="col-sm-4">
 					<div class="signup-form">
 						<!--sign up form-->
-						<h2>New User ?</h2>
+						<h2> New User ? </h2>
 						<%--<form:form modelAttribute="newAdmin" method="post">--%>
-
 					
-						<a href="<c:url value="/vendorRegistration"/>">Vendor SignUp</a> 
-						<p></p>
-						<a href="<c:url value="/userRegistration"/>">User SignUp</a> 
+                                                <a class="btn btn-primary " style="width: 130px;"  href="<c:url value="/vendorRegistration"/>">Vendor SignUp</a> 
+                                                <br>
+                                                <a class="btn btn-primary " style="width: 130px;" href="<c:url value="/userRegistration"/>">User SignUp</a> 
 
 							<%-- <form:errors path="firstName" element="div" cssClass="error" />
 							<form:input path="firstName" placeholder="First Name" />
@@ -78,6 +77,8 @@
 						</form:form>
 					</div>
 					/sign up form--> --%>
+                                                        
+                                                        
 				</div>
 			</div>
 		</div>
@@ -85,6 +86,6 @@
 	<!--/form-->
 
 
-	<jsp:include page="/WEB-INF/views/includes/footer.jsp" />
+	<c:import url="/layout/footer"/>
 </body>
 </html>

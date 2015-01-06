@@ -1,10 +1,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
-        <jsp:include page="/WEB-INF/views/includes/head.jsp"/>
+        <c:import url="/layout/head"/>
 
     <body>
-        <jsp:include page="/WEB-INF/views/includes/header.jsp"/>
+        <c:import url="/layout/header"/>
 
         <div id="contact-page" class="container">
             <div class="bg">
@@ -73,7 +73,7 @@
             </div>	
         </div><!--/#contact-page-->
 
-        <jsp:include page="/WEB-INF/views/includes/footer.jsp"/>
+        <c:import url="/layout/footer"/>
 
 
 

@@ -2,10 +2,10 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
-    <jsp:include page="/WEB-INF/views/includes/head.jsp"/>
+    <c:import url="/layout/head"/>
 
     <body>
-        <jsp:include page="/WEB-INF/views/includes/header.jsp"/>
+        <c:import url="/layout/header"/>
 
         <section id="cart_items">
             <div class="container">
@@ -139,6 +139,6 @@
             </div>
         </section><!--/#do_action-->
 
-        <jsp:include page="/WEB-INF/views/includes/footer.jsp"/>
+        <c:import url="/layout/footer"/>
     </body>
 </html>

@@ -6,7 +6,7 @@
                 <div class="col-sm-2">
                     <div class="companyinfo">
                         <h2><span>E</span>-bazaar</h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,sed do eiusmod tempor</p>
+                        <p>Online shopping cart solution, Project Management Seminar, MUM, USA</p>
                     </div>
                 </div>
                 <div class="col-sm-7">
@@ -73,7 +73,7 @@
                 <div class="col-sm-3">
                     <div class="address">
                         <img src="<c:url value="/web-resources/images/home/map.png"/>" alt="" />
-                             <p>505 S Atlantic Ave Virginia Beach, VA(Virginia)</p>
+                             <p>1000 North Fourth St.<br>Fairfield, Iowa 52557</p>
                     </div>
                 </div>
             </div>
@@ -150,7 +150,7 @@
         <div class="container">
             <div class="row">
                 <p class="pull-left">Copyright © 2013 E-bazaar Inc. All rights reserved.</p>
-                <p class="pull-right">Designed by <span><a target="_blank" href="http://invoinn.com/">InvoInn</a></span></p>
+                <p class="pull-right">Academic Project @ <span><a target="_blank" href="https://www.mum.edu/"> MUM </a></span></p>
             </div>
         </div>
     </div>
@@ -161,5 +161,5 @@
 <script src="<c:url value="/web-resources/js/bootstrap.min.js"/>"></script>
 <script src="<c:url value="/web-resources/js/jquery.scrollUp.min.js"/>"></script>
 <script src="<c:url value="/web-resources/js/price-range.js"/>"></script>
-<script src="<c:url value="/web-resources/js/jquery.prettyPhoto.js"/>"></script>
+<script src="<c:url value="/web-resources/js/popUp.js"/>"></script>
 <script src="<c:url value="/web-resources/js/main.js"/>"></script>

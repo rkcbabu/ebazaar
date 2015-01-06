@@ -46,7 +46,7 @@
 <!-- Wrapper Starts -->
 	
 	<!-- Header Section Starts -->
-        <%@include file="../header.jsp" %>
+        <c:import url="/layout/header"/>
         <h1>List of Customers</h1>
         <table id="tablelist" border="1">
             <tr><th>ID</th><th>Name</th><th>Email</th><th>ContactNumber</th><th>Date</th><th>Credit Card Number</th><th>Expiration Date</th><th>CVV2</th><th>Card Holder Name</th><th>Address1</th><th>Address2</th><th>City</th><th>State</th><th>zipCode</th></tr>
@@ -68,12 +68,11 @@
             
         </table>
         
-     <%@include file="../footer.jsp" %>
+     <c:import url="/layout/footer"/>
 	<!-- Footer Section Ends -->		
 	
 <!-- Wrapper Ends -->
 <!-- Copyright Area Starts -->
-<%@include file="../foot.jsp" %>
 </body>
 </html>
 
