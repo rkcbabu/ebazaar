@@ -40,16 +40,11 @@
                                     </div>
                                 </div>
                             </c:forEach>
-
-
                         </div><!--features_items-->
-
-
                     </div>
                 </div>
             </div>
         </section>
-
         <c:import url="/layout/footer"/>
     </body>
 </html>

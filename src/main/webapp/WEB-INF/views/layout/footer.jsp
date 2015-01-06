@@ -141,7 +141,6 @@
                         </form>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
@@ -154,12 +153,10 @@
             </div>
         </div>
     </div>
-
 </footer><!--/Footer-->
 
 <script src="<c:url value="/web-resources/js/jquery.js"/>"></script>
 <script src="<c:url value="/web-resources/js/bootstrap.min.js"/>"></script>
 <script src="<c:url value="/web-resources/js/jquery.scrollUp.min.js"/>"></script>
 <script src="<c:url value="/web-resources/js/price-range.js"/>"></script>
-<!--<script src="<c:url value="/web-resources/js/popUp.js"/>"></script>-->
 <script src="<c:url value="/web-resources/js/main.js"/>"></script>
