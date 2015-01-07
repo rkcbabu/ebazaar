@@ -63,4 +63,10 @@ public class UserServiceImp implements UserService {
         return userDao.get(id);
     }
 
+    @Override
+    public void updateAddress(User user) {
+        User exisUser = userDao.get(user.getId());
+        exisUser.setAddress(user.getAddress());
+    }
+
 }

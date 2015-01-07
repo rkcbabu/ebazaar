@@ -6,8 +6,6 @@ import mum.pm.ebazaar.domain.User;
 import mum.pm.ebazaar.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -69,10 +67,7 @@ public class LoginController {
 
     @RequestMapping(value = "/profile", method = RequestMethod.GET)
     public String editUser(Model model) {
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        userr = userservice.getUserByUsername(auth.getName());
-        model.addAttribute("currUser", userservice.getUserByUsername(auth.getName()));
-        return "profile";
+       return "profile";
     }
 
     @RequestMapping(value = "/profile/{id}", method = RequestMethod.POST)
@@ -82,4 +77,11 @@ public class LoginController {
         userservice.update(currUser);
         return "profile";
     }
+    @RequestMapping(value = "/updateAdd/{id}", method = RequestMethod.POST)
+    public String updateAdd(@PathVariable long id, HttpSession session) {
+        User user = (User)session.getAttribute("currUser");
+        userservice.updateAddress(user);
+        return "checkout";
+    }
+    
 }

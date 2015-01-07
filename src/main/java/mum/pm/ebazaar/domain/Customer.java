@@ -73,13 +73,13 @@ public class Customer extends User implements Serializable {
         this.orders = orders;
     }
 
-//    public List<Card> getCards() {
-//        return cards;
-//    }
-//
-//    public void setCards(List<Card> cards) {
-//        this.cards = cards;
-//    }
+    public List<Card> getCards() {
+        return cards;
+    }
+
+    public void setCards(List<Card> cards) {
+        this.cards = cards;
+   }
 
   
 

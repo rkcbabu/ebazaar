@@ -30,7 +30,7 @@
                                 <p>WHERE CAN WE SHIP YOUR ORDER</p>
                                  <form>
                                         <input type="text" placeholder="First Name">
-                                        <input type="text" placeholder="Last Name*">
+                                        <input type="text" placeholder="Last Name">
                                         <input type="text" placeholder="Street">
                                         <input type="text" placeholder="City">
                                         <input type="text" placeholder="State">
@@ -56,8 +56,9 @@
                 </div>
 <div class="table-responsive cart_info">
     <div style="background-color: #2F2F2F;color: #ADBAC8; margin-top: 0px;">
+        <h1 style="padding-left: 20px;">ORDER SUMMARY</h1>
         <ul>
-            <h1>ORDER SUMMARY</h1>
+            
             <li>Cart Sub Total <span style="float: right; padding-right:20px;">$ <fmt:formatNumber type="number" 
                                                          maxFractionDigits="3" value="${totalPrice}" /></span></li>
                 <li>Sales Tax <span style="float: right; padding-right:20px;">$ <fmt:formatNumber type="number" 
@@ -106,15 +107,15 @@
                 </div>
                
                 <div class="payment-options">
-                    <span>
-                        <label><input type="checkbox"> Direct Bank Transfer</label>
+<!--                    <span>
+                        <label><input type="checkbox"> </label>
                     </span>
                     <span>
                         <label><input type="checkbox"> Check Payment</label>
                     </span>
                     <span>
                         <label><input type="checkbox"> Paypal</label>
-                    </span>
+                    </span>-->
                 </div>
             </div>
         </section> <!--/#cart_items-->

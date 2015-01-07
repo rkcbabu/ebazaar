@@ -8,6 +8,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import mum.pm.ebazaar.domain.Product;
+import org.springframework.context.annotation.Scope;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -17,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
+@Scope
 public class HomeController  extends GenericController{
     
     @RequestMapping("/")
@@ -28,6 +32,9 @@ public class HomeController  extends GenericController{
     
     @RequestMapping("/successPage")
     public String successPage(HttpServletRequest request,ModelMap model) {
+        
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        request.getSession().setAttribute("currUser", userService.getUserByUsername(auth.getName()));
         if (request.isUserInRole("ROLE_ADMIN")) {
              String referrer = request.getHeader("referer");
              if(referrer.contains("/cart")){
