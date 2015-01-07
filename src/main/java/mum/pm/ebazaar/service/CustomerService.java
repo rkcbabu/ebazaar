@@ -4,16 +4,20 @@ import java.util.List;
 
 import mum.pm.ebazaar.domain.Card;
 import mum.pm.ebazaar.domain.Customer;
+import mum.pm.ebazaar.domain.User;
 
 public interface CustomerService {
-	public Customer get(long id);
 
-	public List<Customer> getAll();
+    public Customer get(long id);
 
-	public void create(Customer customer);
-	
-	public void update(Customer customer);
-	
-	public void delete(Customer customer);
+    public List<Customer> getAll();
+
+    public void create(Customer customer);
+
+    public void update(Customer customer);
+
+    public void delete(Customer customer);
+
+    public Customer getUserByUsername(String username);
 
 }

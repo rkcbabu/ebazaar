@@ -1,6 +1,8 @@
 package mum.pm.ebazaar.controller;
 
+import mum.pm.ebazaar.service.CardService;
 import mum.pm.ebazaar.service.CategoryService;
+import mum.pm.ebazaar.service.CustomerService;
 import mum.pm.ebazaar.service.ProductService;
 import mum.pm.ebazaar.service.UserService;
 
@@ -18,6 +20,12 @@ public class GenericController {
 
     @Autowired
     UserService userService;
+
+    @Autowired
+    CustomerService customerService;
+    
+    @Autowired
+    CardService cardService;
 
     public void pageSetup(Model model) {
         model.addAttribute("productList", productService.getAll());

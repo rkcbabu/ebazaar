@@ -9,6 +9,7 @@ import mum.pm.ebazaar.domain.Product;
 import mum.pm.ebazaar.service.CategoryService;
 import mum.pm.ebazaar.service.ProductService;
 import mum.pm.ebazaar.service.UserService;
+import mum.pm.ebazaar.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.security.core.Authentication;
@@ -33,6 +34,9 @@ public class HomeController {
 
     @Autowired
     UserService userService;
+    
+    @Autowired
+    CustomerService customerService;
 
     @RequestMapping("/")
     public String homePage(Model model) {
@@ -41,31 +45,37 @@ public class HomeController {
     }
 
     @RequestMapping("/successPage")
-    public String successPage(HttpServletRequest request, ModelMap model) {
-
+    public String successPage(HttpServletRequest request,ModelMap model) {
+        
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         request.getSession().setAttribute("currUser", userService.getUserByUsername(auth.getName()));
+        model.addAttribute("currUser", userService.getUserByUsername(auth.getName()));
         if (request.isUserInRole("ROLE_ADMIN")) {
-            String referrer = request.getHeader("referer");
-            if (referrer.contains("/cart")) {
-                return "redirect:/checkout";
-            } else {
-                return "redirect:/admin";
-            }
+             String referrer = request.getHeader("referer");
+             if(referrer.contains("/cart")){
+                 return "redirect:/checkout";
+             }
+             else{
+                  return "redirect:/admin";
+             }
         } else if (request.isUserInRole("ROLE_CUSTOMER")) {
+            request.getSession().setAttribute("currUser", customerService.getUserByUsername(auth.getName()));
+            model.addAttribute("currUser", customerService.getUserByUsername(auth.getName()));
             String referrer = request.getHeader("referer");
-            if (referrer.contains("/cart")) {
-                return "redirect:/checkout";
-            } else {
-                return "redirect:/";
-            }
+             if(referrer.contains("/cart")){
+                 return "redirect:/checkout";
+             }
+             else{
+            return "redirect:/";
+             }
         } else if (request.isUserInRole("ROLE_VENDOR")) {
-            String referrer = request.getHeader("referer");
-            if (referrer.contains("/cart")) {
-                return "redirect:/checkout";
-            } else {
-                return "redirect:/vendor";
-            }
+           String referrer = request.getHeader("referer");
+             if(referrer.contains("/cart")){
+                 return "redirect:/checkout";
+             }
+             else{
+                 return "redirect:/vendor";
+             }
         } else {
             return "redirect:/";
         }

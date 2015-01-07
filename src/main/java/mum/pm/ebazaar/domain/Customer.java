@@ -6,11 +6,15 @@
 package mum.pm.ebazaar.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
+import javax.persistence.Transient;
 /**
  *
  * @author Ram
@@ -28,12 +32,12 @@ public class Customer extends User implements Serializable {
 
     @OneToMany(mappedBy="customer")
     private List<Order> orders;
-
+    
     @OneToMany(mappedBy="customer")
     private List<ShoppingCart> shoppingCarts;
 
-    @OneToMany(mappedBy="customer")
-    private List<Card> cards ;
+    @OneToOne(mappedBy="customer")
+    private Card card ;
 
     public Customer() {
         super();
@@ -73,14 +77,12 @@ public class Customer extends User implements Serializable {
         this.orders = orders;
     }
 
-    public List<Card> getCards() {
-        return cards;
+    public Card getCard() {
+        return card;
     }
 
-    public void setCards(List<Card> cards) {
-        this.cards = cards;
-   }
-
-  
+    public void setCard(Card card) {
+        this.card = card;
+    }
 
 }

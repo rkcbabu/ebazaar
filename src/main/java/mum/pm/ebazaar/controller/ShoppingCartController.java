@@ -68,53 +68,30 @@ public class ShoppingCartController extends GenericController {
     @RequestMapping("/cart")
     public String shoppingCart(Model model, HttpSession session) {
 
-//        ShoppingCart cart = (ShoppingCart) session.getAttribute("cart");
-//        int orderCount = 0;
-//        if (cart != null) {
-//            orderCount = cart.getOrderItems().size();
-//        }
-//        model.addAttribute("orderCount", orderCount);
         return "order/cart";
     }
+
     @RequestMapping("/checkout")
     public String checkoutRedirect(Model model) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        if(auth.getName().equals("anonymousUser")){
+        if (auth.getName().equals("anonymousUser")) {
             return "/order/checkoutGuest";
+        } else {
+
+            model.addAttribute("currUser", userService.getUserByUsername(auth.getName()));
+            
+            return "/order/checkoutCust";
         }
-        else
-         return "/order/checkoutCust";
     }
 
-//    @RequestMapping("/checkout")
-//    public String checkoutCust(Model model) {
-//        model.addAttribute("user", new User());
-//        Map modelMap = model.asMap();
-//        if (!modelMap.isEmpty()) {
-//            for (Object modelKey : modelMap.keySet()) {
-//                Object modelValue = modelMap.get(modelKey);
-//                model.addAttribute("user", new User());
-//            }
-//           
-//        }
-//         return "redirect:/order/checkout";
-//    }
-//     @RequestMapping(value = "/profile", method = RequestMethod.GET)
-//    public String editUser(Model model) {
-//        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-//        userr = userservice.getUserByUsername(auth.getName());
-//        model.addAttribute("currUser", userservice.getUserByUsername(auth.getName()));
-//        return "profile";
-//    }
-        @RequestMapping("/cancelCart")
-        public String cancelCart
-        (Model model, HttpSession session
-        
-            ){
+    @RequestMapping("/cancelCart")
+    public String cancelCart(Model model, HttpSession session
+    ) {
         session.setAttribute("cart", null);
-            session.setAttribute("totalPrice", null);
-            session.setAttribute("cartItemCount", null);
-            return "/checkout";
-        }
-
+        session.setAttribute("totalPrice", null);
+        session.setAttribute("cartItemCount", null);
+        return "/checkout";
     }
+   
+
+}

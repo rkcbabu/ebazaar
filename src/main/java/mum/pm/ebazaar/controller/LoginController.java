@@ -6,6 +6,8 @@ import mum.pm.ebazaar.domain.User;
 import mum.pm.ebazaar.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -17,23 +19,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 @Scope
-public class LoginController {
+public class LoginController extends GenericController{
 
-    @Autowired
-    UserService userservice;
-    User userr;
-
-    public User getUserr() {
-        if (userr == null) {
-            userr = new User();
-        }
-        return userr;
-    }
-
-    public void setUserr(User userr) {
-        this.userr = userr;
-    }
-
+      
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String register(@ModelAttribute("user") User user) {
         return "login";
@@ -44,8 +32,8 @@ public class LoginController {
         if (result.hasErrors()) {
             return "login";
         } else {
-            if (userservice.getUserByUsername(userF.getUsername()) != null) {
-                User user = userservice.getUserByUsername(userF.getUsername());
+            if (userService.getUserByUsername(userF.getUsername()) != null) {
+                User user = userService.getUserByUsername(userF.getUsername());
                 if (user.getUsername().equals(userF.getUsername())) {
                     model.addAttribute("userIN", user);
                     return "welcome";
@@ -67,6 +55,8 @@ public class LoginController {
 
     @RequestMapping(value = "/profile", method = RequestMethod.GET)
     public String editUser(Model model) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        model.addAttribute("currUser", userService.getUserByUsername(auth.getName()));
        return "profile";
     }
 
@@ -74,14 +64,14 @@ public class LoginController {
     public String editUser(@ModelAttribute("currUser") User currUser, BindingResult result, @PathVariable long id) {
 
         currUser.setId(id);
-        userservice.update(currUser);
+        userService.update(currUser);
         return "profile";
     }
     @RequestMapping(value = "/updateAdd/{id}", method = RequestMethod.POST)
-    public String updateAdd(@PathVariable long id, HttpSession session) {
-        User user = (User)session.getAttribute("currUser");
-        userservice.updateAddress(user);
-        return "checkout";
+    public String updateAdd(@ModelAttribute("currUser") User currUser, BindingResult result, @PathVariable long id, Model model) {
+        currUser.setId(id);
+        userService.updateAddress(currUser);
+        return "redirect:/checkout";
     }
     
 }

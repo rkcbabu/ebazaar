@@ -3,7 +3,10 @@ package mum.pm.ebazaar.serviceImp;
 import java.util.List;
 
 import mum.pm.ebazaar.domain.Customer;
+import mum.pm.ebazaar.domain.User;
 import mum.pm.ebazaar.repository.CustomerDao;
+import mum.pm.ebazaar.repository.UserDao;
+import mum.pm.ebazaar.repositoryImp.UserDaoImp;
 import mum.pm.ebazaar.service.CustomerService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,5 +51,10 @@ public class CustomerServiceImp implements CustomerService {
 		// TODO Auto-generated method stub
 		
 	}
+   
 
+    @Override
+     public Customer getUserByUsername(String username) {
+        return customerDao.findByUsername(username);
+    }
 }

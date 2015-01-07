@@ -16,6 +16,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 
 /**
@@ -38,7 +39,7 @@ public class Card implements Serializable {
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date expiryDate;
     
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name="customer_id")
     private Customer customer;                      
 
