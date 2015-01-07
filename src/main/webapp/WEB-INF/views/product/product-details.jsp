@@ -62,11 +62,15 @@
                                         <span>US $${product.price}</span>
                                         <label>Quantity:</label>
                                         <input type="text" value="3" />
-                                        
-                                        <button type="button" class="btn btn-fefault cart">
-                                            <i class="fa fa-shopping-cart"></i>
-                                            Add to cart
-                                        </button>
+
+                                        <!--                                        <button type="button" class="btn btn-fefault cart" >
+                                                                                    <i class="fa fa-shopping-cart"></i>
+                                                                                    Add to cart
+                                                                                </button>-->
+                                        <a href="<c:url value="/addtocart"/>/${product.id}" 
+                                           class="btn btn-default cart">
+                                            <i class="fa fa-shopping-cart"></i>Add to cart
+                                        </a>
                                     </span>
                                     <p><b>Availability:</b> In Stock</p>
                                     <p><b>Condition:</b> New</p>

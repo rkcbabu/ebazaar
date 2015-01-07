@@ -17,9 +17,15 @@
                 </div>
                 <div class="chose_area">
                     <a class="btn btn-default check_out" href="<c:url value="/"/>">Continue Shopping</a>
-                    <button type="button" class="btn btn-default check_out pull-right" data-toggle="modal" data-target="#myModal" >
+                    <c:if test="${pageContext.request.userPrincipal.name != null}">
+                                <a class="btn btn-default check_out" href="<c:url value="/checkout"/>">Checkout</a>
+                            </c:if>
+                                <c:if test="${pageContext.request.userPrincipal.name == null}">
+                                <button type="button" class="btn btn-default check_out" data-toggle="modal" data-target="#myModal" >
                                 Checkout
                             </button>
+                            </c:if>
+                   
 <!--                    <a class="btn btn-default check_out" href="<c:url value="/checkout"/>">Checkout</a>-->
                 </div>
                 <hr>
@@ -96,9 +102,14 @@
                                 href="<c:url value="/checkout"/>">Checkout</a>
                             -->
                             <!-- Button trigger modal -->
-                            <button type="button" class="btn btn-default check_out pull-right" data-toggle="modal" data-target="#myModal" >
+                            <c:if test="${pageContext.request.userPrincipal.name != null}">
+                                <a class="btn btn-default check_out" href="<c:url value="/checkout"/>">Checkout</a>
+                            </c:if>
+                                <c:if test="${pageContext.request.userPrincipal.name == null}">
+                                <button type="button" class="btn btn-default check_out pull-right" data-toggle="modal" data-target="#myModal" >
                                 Checkout
                             </button>
+                            </c:if>
 
                             <!-- Modal -->
                             <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

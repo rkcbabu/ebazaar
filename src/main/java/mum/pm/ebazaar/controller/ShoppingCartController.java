@@ -8,6 +8,8 @@ import mum.pm.ebazaar.domain.ShoppingCart;
 import mum.pm.ebazaar.domain.User;
 import mum.pm.ebazaar.service.ShoppingCartService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -76,7 +78,12 @@ public class ShoppingCartController extends GenericController {
     }
     @RequestMapping("/checkout")
     public String checkoutRedirect(Model model) {
-        return "/order/checkout";
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        if(auth.getName().equals("anonymousUser")){
+            return "/order/checkoutGuest";
+        }
+        else
+         return "/order/checkoutCust";
     }
 
 //    @RequestMapping("/checkout")
