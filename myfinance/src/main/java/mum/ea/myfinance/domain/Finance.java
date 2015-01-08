@@ -58,11 +58,11 @@ public class Finance implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Column(name = "PAIDTOVENDOR")
-    private float paidtovendor;
+    private double paidtovendor;
     @Basic(optional = false)
     @NotNull
     @Column(name = "PAIDTOMYCOMPANY")
-    private float paidtomycompany;
+    private double paidtomycompany;
 
     public Finance() {
     }
@@ -71,7 +71,7 @@ public class Finance implements Serializable {
         this.ccno = ccno;
     }
 
-    public Finance(String ccno, String fullname, String emailid, String billingaddress, float paidtovendor, float paidtomycompany) {
+    public Finance(String ccno, String fullname, String emailid, String billingaddress, double paidtovendor, double paidtomycompany) {
         this.ccno = ccno;
         this.fullname = fullname;
         this.emailid = emailid;
@@ -112,19 +112,19 @@ public class Finance implements Serializable {
         this.billingaddress = billingaddress;
     }
 
-    public float getPaidtovendor() {
+    public double getPaidtovendor() {
         return paidtovendor;
     }
 
-    public void setPaidtovendor(float paidtovendor) {
+    public void setPaidtovendor(double paidtovendor) {
         this.paidtovendor = paidtovendor;
     }
 
-    public float getPaidtomycompany() {
+    public double getPaidtomycompany() {
         return paidtomycompany;
     }
 
-    public void setPaidtomycompany(float paidtomycompany) {
+    public void setPaidtomycompany(double paidtomycompany) {
         this.paidtomycompany = paidtomycompany;
     }
 

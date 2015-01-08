@@ -72,7 +72,7 @@ public class CardController {
 //    @ResponseBody
 //    Result valid(@RequestParam Map<String,String> allRequestParams) {
 //        System.out.println(allRequestParams);
-//        Result result = new Result();
+//        Result result ;= new Result();
 //        result.setResult("YES");
 //        return result;
 //    }

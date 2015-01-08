@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package mum.pm.ebazaar.util;
+package mum.ea.myfinance.util;
 
-import mum.pm.ebazaar.domain.Result;
+import mum.ea.myfinance.domain.Result;
 import org.springframework.web.client.RestTemplate;
 
 /**
@@ -13,7 +13,6 @@ import org.springframework.web.client.RestTemplate;
  * @author Chaulagai
  */
 public class Utils {
-
     public static String deduct(String ccNo, String exptDate, String cvvNo, double balance) {
         // we will add encryption of data here. 
         String url = "http://localhost:8080/mycard/deduct/" + ccNo + "/" + exptDate + "/" + cvvNo + "/" + balance;
