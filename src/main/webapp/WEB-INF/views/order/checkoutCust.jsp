@@ -60,8 +60,8 @@
                                             </label>
                                         </div>
                                     </div>
-
-                                    <b><a class="btn btn-primary" href="/placeOrder" data-selector>Place Order</a></b>
+                                        <a class="btn btn-default check_out" href="<c:url value="/placeOrder"/>">Place Order</a>
+                                    <!--<b><a class="btn btn-primary" href="/placeOrder" data-selector>Place Order</a></b>-->
                                 </div>
                             </div>
                             <div class="col-sm-7 clearfix">

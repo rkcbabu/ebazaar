@@ -47,8 +47,7 @@
                                         <input type="text" placeholder="Email">
                                         <input type="text" placeholder="Confirm Email">
                                     </form>
-                                <b><a class="btn btn-default check_out" href="<c:url value="/payment"/>">SAVE AND GO TO PAYMENT</a></b>
-                                
+                                <b><a class="btn btn-primary" href="" data-selector>SAVE AND GO TO PAYMENT</a></b>
                             </div>
                         </div>
                         <div class="col-sm-7 clearfix">
@@ -65,7 +64,7 @@
                 <li>Sales Tax <span style="float: right; padding-right:20px;">$ <fmt:formatNumber type="number" 
                                                         maxFractionDigits="3" value="${totalPrice*0.1}" /></span></li>
                 <li>Shipping Cost <span style="float: right; padding-right:20px;">Free</span></li>
-                <li><b>Total After Tax <span style="float: right; padding-right:20px;">$<fmt:formatNumber type="number" 
+                <br/><li><b>Total After Tax <span style="float: right; padding-right:20px;">$<fmt:formatNumber type="number" 
                                   maxFractionDigits="3" value="${(totalPrice*0.1)+totalPrice}"/></span></b></li>
                             </ul>
     </div>
@@ -108,6 +107,15 @@
                 </div>
                
                 <div class="payment-options">
+<!--                    <span>
+                        <label><input type="checkbox"> </label>
+                    </span>
+                    <span>
+                        <label><input type="checkbox"> Check Payment</label>
+                    </span>
+                    <span>
+                        <label><input type="checkbox"> Paypal</label>
+                    </span>-->
                 </div>
             </div>
         </section> <!--/#cart_items-->

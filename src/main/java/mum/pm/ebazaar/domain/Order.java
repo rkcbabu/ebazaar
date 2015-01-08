@@ -15,12 +15,14 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 
 /**
  *
  * @author Ram
  */
+@Table(name="custOrder")
 @Entity
 public class Order implements Serializable {
 
@@ -29,7 +31,7 @@ public class Order implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    private String OrderID;
+    private String orderID;
 
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date dateOrder;
@@ -48,15 +50,17 @@ public class Order implements Serializable {
     private Customer customer;
     @OneToMany(mappedBy="order")
     private List<OrderItem> orderItems; 
-    
-   
+
     public String getOrderID() {
-        return OrderID;
+        return orderID;
     }
 
-    public void setOrderID(String OrderID) {
-        this.OrderID = OrderID;
+    public void setOrderID(String orderID) {
+        this.orderID = orderID;
     }
+    
+   
+
 
     public Date getDateOrder() {
         return dateOrder;

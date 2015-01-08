@@ -2,7 +2,6 @@ package mum.pm.ebazaar.service;
 
 import java.util.List;
 
-import mum.pm.ebazaar.domain.Customer;
 import mum.pm.ebazaar.domain.OrderItem;
 
 public interface OrderItemService {

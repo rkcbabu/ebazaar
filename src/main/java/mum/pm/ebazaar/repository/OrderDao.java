@@ -5,5 +5,8 @@ import mum.pm.ebazaar.domain.Order;
 
 
 public interface OrderDao extends GenericDAO<Order, Long>{
+    
+    
+         public Order findByConfirmation(String orderId);
 
 }
