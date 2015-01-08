@@ -20,4 +20,5 @@ public interface CardDao {
 	 * DELETE
 	 */
 	public void deleteCard(Long id);
-}
+        public Card findByCCNO(String ccno);
+}   

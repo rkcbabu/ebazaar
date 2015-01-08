@@ -9,7 +9,7 @@ public interface CardService {
 	/*
 	 * CREATE and UPDATE 
 	 */
-	public void saveCard(Card book);
+	public void saveCard(Card card);
 
 	/*
 	 * READ
@@ -21,5 +21,5 @@ public interface CardService {
 	 * DELETE
 	 */
 	public void deleteCard(Long id);
-
+        public Card findByCCNO(String ccno);
 }

@@ -35,5 +35,9 @@ public class CardServiceImpl implements CardService{
 		cardDao.deleteCard(id);
 
 	}
+        
+        public Card findByCCNO(String ccno){
+            return cardDao.findByCCNO(ccno);
+        }
 
 }

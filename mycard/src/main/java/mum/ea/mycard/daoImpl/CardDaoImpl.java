@@ -3,10 +3,10 @@ package mum.ea.mycard.daoImpl;
 import mum.ea.mycard.domain.dao.CardDao;
 import mum.ea.mycard.domain.Card;
 import java.util.List;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -20,9 +20,14 @@ public class CardDaoImpl implements CardDao {
 
     public void saveCard(Card card) {
         getSession().merge(card);
-
     }
-
+    public Card findByCCNO(String ccno){
+        Query query = sessionFactory.getCurrentSession().createQuery("FROM Card c WHERE c.ccno = :uccno");
+        query.setParameter("uccno", ccno);
+        @SuppressWarnings("unchecked")
+        Card card = (Card)query.uniqueResult();
+        return card; 
+    }
     @SuppressWarnings("unchecked")
     public List<Card> listCards() {
         return getSession().createCriteria(Card.class).list();

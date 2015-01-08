@@ -9,8 +9,8 @@
                     <h1> ${greeting} </h1>
                     <p> ${tagline} </p>
                 </div>
-                ${pageAbout}
             </div>
+                ${result}
         </section>
         <c:import url="/layout/footer"/>
     </body>

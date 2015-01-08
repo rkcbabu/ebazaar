@@ -10,9 +10,12 @@ import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
@@ -20,15 +23,15 @@ import javax.persistence.TemporalType;
  */
 @Entity
 @Table(name = "tbl_card")
-//@XmlRootElement
-//@NamedQueries({
-//    @NamedQuery(name = "Card.findAll", query = "SELECT c FROM Card c"),
-//    @NamedQuery(name = "Card.findByCcno", query = "SELECT c FROM Card c WHERE c.ccno = :ccno"),
-//    @NamedQuery(name = "Card.findByExptdate", query = "SELECT c FROM Card c WHERE c.exptdate = :exptdate"),
-//    @NamedQuery(name = "Card.findByCvvno", query = "SELECT c FROM Card c WHERE c.cvvno = :cvvno"),
-//    @NamedQuery(name = "Card.findByAvailablebalance", query = "SELECT c FROM Card c WHERE c.availablebalance = :availablebalance"),
-//    @NamedQuery(name = "Card.findByTotalbalance", query = "SELECT c FROM Card c WHERE c.totalbalance = :totalbalance"),
-//    @NamedQuery(name = "Card.findByCardtype", query = "SELECT c FROM Card c WHERE c.cardtype = :cardtype")})
+@XmlRootElement
+@NamedQueries({
+    @NamedQuery(name = "Card.findAll", query = "SELECT c FROM Card c"),
+    @NamedQuery(name = "Card.findByCcno", query = "SELECT c FROM Card c WHERE c.ccno = :ccno"),
+    @NamedQuery(name = "Card.findByExptdate", query = "SELECT c FROM Card c WHERE c.exptdate = :exptdate"),
+    @NamedQuery(name = "Card.findByCvvno", query = "SELECT c FROM Card c WHERE c.cvvno = :cvvno"),
+    @NamedQuery(name = "Card.findByAvailablebalance", query = "SELECT c FROM Card c WHERE c.availablebalance = :availablebalance"),
+    @NamedQuery(name = "Card.findByTotalbalance", query = "SELECT c FROM Card c WHERE c.totalbalance = :totalbalance"),
+    @NamedQuery(name = "Card.findByCardtype", query = "SELECT c FROM Card c WHERE c.cardtype = :cardtype")})
 public class Card implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
