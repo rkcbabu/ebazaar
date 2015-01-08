@@ -1,5 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib  prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@taglib  prefix="form" uri="http://www.springframework.org/tags/form" %>
 <header id="header"><!--header-->
     <div class="header_top"><!--header_top-->
         <div class="container">
@@ -123,10 +124,23 @@
                 </div>
                 <div class="col-sm-3">
                     <div class="search_box pull-right">
-                        <input type="text" placeholder="Search"/>
+                        <form action="/ebazaar/search" method="get" id="search">
+                            <input name="q" value="${pageContext.request.getParameter("q")}" type="text" placeholder="search"/>
+                        </form>
+                        
                     </div>
                 </div>
             </div>
         </div>
     </div><!--/header-bottom-->
 </header><!--/header-->
+<script>
+ $('#search').live("keypress", function(e) {
+     var code = (e.keyCode ? e.keyCode : e.which);
+     if (code == 13) {
+        e.preventDefault();
+        e.stopPropagation();
+        $(this).closest('form').submit();
+     }
+  });    
+</script>

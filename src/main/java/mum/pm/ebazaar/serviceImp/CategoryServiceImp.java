@@ -20,8 +20,9 @@ public class CategoryServiceImp implements CategoryService {
 
 	@Override
 	public Category get(long id) {
-	//	Category category = categoryDao.get(id);
-		return null;
+//		Category category = categoryDao.get(id);
+		return categoryDao.get(id);
+//		return null;
 	}
 
 	@Override
