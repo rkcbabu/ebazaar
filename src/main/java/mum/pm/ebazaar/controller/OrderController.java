@@ -108,7 +108,7 @@ public class OrderController extends GenericController{
     }
     public boolean isValid(Card card, String expry, Double total){
         boolean valid=false;
-        if("YES".equals(Utils.isValid("4024007182706563", "2017-01-03", card.getCardCV(), total))){
+        if("YES".equals(Utils.isValid(card.getCreditCardNo(), expry, card.getCardCV(), total))){
            valid=true;
         }
         return valid;
