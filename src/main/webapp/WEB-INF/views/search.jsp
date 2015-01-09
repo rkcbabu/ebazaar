@@ -41,7 +41,10 @@
                                 </div>
                             </c:forEach>
                             <c:if test="${empty productList}">
-                                Sorry, No products found !
+                                <div >
+                                    <p>Sorry, No products found !</p>
+                                </div>
+                                
                             </c:if>
                         </div><!--features_items-->
                     </div>

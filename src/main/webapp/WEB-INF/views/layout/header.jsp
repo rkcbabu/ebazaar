@@ -102,22 +102,27 @@
                                     <a href="<c:url value="/"/>" class="active">Home</a>
                                 </c:if>
                             </li>
-                            <li class="dropdown"><a href="#">Shop<i class="fa fa-angle-down"></i></a>
+                            <li class="dropdown"><a href="#">Brands<i class="fa fa-angle-down"></i></a>
                                 <ul role="menu" class="sub-menu">
-                                    <li><a href="<c:url value="/shop"/>">Products</a></li>
-                                    <li><a href="<c:url value="/product-details"/>">Product Details</a></li> 
-                                    <li><a href="<c:url value="/template/checkout"/>">Checkout</a></li> 
-                                    <li><a href="<c:url value="/cart"/>">Cart</a></li> 
-                                    <li><a href="<c:url value="/login"/>">Login</a></li> 
+                                    <c:forEach items="${vendorList}" var="vendor">
+                                    <li><a href="<c:url value="/search/vendor"/>/${vendor.username}">${vendor.username}</a></li>
+                                    </c:forEach>
                                 </ul>
                             </li> 
-                            <li class="dropdown"><a href="#">Blog<i class="fa fa-angle-down"></i></a>
+                            <li class="dropdown"><a href="#">Category<i class="fa fa-angle-down"></i></a>
+                                <ul role="menu" class="sub-menu">
+                                    <c:forEach items="${categoryList}" var="category">
+                                    <li><a href="<c:url value="/search/category"/>/${category.id}">${category.name}</a></li>
+                                    </c:forEach>
+                                </ul>
+                            </li> 
+<!--                            <li class="dropdown"><a href="#">Blog<i class="fa fa-angle-down"></i></a>
                                 <ul role="menu" class="sub-menu">
                                     <li><a href="<c:url value="/blog"/>">Blog List</a></li>
                                     <li><a href="<c:url value="/blog-single"/>">Blog Single</a></li>
                                 </ul>
                             </li> 
-                            <li><a href="<c:url value="/page404"/>">404</a></li>
+                            <li><a href="<c:url value="/page404"/>">404</a></li>-->
                             <li><a href="<c:url value="/contact-us"/>">Contact</a></li>
                         </ul>
                     </div>

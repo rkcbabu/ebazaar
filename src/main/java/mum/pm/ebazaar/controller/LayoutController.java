@@ -32,6 +32,8 @@ public class LayoutController {
     }
     @RequestMapping("/layout/header")
     public String header(Model model) {
+        model.addAttribute("categoryList", categoryService.getAll());
+        model.addAttribute("vendorList", userService.getVendors());
         return "layout/header";
     }
     @RequestMapping("/layout/footer")
