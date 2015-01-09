@@ -174,7 +174,7 @@ public class User implements Serializable {
 
     @Override
     public String toString() {
-        return "mum.pm.ebazaar.domain.User[ id=" + id + " ]";
+        return "mum.pm.ebazaar.domain.User[ id=" + id+" - enabled"+enabled + " ]";
     }
 
 }

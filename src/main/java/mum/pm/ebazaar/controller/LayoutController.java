@@ -1,5 +1,6 @@
 package mum.pm.ebazaar.controller;
 
+import javax.servlet.http.HttpServletRequest;
 import mum.pm.ebazaar.service.CategoryService;
 import mum.pm.ebazaar.service.ProductService;
 
@@ -9,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.HandlerMapping;
 
 @Controller
 //@RequestMapping(value = "")
@@ -42,10 +44,10 @@ public class LayoutController {
     }
     
     @RequestMapping("/layout/head")
-    public String head(Model model) {
+    public String head(Model model,HttpServletRequest request) {
+        model.addAttribute("title", " E-Bazaar ");
         return "layout/head";
     }
-    
     
      @RequestMapping("/template/login")
     public String login() {

@@ -4,7 +4,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>Home | E-bazaar</title>
+    <title>${title}</title>
     <link href="<c:url value="/web-resources/css/bootstrap.min.css"/>" rel="stylesheet">
     <link href="<c:url value="/web-resources/css/font-awesome.min.css"/>" rel="stylesheet">
     <link href="<c:url value="/web-resources/css/prettyPhoto.css"/>" rel="stylesheet">

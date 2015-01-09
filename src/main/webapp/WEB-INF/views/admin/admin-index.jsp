@@ -39,7 +39,13 @@
                                         <p>${user.role}</p>
                                     </td>
                                     <td class="cart_delete">
-                                        <a class="cart_quantity_delete" href=""><i class="fa fa-times"></i></a>
+                                        <a class="cart_quantity_button" href="" title="${user.enabled ? "Disable Vendor":"Enable Vendor"}"
+                                           onclick='$("#toggle${user.id}").submit()'
+                                           >
+                                            <i class='fa ${user.enabled?"fa-user":"fa-ban"}'></i></a>
+                                            <form action="/ebazaar/admin/toggle" method="post" id="toggle${user.id}">
+                                                <input type="hidden" name="id" value="${user.id}"/>
+                                            </form>
                                     </td>
                                 </tr>
                             </c:forEach>
