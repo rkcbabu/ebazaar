@@ -16,7 +16,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @Transactional(propagation = Propagation.REQUIRES_NEW)
-
 public class CustomerServiceImp implements CustomerService {
 	
 	@Autowired
@@ -55,6 +54,7 @@ public class CustomerServiceImp implements CustomerService {
 
     @Override
      public Customer getUserByUsername(String username) {
-        return customerDao.findByUsername(username);
+         Customer cust=customerDao.getByUsername(username);
+        return cust;
     }
 }

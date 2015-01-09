@@ -1,6 +1,7 @@
 package mum.pm.ebazaar.serviceImp;
 
 import java.util.List;
+import mum.pm.ebazaar.domain.Customer;
 
 import mum.pm.ebazaar.domain.ShoppingCart;
 import mum.pm.ebazaar.repository.PaymentDao;
@@ -45,5 +46,11 @@ public class ShoppingCartServiceImp implements ShoppingCartService {
 		shoppingcartDao.delete(shoppingcart);
 		
 	}
+
+    @Override
+    public ShoppingCart findByUser(Customer customer) {
+      return shoppingcartDao.findByUser(customer);
+    }
+        
 
 }

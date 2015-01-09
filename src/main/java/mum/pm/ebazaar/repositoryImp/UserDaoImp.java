@@ -17,4 +17,9 @@ public class UserDaoImp extends GenericHibernateDaoImpl<User, Long> implements U
         List<User> users = query.list();
         return users;
     }
+                  @Override
+    public User findByUsername(String userName) {
+        return (User) sessionFactory.getCurrentSession().createQuery("SELECT u FROM User u WHERE u.username = ?").setParameter(0, userName).uniqueResult();
+
+    }
 }

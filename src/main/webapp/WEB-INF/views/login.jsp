@@ -40,7 +40,7 @@
 
                             <a class="btn btn-primary " style="width: 130px;"  href="<c:url value="/register?user=vendor"/>">Vendor SignUp</a> 
                             <br>
-                            <a class="btn btn-primary " style="width: 130px;" href="<c:url value="/register?user=customer"/>">Customer SignUp</a> 
+                            <a class="btn btn-primary " style="width: 130px;" href="<c:url value="/registerCustomer"/>">Customer SignUp</a> 
 
                             <%-- <form:errors path="firstName" element="div" cssClass="error" />
                             <form:input path="firstName" placeholder="First Name" />

@@ -2,9 +2,7 @@ package mum.pm.ebazaar.service;
 
 import java.util.List;
 
-import mum.pm.ebazaar.domain.Card;
 import mum.pm.ebazaar.domain.Customer;
-import mum.pm.ebazaar.domain.User;
 
 public interface CustomerService {
 

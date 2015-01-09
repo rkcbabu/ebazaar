@@ -3,6 +3,7 @@ package mum.pm.ebazaar.controller;
 import java.util.List;
 import java.util.Map;
 import javax.servlet.http.HttpSession;
+import mum.pm.ebazaar.domain.Customer;
 import mum.pm.ebazaar.domain.OrderItem;
 import mum.pm.ebazaar.domain.ShoppingCart;
 import mum.pm.ebazaar.domain.User;
@@ -27,8 +28,10 @@ public class ShoppingCartController extends GenericController {
     @RequestMapping(value = "/addtocart/{id}", method = RequestMethod.GET)
     public String addToCart(@PathVariable long id, HttpSession session) {
         ShoppingCart cart = (ShoppingCart) session.getAttribute("cart");
+        
         if (cart == null) {
             cart = new ShoppingCart();
+            cartservice.create(cart);
         }
         List<OrderItem> orderItems = cart.getOrderItems();
         boolean found = false;
@@ -58,7 +61,7 @@ public class ShoppingCartController extends GenericController {
             cartItemCount++;
             orderItems.add(oi);
         }
-
+        cartservice.update(cart);
         session.setAttribute("cart", cart);
         session.setAttribute("totalPrice", totalPrice);
         session.setAttribute("cartItemCount", cartItemCount);
@@ -75,10 +78,12 @@ public class ShoppingCartController extends GenericController {
     public String checkoutRedirect(Model model) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         if (auth.getName().equals("anonymousUser")) {
+            Customer currUser= new Customer();
+            model.addAttribute("currUser",currUser);
             return "/order/checkoutGuest";
         } else {
 
-            model.addAttribute("currUser", userService.getUserByUsername(auth.getName()));
+            model.addAttribute("currUser", customerService.getUserByUsername(auth.getName()));
             
             return "/order/checkoutCust";
         }

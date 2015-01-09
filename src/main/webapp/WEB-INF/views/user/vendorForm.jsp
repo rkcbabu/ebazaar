@@ -14,7 +14,7 @@
                     <div class="col-sm-4 col-sm-offset-1">
                         <div class="signup-form">
                             <h2> Vendor Registration</h2>
-                            <form:form commandName="user" method="post">
+                            <form:form commandName="vendor" method="post" action="registerVendor">
                                 <form:errors path="firstName" element="div" cssClass="error" />
                                 <form:input path="firstName" placeholder="vendor Name" />
                                 <%-- <form:errors path="lastName" element="div" cssClass="error" />

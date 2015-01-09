@@ -15,7 +15,7 @@
 
                         <div class="signup-form">
                             <h2>Customer Registration</h2>
-                            <form:form commandName="user" method="post" >
+                            <form:form commandName="customer" method="post" action="registerCustomer">
 
                                 <input type="hidden" id="role" name="role" value="ROLE_CUSTOMER">
                                 <form:errors path="firstName" element="div" cssClass="error" />

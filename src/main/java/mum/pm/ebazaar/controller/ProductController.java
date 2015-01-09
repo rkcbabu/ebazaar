@@ -52,7 +52,7 @@ public class ProductController {
         String ccNo = "4024007182706563";
         String exptDate = "2018-01-03";
         String cvvNo = "549";
-        float balance = 100f;
+        Double balance = 100.0;
         model.addAttribute("result", Utils.isValid(ccNo, exptDate, cvvNo, balance));
         return "test";
     }

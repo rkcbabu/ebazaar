@@ -18,6 +18,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
+import javax.persistence.Transient;
 
 /**
  *
@@ -35,6 +36,11 @@ public class Card implements Serializable {
     private String type;
 
     private String cardCV;
+    
+    @Transient
+    private int month;
+    @Transient
+    private int year;
 
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date expiryDate;
@@ -82,6 +88,8 @@ public class Card implements Serializable {
     }
 
     public Date getExpiryDate() {
+        if(expiryDate==null)
+            expiryDate= new Date();
         return expiryDate;
     }
 
@@ -104,6 +112,23 @@ public class Card implements Serializable {
     public void setPayments(List<Payment> payments) {
         this.payments = payments;
     }
+
+    public int getMonth() {
+        return month;
+    }
+
+    public void setMonth(int month) {
+        this.month = month;
+    }
+
+    public int getYear() {
+       return year;
+    }
+
+    public void setYear(int year) {
+        this.year = year;
+    }
+    
 
     @Override
     public int hashCode() {

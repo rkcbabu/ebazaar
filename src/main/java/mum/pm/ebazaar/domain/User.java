@@ -13,7 +13,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.Valid;
-import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.Email;
@@ -31,8 +30,8 @@ public class User implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     
-    @NotEmpty(message = "Please enter your firstName.")
-    @Size(min=2, max=10,message = "Your firstName must between 2 and 10 characters")
+//    @NotEmpty(message = "Please enter your firstName.")
+//    @Size(min=2, max=10,message = "Your firstName must between 2 and 10 characters")
     private String firstName;
     
 //    @NotEmpty(message = "Please enter your Last Name.")
@@ -40,14 +39,14 @@ public class User implements Serializable {
 //    @Pattern(regexp="[a-zA-Z]")
     private String lastName;
     
-    @NotEmpty(message = "Please enter your username.")
-    @Size(min=2, max = 15,  message = "Your username must between 6 and 15 characters")
+//    @NotEmpty(message = "Please enter your username.")
+//    @Size(min=2, max = 15,  message = "Your username must between 6 and 15 characters")
 //    @Pattern(regexp ="[a-zA-Z0-9]")
     private String username; 
    
     
-    @NotEmpty(message = "Please enter your password.")
-    @Size(min = 6, message = "Your password must between 6 and 15 characters")
+//    @NotEmpty(message = "Please enter your password.")
+//    @Size(min = 6, message = "Your password must between 6 and 15 characters")
     private String password; 
     
     

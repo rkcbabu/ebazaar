@@ -28,14 +28,22 @@
                         <div class="col-sm-5">
                             <div class="shopper-info">
                                 <p>WHERE CAN WE SHIP YOUR ORDER</p>
-                                 <form>
-                                        <input type="text" placeholder="First Name">
-                                        <input type="text" placeholder="Last Name">
-                                        <input type="text" placeholder="Street">
-                                        <input type="text" placeholder="City">
-                                        <input type="text" placeholder="State">
-                                        <input type="text" placeholder="Zip Code">
-                                        <select id="shipping" >
+                                <c:set var="userName" value="userGuest"/>
+                                <c:set var="password" value="passwordGuest"/>
+                                <form:form modelAttribute="currUser" method="post" action="createGuest" enctype="multipart/form-data">
+                                    <form:errors path="*" cssClass="error" />
+                                        <form:input path="firstName" placeholder="First Name"/>
+                                        <form:errors path="firstName" element="div" cssClass="error" />
+                                        <form:input path="lastName" placeholder="Last Name"/>
+                                        <form:input path="address.street" placeholder="Street"/>
+                                        <form:input path="address.city" placeholder="City"/>
+                                        <form:input path="address.State" placeholder="State"/>
+                                        <form:input path="address.zipcode" placeholder="Zip Code"/>
+                                       <%--<form:input path="username" placeholder="${userName}"/>--%>
+                                        <%--<form:errors path="username" element="div" cssClass="error" />--%>
+                                        <%--<form:input path="password" placeholder="${password}"/>--%>
+                                        <%--<form:errors path="password" element="div" cssClass="error" />--%>
+                                       <select id="shipping" >
                                             <option>Standard (5-7 Bus Days) (Free)</option>
                                             <option>Second Day (2 Bus Days) ($15.00)</option>
                                             <option>Overnight Day (1 Bus Day) ($21.00)</option>
@@ -43,11 +51,11 @@
                                         </select><br/>
                                         <br/><br/>
                                         <h4><b> CONTACT INFO  </b></h4>
-                                        <input type="text" placeholder="Phone Number">
-                                        <input type="text" placeholder="Email">
-                                        <input type="text" placeholder="Confirm Email">
-                                    </form>
-                                <b><a class="btn btn-default check_out" href="<c:url value="/payment"/>">SAVE AND GO TO PAYMENT</a></b>
+                                        <form:input path="phone" placeholder="Phone Number"/>
+                                        <form:input path="email" placeholder="Email"/>
+                                        <!--<input type="text" placeholder="Confirm Email"/>-->
+                                        <button type="submit" class="btn btn-primary">SAVE AND GO TO PAYMENT</button>
+                                    </form:form>
                                 
                             </div>
                         </div>

@@ -15,7 +15,6 @@
                     <ol class="breadcrumb">
                         <li><a href="#">Home</a></li>
                         <li class="active">Check out</li>
-                        <li><a href="#">Payment</a></li>
                     </ol>
                 </div><!--/breadcrums-->
 

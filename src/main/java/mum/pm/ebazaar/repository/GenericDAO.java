@@ -19,6 +19,5 @@ public interface GenericDAO<T, ID extends Serializable> {
 
 	void deleteById(final ID entityId);
         
-         public T findByUsername(String userName);
 
 }

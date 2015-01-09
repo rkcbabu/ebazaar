@@ -1,6 +1,7 @@
 package mum.pm.ebazaar.service;
 
 import java.util.List;
+import mum.pm.ebazaar.domain.Customer;
 
 import mum.pm.ebazaar.domain.Payment;
 import mum.pm.ebazaar.domain.ShoppingCart;
@@ -14,5 +15,7 @@ public interface ShoppingCartService {
 	public void update(ShoppingCart shoppingcart);
 	
 	public void delete(ShoppingCart shoppingcart);
+        
+	public ShoppingCart findByUser(Customer customer);
 
 }

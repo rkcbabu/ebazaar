@@ -7,12 +7,15 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import mum.pm.ebazaar.domain.Customer;
 import mum.pm.ebazaar.domain.Product;
+import mum.pm.ebazaar.domain.ShoppingCart;
 import mum.pm.ebazaar.domain.User;
 import mum.pm.ebazaar.service.CategoryService;
 import mum.pm.ebazaar.service.ProductService;
 import mum.pm.ebazaar.service.UserService;
 import mum.pm.ebazaar.service.CustomerService;
+import mum.pm.ebazaar.service.ShoppingCartService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.security.core.Authentication;
@@ -28,7 +31,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @Scope
-//@Transactional
 public class HomeController {
 
     @Autowired
@@ -39,9 +41,12 @@ public class HomeController {
 
     @Autowired
     UserService userService;
-
+    
     @Autowired
     CustomerService customerService;
+    
+    @Autowired
+    ShoppingCartService cartService;
 
     @RequestMapping("/")
     public String homePage(Model model) {
@@ -50,34 +55,45 @@ public class HomeController {
     }
 
     @RequestMapping("/successPage")
-    public String successPage(HttpServletRequest request, ModelMap model) {
-
+    public String successPage(HttpServletRequest request,ModelMap model) {
+        
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         request.getSession().setAttribute("currUser", userService.getUserByUsername(auth.getName()));
         model.addAttribute("currUser", userService.getUserByUsername(auth.getName()));
         if (request.isUserInRole("ROLE_ADMIN")) {
-            String referrer = request.getHeader("referer");
-            if (referrer.contains("/cart")) {
-                return "redirect:/checkout";
-            } else {
-                return "redirect:/admin";
-            }
+             String referrer = request.getHeader("referer");
+             if(referrer.contains("/cart")){
+                 return "redirect:/checkout";
+             }
+             else{
+                  return "redirect:/admin";
+             }
         } else if (request.isUserInRole("ROLE_CUSTOMER")) {
-            request.getSession().setAttribute("currUser", customerService.getUserByUsername(auth.getName()));
+            String username=auth.getName();
+            Customer currUser=customerService.getUserByUsername(username);
+            request.getSession().setAttribute("currUser", currUser);
+            
             model.addAttribute("currUser", customerService.getUserByUsername(auth.getName()));
             String referrer = request.getHeader("referer");
-            if (referrer.contains("/cart")) {
-                return "redirect:/checkout";
-            } else {
-                return "redirect:/";
-            }
+             if(referrer.contains("/cart")){
+                 return "redirect:/checkout";
+             }
+             else{
+                 ShoppingCart cart =new ShoppingCart();
+                 cart=cartService.findByUser(currUser);
+                 if(cart!=null){
+                     request.getSession().setAttribute("cart", cart);
+                 }
+            return "redirect:/";
+             }
         } else if (request.isUserInRole("ROLE_VENDOR")) {
-            String referrer = request.getHeader("referer");
-            if (referrer.contains("/cart")) {
-                return "redirect:/checkout";
-            } else {
-                return "redirect:/vendor";
-            }
+           String referrer = request.getHeader("referer");
+             if(referrer.contains("/cart")){
+                 return "redirect:/checkout";
+             }
+             else{
+                 return "redirect:/vendor";
+             }
         } else {
             return "redirect:/";
         }
@@ -114,8 +130,7 @@ public class HomeController {
         model.setViewName("403");
         return model;
     }
-
-    @RequestMapping("/search")
+	@RequestMapping("/search")
     public String searchProduct(Model model, @RequestParam("q") String q) {
         model.addAttribute("productList", productService.productsByKey(q));
         return "search";

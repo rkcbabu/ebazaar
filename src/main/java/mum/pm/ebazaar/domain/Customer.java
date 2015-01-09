@@ -78,6 +78,8 @@ public class Customer extends User implements Serializable {
     }
 
     public Card getCard() {
+        if(card==null)
+            card=new Card();
         return card;
     }
 
