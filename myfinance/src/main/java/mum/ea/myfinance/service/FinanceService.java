@@ -10,6 +10,7 @@ public interface FinanceService {
 	 * CREATE and UPDATE 
 	 */
 	public void saveFinance(Finance finance);
+        public void save(Finance finance);
 
 	/*
 	 * READ

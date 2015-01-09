@@ -9,7 +9,7 @@ public interface FinanceDao {
 	 * CREATE and UPDATE
 	 */
 	public void saveFinance(Finance finance); // create and update
-
+        public void save(Finance finance);
 	/*
 	 * READ
 	 */

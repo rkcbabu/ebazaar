@@ -32,6 +32,8 @@
                                 <c:set var="password" value="passwordGuest"/>
                                 <form:form modelAttribute="currUser" method="post" action="createGuest" enctype="multipart/form-data">
                                     <form:errors path="*" cssClass="error" />
+                                    <input type="hidden" id="username" name="username" value="GuestUser">
+                                    <input type="hidden" id="password" name="password" value="guestPassowrd">
                                         <form:input path="firstName" placeholder="First Name"/>
                                         <form:errors path="firstName" element="div" cssClass="error" />
                                         <form:input path="lastName" placeholder="Last Name"/>

@@ -6,38 +6,23 @@
 package mum.ea.myfinance.domain;
 
 import java.io.Serializable;
-import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
-import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author Chaulagai
+ * @author Ghenet
  */
 @Entity
-@Table(name = "tbl_mycompany")
-//@XmlRootElement
-//@NamedQueries({
-//    @NamedQuery(name = "Finance.findAll", query = "SELECT f FROM Finance f"),
-//    @NamedQuery(name = "Finance.findByCcno", query = "SELECT f FROM Finance f WHERE f.ccno = :ccno"),
-//    @NamedQuery(name = "Finance.findByFullname", query = "SELECT f FROM Finance f WHERE f.fullname = :fullname"),
-//    @NamedQuery(name = "Finance.findByEmailid", query = "SELECT f FROM Finance f WHERE f.emailid = :emailid"),
-//    @NamedQuery(name = "Finance.findByBillingaddress", query = "SELECT f FROM Finance f WHERE f.billingaddress = :billingaddress"),
-//    @NamedQuery(name = "Finance.findByPaidtovendor", query = "SELECT f FROM Finance f WHERE f.paidtovendor = :paidtovendor"),
-//    @NamedQuery(name = "Finance.findByPaidtomycompany", query = "SELECT f FROM Finance f WHERE f.paidtomycompany = :paidtomycompany")})
 public class Finance implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
-//    @Basic(optional = false)
-//    @NotNull
-//    @Size(min = 1, max = 250)
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+    
     @Column(name = "CCNO")
     private String ccno;
 //    @Basic(optional = false)
@@ -63,22 +48,6 @@ public class Finance implements Serializable {
 //    @NotNull
     @Column(name = "PAIDTOMYCOMPANY")
     private double paidtomycompany;
-
-//    public Finance() {
-//    }
-//
-//    public Finance(String ccno) {
-//        this.ccno = ccno;
-//    }
-
-//    public Finance(String ccno, String fullname, String emailid, String billingaddress, double paidtovendor, double paidtomycompany) {
-//        this.ccno = ccno;
-//        this.fullname = fullname;
-//        this.emailid = emailid;
-//        this.billingaddress = billingaddress;
-//        this.paidtovendor = paidtovendor;
-//        this.paidtomycompany = paidtomycompany;
-//    }
 
     public String getCcno() {
         return ccno;
@@ -128,10 +97,20 @@ public class Finance implements Serializable {
         this.paidtomycompany = paidtomycompany;
     }
 
+    
+    
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (ccno != null ? ccno.hashCode() : 0);
+        hash += (id != null ? id.hashCode() : 0);
         return hash;
     }
 
@@ -142,7 +121,7 @@ public class Finance implements Serializable {
             return false;
         }
         Finance other = (Finance) object;
-        if ((this.ccno == null && other.ccno != null) || (this.ccno != null && !this.ccno.equals(other.ccno))) {
+        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
         return true;
@@ -150,7 +129,7 @@ public class Finance implements Serializable {
 
     @Override
     public String toString() {
-        return "mum.ea.webservice.Finance[ ccno=" + ccno + " ]";
+        return "mum.ea.myfinance.domain.Finance[ id=" + id + " ]";
     }
     
 }

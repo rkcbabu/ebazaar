@@ -6,32 +6,34 @@ import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
 @Repository
-//@Transactional 
 public class FinanceDaoImpl implements FinanceDao {
 
     @Autowired
 //    @Qualifier(value = "sessionFactory")
     private SessionFactory sessionFactory;
 
+    @Override
     public void saveFinance(Finance finance) {
-        getSession().merge(finance);
+        getSession().save(finance);
+//        getSession().merge(finance);
 
     }
 
     @SuppressWarnings("unchecked")
+    @Override
     public List<Finance> listFinances() {
         return getSession().createCriteria(Finance.class).list();
     }
 
+    @Override
     public Finance getFinance(Long id) {
         return (Finance) getSession().get(Finance.class, id);
     }
 
+    @Override
     public void deleteFinance(Long id) {
 
         Finance finance = getFinance(id);
@@ -52,5 +54,10 @@ public class FinanceDaoImpl implements FinanceDao {
     
     private SessionFactory getSessionFactory() {
         return sessionFactory;
+    }
+
+    @Override
+    public void save(Finance finance) {
+        getSession().save(finance);
     }
 }

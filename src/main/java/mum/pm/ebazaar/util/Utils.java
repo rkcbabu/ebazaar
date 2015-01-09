@@ -21,6 +21,7 @@ public class Utils {
         ccNo = DigestUtils.md5DigestAsHex(ccNo.getBytes());
         String url = "http://localhost:8080/myfinance/process/" + ccNo + "/" + exptDate + "/" + cvvNo + "/" + balance+
                 "?fullname="+params.get("fullname")+"&emailid="+params.get("emailid")+"&billingaddress="+params.get("billingaddress");
+        System.err.println(url);
         RestTemplate restTemplate = new RestTemplate();
         Result result = restTemplate.getForObject(url, Result.class);
         return result.getResult();

@@ -72,17 +72,17 @@ public class FinanceController {
                     finance.setEmailid(params.get("emailid"));
                 }
                 if (params.containsKey("billingaddress")) {
-//                    finance.setBillingaddress(params.get("billingaddress"));
-                    finance.setBillingaddress("Billing address");
+                    finance.setBillingaddress(params.get("billingaddress"));
+//                    finance.setBillingaddress("Billing address");
                 }
                 if (params.containsKey("paidtovendor")) {
-                    finance.setPaidtovendor(balance*.80);
+                    finance.setPaidtovendor((float) (balance*.80));
                 }
                 if (params.containsKey("paidtomycompany")) {
-                    finance.setPaidtomycompany(balance*.20);
+                    finance.setPaidtomycompany((float) (balance*.20));
                 }
                 System.err.println(finance);
-//                financeService.saveFinance(finance);
+                financeService.save(finance);
                 result.setResult("YES");
             }
         }

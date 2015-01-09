@@ -63,5 +63,11 @@ public class Address implements Serializable {
         this.zipcode = zipcode;
     }
 
+    @Override
+    public String toString() {
+        return street + ", "+ city + ", " + state + "-" + zipcode ;
+    }
+    
+
 
 }

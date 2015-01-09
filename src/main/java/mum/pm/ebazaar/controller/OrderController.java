@@ -6,6 +6,8 @@
 package mum.pm.ebazaar.controller;
 
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 import javax.servlet.http.HttpSession;
 import mum.pm.ebazaar.domain.Card;
 import mum.pm.ebazaar.domain.Customer;
@@ -19,7 +21,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -47,10 +48,31 @@ public class OrderController extends GenericController{
              for (int i = 0; i < item.getQuantity(); i++) {
                  Product p=item.getProduct();
                  p.setQuantity(p.getQuantity()-1);
+                 productService.update(p);
              }
          }
-         session.setAttribute("cart", null);
+        
+        session.setAttribute("cart", null);
         return "order/confirmation";
+    }
+    public String myFinance(Card card, Customer customer, double total){
+        
+        int month=card.getMonth();
+        int year=card.getYear();
+        String expry=year+"-"+month+"-"+"03";
+        Map<String, String> params=new HashMap<String, String>();
+        String fullname=customer.getFirstName()+" "+customer.getLastName();
+        String billingaddress= customer.getAddress().toString();
+        String ccNo = card.getCreditCardNo()+"";        
+        String exptDate =expry;
+        String cvvNo = card.getCardCV();
+        params.put("fullname", customer.getFirstName()+" "+customer);
+        params.put("emailid", customer.getEmail());
+        params.put("billingaddress", billingaddress);
+        
+        String s=Utils.myfinance(ccNo, exptDate, cvvNo, total, params);
+       return s;
+        
     }
      @RequestMapping("/createOrder")
     public String createOrder(Model model, HttpSession session) {
@@ -59,7 +81,9 @@ public class OrderController extends GenericController{
         Payment payment = new Payment();
         payment.setCard(currUser.getCard());
         payment.setPaidDate(new Date());
-        payment.setTotal(0.0);
+        Double subtotal = (Double) session.getAttribute("totalPrice");
+        Double total=subtotal + 0.1*subtotal;
+        payment.setTotal(total);
         
         paymentService.create(payment);
         order.setCustomer(currUser);
@@ -73,13 +97,15 @@ public class OrderController extends GenericController{
         order.setPayment(payment);
         String orderId = generateNumber()+"";
         order.setOrderID(orderId);
-        paymentService.create(payment);
+        paymentService.update(payment);
         orderService.create(order);
         session.setAttribute("finalOrder", order);
         session.setAttribute("cartAfter", cart);
         session.setAttribute("confirmation", order.getOrderID()+"");
         session.setAttribute("cart", null);
         shoppingService.delete(cart);
+         
+         String s = myFinance(currUser.getCard(), currUser, total);
         return "redirect:/confirmation";
     }
     public Long generateNumber(){
