@@ -89,13 +89,13 @@
                             <li>
                                 <c:if test="${pageContext.request.userPrincipal != null}" >
                                     <sec:authorize access="hasRole('ROLE_VENDOR')">
-                                        <a href="<c:url value="/vendor"/>" class="active">Home</a>
+                                        <a href="<c:url value="/"/>" class="active">Home</a>
                                     </sec:authorize>
                                     <sec:authorize access="hasRole('ROLE_ADMIN')">
-                                        <a href="<c:url value="/admin"/>" class="active">Home</a>
+                                        <a href="<c:url value="/"/>" class="active">Home</a>
                                     </sec:authorize>
                                     <sec:authorize access="hasRole('ROLE_CUSTOMER')">
-                                        <a href="<c:url value="/profile"/>" class="active">Home</a>
+                                        <a href="<c:url value="/"/>" class="active">Home</a>
                                     </sec:authorize>
                                 </c:if>
                                 <c:if test="${pageContext.request.userPrincipal == null}" >

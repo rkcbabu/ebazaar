@@ -41,59 +41,65 @@ public class HomeController {
 
     @Autowired
     UserService userService;
-    
+
     @Autowired
     CustomerService customerService;
-    
+
     @Autowired
     ShoppingCartService cartService;
 
     @RequestMapping("/")
-    public String homePage(Model model) {
+    public String homePage(Model model, HttpServletRequest request) {
+
         model.addAttribute("productList", productService.getAll());
+
+        if (request.isUserInRole("ROLE_ADMIN")) {
+            model.addAttribute("users", userService.getAll());
+            return "admin/admin-index";
+        } else if (request.isUserInRole("ROLE_VENDOR")) {
+            model.addAttribute("products", productService.getAll());// should be filtered.
+            return "vendor/vendor-index";
+        }
         return "index";
     }
 
     @RequestMapping("/successPage")
-    public String successPage(HttpServletRequest request,ModelMap model) {
-        
+    public String successPage(HttpServletRequest request, ModelMap model) {
+
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         request.getSession().setAttribute("currUser", userService.getUserByUsername(auth.getName()));
         model.addAttribute("currUser", userService.getUserByUsername(auth.getName()));
         if (request.isUserInRole("ROLE_ADMIN")) {
-             String referrer = request.getHeader("referer");
-             if(referrer.contains("/cart")){
-                 return "redirect:/checkout";
-             }
-             else{
-                  return "redirect:/admin";
-             }
+            String referrer = request.getHeader("referer");
+            if (referrer.contains("/cart")) {
+                return "redirect:/checkout";
+            } else {
+                return "redirect:/admin";
+            }
         } else if (request.isUserInRole("ROLE_CUSTOMER")) {
-            String username=auth.getName();
-            Customer currUser=customerService.getUserByUsername(username);
+            String username = auth.getName();
+            Customer currUser = customerService.getUserByUsername(username);
             request.getSession().setAttribute("currUser", currUser);
-            
+
             model.addAttribute("currUser", customerService.getUserByUsername(auth.getName()));
             String referrer = request.getHeader("referer");
-             if(referrer.contains("/cart")){
-                 return "redirect:/checkout";
-             }
-             else{
-                 ShoppingCart cart =new ShoppingCart();
-                 cart=cartService.findByUser(currUser);
-                 if(cart!=null){
-                     request.getSession().setAttribute("cart", cart);
-                 }
-            return "redirect:/";
-             }
+            if (referrer.contains("/cart")) {
+                return "redirect:/checkout";
+            } else {
+                ShoppingCart cart = new ShoppingCart();
+                cart = cartService.findByUser(currUser);
+                if (cart != null) {
+                    request.getSession().setAttribute("cart", cart);
+                }
+                return "redirect:/";
+            }
         } else if (request.isUserInRole("ROLE_VENDOR")) {
-           String referrer = request.getHeader("referer");
-             if(referrer.contains("/cart")){
-                 return "redirect:/checkout";
-             }
-             else{
-                 return "redirect:/vendor";
-             }
+            String referrer = request.getHeader("referer");
+            if (referrer.contains("/cart")) {
+                return "redirect:/checkout";
+            } else {
+                return "redirect:/vendor";
+            }
         } else {
             return "redirect:/";
         }
@@ -130,7 +136,8 @@ public class HomeController {
         model.setViewName("403");
         return model;
     }
-	@RequestMapping("/search")
+
+    @RequestMapping("/search")
     public String searchProduct(Model model, @RequestParam("q") String q) {
         model.addAttribute("productList", productService.productsByKey(q));
         return "search";
