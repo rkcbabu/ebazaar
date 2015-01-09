@@ -6,6 +6,7 @@ import mum.pm.ebazaar.service.CustomerService;
 import mum.pm.ebazaar.service.OrderService;
 import mum.pm.ebazaar.service.PaymentService;
 import mum.pm.ebazaar.service.ProductService;
+import mum.pm.ebazaar.service.ShoppingCartService;
 import mum.pm.ebazaar.service.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +35,9 @@ public class GenericController {
     
     @Autowired
     OrderService orderService;
+    
+    @Autowired
+    ShoppingCartService shoppingService;
 
     public void pageSetup(Model model) {
         model.addAttribute("productList", productService.getAll());

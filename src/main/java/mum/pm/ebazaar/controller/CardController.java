@@ -32,7 +32,7 @@ public class CardController extends GenericController{
          Card card = new Card();
          card = user.getCard();
          Customer exCus= customerService.get(id);
-//         card.setId(exCus.getCard().getId());
+         card.setId(exCus.getCard().getId());        
          card.setCustomer(user);
          cardService.update(card);
         return "redirect:/checkout";

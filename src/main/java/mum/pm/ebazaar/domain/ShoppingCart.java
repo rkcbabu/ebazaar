@@ -9,7 +9,9 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -33,8 +35,7 @@ public class ShoppingCart implements Serializable {
 
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date dateCreate;
-
-    @OneToMany(mappedBy="shoppingCart")
+    @OneToMany(mappedBy="shoppingCart", cascade=CascadeType.ALL, fetch=FetchType.LAZY)
     private List<OrderItem> orderItems;
 
     @ManyToOne

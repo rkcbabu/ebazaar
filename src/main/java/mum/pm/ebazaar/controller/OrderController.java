@@ -10,7 +10,9 @@ import javax.servlet.http.HttpSession;
 import mum.pm.ebazaar.domain.Card;
 import mum.pm.ebazaar.domain.Customer;
 import mum.pm.ebazaar.domain.Order;
+import mum.pm.ebazaar.domain.OrderItem;
 import mum.pm.ebazaar.domain.Payment;
+import mum.pm.ebazaar.domain.Product;
 import mum.pm.ebazaar.domain.ShoppingCart;
 import mum.pm.ebazaar.util.Utils;
 import org.springframework.stereotype.Controller;
@@ -39,6 +41,15 @@ public class OrderController extends GenericController{
     }
      @RequestMapping("/confirmation")
     public String confirm(Model model, HttpSession session) {
+        ShoppingCart cart = (ShoppingCart) session.getAttribute("cartAfter");
+         for (OrderItem item : cart.getOrderItems()) {
+
+             for (int i = 0; i < item.getQuantity(); i++) {
+                 Product p=item.getProduct();
+                 p.setQuantity(p.getQuantity()-1);
+             }
+         }
+         session.setAttribute("cart", null);
         return "order/confirmation";
     }
      @RequestMapping("/createOrder")
@@ -54,8 +65,9 @@ public class OrderController extends GenericController{
         order.setCustomer(currUser);
         order.setDateOrder(new Date());
         order.setDateShip(new Date());
-        ShoppingCart cart = (ShoppingCart)session.getAttribute("cart");
         
+        ShoppingCart cart = (ShoppingCart)session.getAttribute("cart");
+        order.setOrderItems(cart.getOrderItems());
         order.setOrderItems(cart.getOrderItems());
         order.setOrderItems(cart.getOrderItems());
         order.setPayment(payment);
@@ -63,9 +75,11 @@ public class OrderController extends GenericController{
         order.setOrderID(orderId);
         paymentService.create(payment);
         orderService.create(order);
+        session.setAttribute("finalOrder", order);
         session.setAttribute("cartAfter", cart);
         session.setAttribute("confirmation", order.getOrderID()+"");
         session.setAttribute("cart", null);
+        shoppingService.delete(cart);
         return "redirect:/confirmation";
     }
     public Long generateNumber(){
@@ -75,12 +89,7 @@ public class OrderController extends GenericController{
         }
         return number;
     }
-//    @RequestMapping("/payment/{0}")
-//    public String paymentDone(@ModelAttribute("currUser") Customer currUser,BindingResult result,@PathVariable long id, Model model, HttpSession session){
-//        currUser.setId(id);
-//        
-//        return "payment";
-//    }
+
     @RequestMapping("/payment")
     public String payment(Model model, HttpSession session){
         model.addAttribute("currUser", session.getAttribute("currUser"));
@@ -113,6 +122,5 @@ public class OrderController extends GenericController{
         }
         return valid;
     }
-    
-    
+  
 }
