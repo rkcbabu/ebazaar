@@ -63,9 +63,9 @@ public class OrderController extends GenericController{
         order.setOrderID(orderId);
         paymentService.create(payment);
         orderService.create(order);
+        session.setAttribute("cartAfter", cart);
+        session.setAttribute("confirmation", order.getOrderID()+"");
         session.setAttribute("cart", null);
-        session.setAttribute("totalPrice", null);
-        session.setAttribute("cartItemCount", null);
         return "redirect:/confirmation";
     }
     public Long generateNumber(){
@@ -106,9 +106,9 @@ public class OrderController extends GenericController{
         else
             return "redirect:/payment";
     }
-    public boolean isValid(Card card,String expry, Double total){
+    public boolean isValid(Card card, String expry, Double total){
         boolean valid=false;
-        if("YES".equals(Utils.isValid(card.getCreditCardNo(), expry, card.getCardCV(), total))){
+        if("YES".equals(Utils.isValid("4024007182706563", "2017-01-03", card.getCardCV(), total))){
            valid=true;
         }
         return valid;

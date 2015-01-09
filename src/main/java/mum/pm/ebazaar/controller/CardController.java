@@ -5,6 +5,7 @@
  */
 package mum.pm.ebazaar.controller;
 
+import javax.servlet.http.HttpServletRequest;
 import mum.pm.ebazaar.domain.Card;
 import mum.pm.ebazaar.domain.Customer;
 import mum.pm.ebazaar.domain.User;
@@ -26,13 +27,26 @@ public class CardController extends GenericController{
     @RequestMapping(value = "/updateCard/{id}", method = RequestMethod.POST)
     public String updateAdd(@ModelAttribute("currUser") Customer user, BindingResult result, @PathVariable long id, Model model) {
        
-        user.setId(id);
+         user.setId(id);
          userService.updateAddress(user);
-         Card card = user.getCard();
+         Card card = new Card();
+         card = user.getCard();
          Customer exCus= customerService.get(id);
-         card.setId(exCus.getCard().getId());
+//         card.setId(exCus.getCard().getId());
          card.setCustomer(user);
          cardService.update(card);
+        return "redirect:/checkout";
+    }
+    @RequestMapping(value = "/addCard", method = RequestMethod.POST)
+    public String addCard(@ModelAttribute("card") Card card, BindingResult result, Model model, HttpServletRequest request) {
+         
+         cardService.create(card);
+         Customer customer=(Customer) request.getSession().getAttribute("currUser");
+         customer.setCard(card);
+         card.setCustomer(customer);
+         cardService.update(card);
+         model.addAttribute("currUser", customer);
+         request.getSession().setAttribute("currUser", customer);
         return "redirect:/checkout";
     }
 }

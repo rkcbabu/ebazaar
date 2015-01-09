@@ -3,6 +3,7 @@ package mum.pm.ebazaar.controller;
 import java.util.List;
 import java.util.Map;
 import javax.servlet.http.HttpSession;
+import mum.pm.ebazaar.domain.Card;
 import mum.pm.ebazaar.domain.Customer;
 import mum.pm.ebazaar.domain.OrderItem;
 import mum.pm.ebazaar.domain.ShoppingCart;
@@ -82,8 +83,9 @@ public class ShoppingCartController extends GenericController {
             model.addAttribute("currUser",currUser);
             return "/order/checkoutGuest";
         } else {
-
+            Card card = new Card();
             model.addAttribute("currUser", customerService.getUserByUsername(auth.getName()));
+            model.addAttribute("card", card);
             
             return "/order/checkoutCust";
         }

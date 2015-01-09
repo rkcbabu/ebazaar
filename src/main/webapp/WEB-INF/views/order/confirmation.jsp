@@ -3,53 +3,44 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link href="../resources/style.css" rel="stylesheet" type="text/css" />
-        <title>E-Bazaar</title>
-    </head>
-<div id="container">
-        <body>
-            <div id="body">
-                <jsp:include page="/WEB-INF/views/header.jsp"/> 
-        <h1>Order Confirmation</h1>
-        
-        <P>${currentOrder.date}</p><br />
-        
-        <p>${currentOrder.customer.firstName}</p><br />
-        
-        <p>${currentOrderPrice}</p><br />
-        
-                        <table class="tg" style="width:70%">
-                    <tr>
-                        <th>Product Name</th>
-                        <th>Price</th>
-                        <th>Quantity</th>
-                    </tr>
+<html lang="en">
+        <c:import url="/layout/head"/>
 
-                    <c:forEach var="currentOrderLine" items="${currentOrderLines}">
-                        <tr>
+    <body>
+        <c:import url="/layout/header"/>
+
+        <section id="cart_items">
+            <div class="container">
+                <div class="breadcrumbs">
+                    <ol class="breadcrumb">
+                        <li><a href="#">Home</a></li>
+                        <li class="active">Check out</li>
+                        <li><a href="#">Payment</a></li>
+                    </ol>
+                </div><!--/breadcrums-->
+
+                <div class="step-one">
+                    <h1 class="heading"><span class="or-class" style="padding : 10px;">&nbsp3&nbsp</span>  Confirmation</h1>
+                </div>
+                  <div style="background: #F0F0E9; border:0; color: #696763; padding: 5px; width: 100%; 
+                                                 border-radius: 0; box-shadow: 2px 2px 4px #1A1A1A;">
+                                                <h3>Default</h3>
+                                                <hr>
+                                                <h3>Congrats you have successfully place your order</h3>
+                                                <label>
+                                                    Your confirmation number: <b>${confirmation}</b><br/>
+                                                    Total charge to your card: ${totalPrice+0.1*totalPrice}
+                                                    <a class="btn btn-default"  data-toggle="modal" data-target="#myModalCard">Edit</a>
+                                                </label>
+                                            </div>
+                
+                <div class="payment-options">
+                </div>
+            </div>
+        </section> <!--/#cart_items-->
 
 
-                            <th class="tg-hv32"> ${currentOrderLine.product.productName}</th> 
-                            <th class="tg-bsv2"> ${currentOrderLine.product.price}</th>
-                            <th class="tg-bsv2"> ${currentOrderLine.quantity}</th>
 
-
-                        </tr>
-                    </c:forEach>
-
-                    <tr>
-                        <th>Total Price</th>
-                        <th>${currentShoppingCartPrice}</th>
-                        <th></th>                            
-                    </tr>
-
-                </table>
-                        <a href="index.jsp">Back To Home Page</a>
-         </div>
-        </body>
-        <jsp:include page="/WEB-INF/views/footer.jsp"/>
-    </div>
+        <c:import url="/layout/footer"/>
+    </body>
 </html>

@@ -46,20 +46,30 @@
                                             });
 
                                         </script>
-                                       
-                                        <h3 style="color: black;">Credit Card</h3><br/>
-                                        <div style="background: #F0F0E9; border:0; color: #696763; padding: 5px; width: 100%; 
-                                             border-radius: 0; box-shadow: 2px 2px 4px #1A1A1A;">
-                                            <h3>Default</h3>
-                                            <hr>
-                                            <h3>${currUser.card.type}</h3>
-                                            <label>
-                                                ${currUser.card.creditCardNo}<br/>
-                                                <a class="btn btn-default"  data-toggle="modal" data-target="#myModalCard">Edit</a>
-                                            </label>
-                                        </div>
+                                        <div class="step-one">
+                                            <h1 class="heading"><span class="or-class" style="padding : 10px;">&nbsp2&nbsp</span>  PAYMENT</h1>
+                                        </div><hr>
+                                        <c:if test="${currUser.card.type==null}">
+                                            <a class="btn btn-default"  data-toggle="modal" data-target="#myModalCardadd">Add Card</a> 
+
+                                        </c:if>
+
+                                        <c:if test="${currUser.card.type!=null}">
+                                            <h3 style="color: black;">Credit Card</h3><br/>
+                                            <div style="background: #F0F0E9; border:0; color: #696763; padding: 5px; width: 100%; 
+                                                 border-radius: 0; box-shadow: 2px 2px 4px #1A1A1A;">
+                                                <h3>Default</h3>
+                                                <hr>
+                                                <h3>${currUser.card.type}</h3>
+                                                <label>
+                                                    ${currUser.card.creditCardNo}<br/>
+                                                    <a class="btn btn-default"  data-toggle="modal" data-target="#myModalCard">Edit</a>
+                                                </label>
+                                            </div>
+                                            <a class="btn btn-default check_out" href="<c:url value="/placeOrder"/>">Place Order</a>
+                                        </c:if>
                                     </div>
-                                        <a class="btn btn-default check_out" href="<c:url value="/placeOrder"/>">Place Order</a>
+
                                     <!--<b><a class="btn btn-primary" href="/placeOrder" data-selector>Place Order</a></b>-->
                                 </div>
                             </div>
@@ -167,33 +177,128 @@
                         <span style="font-size: 9px; float: left; font-weight: bold;"> Edit/Add Card</span>
                     </div>
                     <div class="modal-body">
-                        <div class="login-form" style="float: left">
-                               
-                                 <form:form method="POST" action= "updateCard/${currUser.id}" commandName="currUser" modelAttribute="currUser">
+                        <div class="form-two" style="float: left">
+
+                            <form:form method="POST" action= "updateCard/${currUser.id}" commandName="currUser" modelAttribute="currUser">
                                 <form:errors element="div" cssClass="errors" path="*"/>
-                                    <form:input path="card.type" placeholder="Card Type" />
-                                    <form:input path="card.creditCardNo" placeholder="Card Number" />
-                                    <form:input path="card.cardCV" placeholder="CVC" />
-                                    <form:input path="card.expiryDate" placeholder="Expiration" />
-                                    Billing Address
-                                    <form:input path="firstName" placeholder="First Name" />
-                                    <form:input path="lastName" placeholder="Last Name" />
-                                    <form:input path="address.street" placeholder="Street"/>
-                                    <form:input path="address.city" placeholder="City"/>
-                                    <form:input path="address.state" placeholder="State"/>
-                                    <form:input path="address.zipcode" placeholder="Zipcode"/>
-                               
+                                <form:select path="card.type"> 
+                                    <form:option value="MASTER" >MASTER CARD</form:option>
+                                    <form:option value="VISA" >VISA CARD</form:option>
+                                </form:select>
+                                <form:input path="card.creditCardNo" placeholder="Card Number" />
+                                <form:input path="card.cardCV" placeholder="CVC" />
+
+                                <form:select path="card.month">
+                                    <form:option value="01" selected="selected" >01</form:option>
+                                    <form:option value="02" >02</form:option>
+                                    <form:option value="03" >03</form:option>
+                                    <form:option value="04" >04</form:option>
+                                    <form:option value="05" >05</form:option>
+                                    <form:option value="06" >06</form:option>
+                                    <form:option value="07" >07</form:option>
+                                    <form:option value="08" >08</form:option>
+                                    <form:option value="09" >09</form:option>
+                                    <form:option value="10" >10</form:option>
+                                    <form:option value="11" >11</form:option>
+                                    <form:option value="12" >12</form:option>
+                                </form:select><br/>
+                                <form:select path="card.year">
+                                    <form:option value="2015" selected="selected" >2015</form:option>
+                                    <form:option value="2016" >2016</form:option>
+                                    <form:option value="2017" >2017</form:option>
+                                    <form:option value="2018" >2018</form:option>
+                                    <form:option value="2019" >2019</form:option>
+                                    <form:option value="2020" >2020</form:option>
+                                    <form:option value="2021" >2021</form:option>
+                                    <form:option value="2022" >2022</form:option>
+                                    <form:option value="2023" >2023</form:option>
+                                    <form:option value="2024" >2024</form:option>
+                                    <form:option value="2025" >2025</form:option>
+                                </form:select>
+                                Billing Address
+                                <form:input path="firstName" placeholder="First Name" />
+                                <form:input path="lastName" placeholder="Last Name" />
+                                <form:input path="address.street" placeholder="Street"/>
+                                <form:input path="address.city" placeholder="City"/>
+                                <form:input path="address.state" placeholder="State"/>
+                                <form:input path="address.zipcode" placeholder="Zipcode"/>
+
                                 <button type="submit" class="btn btn-primary">Update</button>
                                 <a href="<c:url value="/checkout"/>" class="btn btn-primary">Cancel</a>
                             </form:form>
-                                 
+
 
                         </div>
 
 
                     </div>
                     <div class="modal-footer">
-                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+        <div class="modal fade" id="myModalCardadd" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <!--<h4 class="modal-title" id="myModalLabel">Modal title</h4>-->
+                        <h5>RETURN CUSTOMERS</h5>  
+                        <span style="font-size: 9px; float: left; font-weight: bold;"> Edit/Add Card</span>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-two" style="float: left">
+
+                            <form:form modelAttribute="card" method="post" action="addCard">
+                                <form:errors element="div" cssClass="errors" path="*"/>
+                                <form:select path="type"> 
+                                    <form:option value="MASTER" >MASTER CARD</form:option>
+                                    <form:option value="VISA" >VISA CARD</form:option>
+                                </form:select>
+                                <form:input path="creditCardNo" placeholder="Card Number" />
+                                <form:input path="cardCV" placeholder="CVC" />
+
+                                <form:select path="month">
+                                    <form:option value="01" selected="selected" >01</form:option>
+                                    <form:option value="02" >02</form:option>
+                                    <form:option value="03" >03</form:option>
+                                    <form:option value="04" >04</form:option>
+                                    <form:option value="05" >05</form:option>
+                                    <form:option value="06" >06</form:option>
+                                    <form:option value="07" >07</form:option>
+                                    <form:option value="08" >08</form:option>
+                                    <form:option value="09" >09</form:option>
+                                    <form:option value="10" >10</form:option>
+                                    <form:option value="11" >11</form:option>
+                                    <form:option value="12" >12</form:option>
+                                </form:select><br/>
+                                <form:select path="year">
+                                    <form:option value="2015" selected="selected" >2015</form:option>
+                                    <form:option value="2016" >2016</form:option>
+                                    <form:option value="2017" >2017</form:option>
+                                    <form:option value="2018" >2018</form:option>
+                                    <form:option value="2019" >2019</form:option>
+                                    <form:option value="2020" >2020</form:option>
+                                    <form:option value="2021" >2021</form:option>
+                                    <form:option value="2022" >2022</form:option>
+                                    <form:option value="2023" >2023</form:option>
+                                    <form:option value="2024" >2024</form:option>
+                                    <form:option value="2025" >2025</form:option>
+                                </form:select>
+                            
+                                <button type="submit" class="btn btn-primary">Add Card</button>
+                                <a href="<c:url value="/checkout"/>" class="btn btn-primary">Cancel</a>
+                            </form:form>
+
+
+                        </div>
+
+
+                    </div>
+                    <div class="modal-footer">
+                    </div>
                 </div>
             </div>
         </div>

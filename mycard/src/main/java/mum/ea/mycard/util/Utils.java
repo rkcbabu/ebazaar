@@ -26,7 +26,7 @@ public class Utils {
             
             if (card != null) {
                 if (card.getCvvno().equalsIgnoreCase(cvvNo) 
-                        && card.getExptdate().after(exptDate1) 
+                        && card.getExptdate().equals(exptDate1) 
                         && card.getTotalbalance() >=balance ) {
                     found = true; 
                 }

@@ -50,9 +50,9 @@
                                             <h3 style="color: black;">BILLING ADDRESS</h3><br/>
                                             <h3>${currUser.firstName} &nbsp ${currUser.lastName} </h3>
                                             <label>
-                                                ${currUser.address.street}<br/>
-                                                ${currUser.address.city},&nbsp ${currUser.address.state} <br/>
-                                                ${currUser.address.zipcode}<br/>
+                                                ${currUser.shippingAddress.street}<br/>
+                                                ${currUser.shippingAddress.city},&nbsp ${currUser.shippingAddress.state} <br/>
+                                                ${currUser.shippingAddress.zipcode}<br/>
                                                 <a class="btn btn-default"  data-toggle="modal" data-target="#myModalAddress">Edit</a>
                                             </label>
                                         </div>

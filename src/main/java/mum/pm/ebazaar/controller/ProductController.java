@@ -50,7 +50,7 @@ public class ProductController {
     @RequestMapping("/mycard")
     String validate(Model model) {
         String ccNo = "4024007182706563";
-        String exptDate = "2018-01-03";
+        String exptDate = "2017-01-03";
         String cvvNo = "549";
         Double balance = 100.0;
         model.addAttribute("result", Utils.isValid(ccNo, exptDate, cvvNo, balance));

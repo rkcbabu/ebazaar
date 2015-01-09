@@ -9,6 +9,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
@@ -38,6 +39,10 @@ public class Customer extends User implements Serializable {
 
     @OneToOne(mappedBy="customer")
     private Card card ;
+    
+    @Transient
+    @Embedded
+    private Address shippingAddress;
 
     public Customer() {
         super();
@@ -76,6 +81,19 @@ public class Customer extends User implements Serializable {
     public void setOrders(List<Order> orders) {
         this.orders = orders;
     }
+
+    public Address getShippingAddress() {
+        if(shippingAddress==null){
+            shippingAddress=new Address();
+            shippingAddress=this.getAddress();
+        }
+        return shippingAddress;
+    }
+
+    public void setShippingAddress(Address shippingAddress) {
+        this.shippingAddress = shippingAddress;
+    }
+    
 
     public Card getCard() {
         if(card==null)
