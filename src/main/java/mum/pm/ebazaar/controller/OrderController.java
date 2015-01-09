@@ -5,6 +5,7 @@
  */
 package mum.pm.ebazaar.controller;
 
+
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -16,6 +17,7 @@ import mum.pm.ebazaar.domain.OrderItem;
 import mum.pm.ebazaar.domain.Payment;
 import mum.pm.ebazaar.domain.Product;
 import mum.pm.ebazaar.domain.ShoppingCart;
+import mum.pm.ebazaar.mail.Mail;
 import mum.pm.ebazaar.util.Utils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -53,6 +55,7 @@ public class OrderController extends GenericController{
          }
         
         session.setAttribute("cart", null);
+        model.addAttribute("cart", null);
         return "order/confirmation";
     }
     public String myFinance(Card card, Customer customer, double total){
@@ -106,6 +109,7 @@ public class OrderController extends GenericController{
         shoppingService.delete(cart);
          
          String s = myFinance(currUser.getCard(), currUser, total);
+         setMailBody(order, currUser); 
         return "redirect:/confirmation";
     }
     public Long generateNumber(){
@@ -147,6 +151,19 @@ public class OrderController extends GenericController{
            valid=true;
         }
         return valid;
+    }
+    private void setMailBody(Order order, Customer customer) {
+        Mail mail = new Mail();
+        String message="Dear " + customer.getFirstName()+"\n"+
+               "Thanks for oreder your goods from us. You don’t need to do anything "
+                + "else – just look forward to enjoy your goods. Your ebazzar.com "
+                + " Order Confirmation Number is " +order.getOrderID()+". \n"
+                +"If you want to know track your shipping, we will send you the UPS tracking code "
+                + "with in 24 Hours.";
+        mail.setSubject("Order confirmation");
+        mail.setMessage(message);
+        mail.setTomail(customer.getEmail());
+        mail.sendMail();
     }
   
 }

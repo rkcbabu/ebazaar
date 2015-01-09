@@ -1,5 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html>
 <html lang="en">
 <c:import url="/layout/head"/>
@@ -22,7 +23,8 @@
                                 <!--<td class="description">User's name</td>-->
                                 <td class="price">username</td>
                                 <td class="quantity">Role</td>
-                                <td class="total">Total</td>
+                                <td class="total"></td>
+                                <td class="total">Edit</td>
                                 <td></td>
                             </tr>
                         </thead>
@@ -43,9 +45,17 @@
                                            onclick='$("#toggle${user.id}").submit()'
                                            >
                                             <i class='fa ${user.enabled?"fa-user":"fa-ban"}'></i></a>
-                                            <form action="/ebazaar/admin/toggle" method="post" id="toggle${user.id}">
+                                            <form:form modelAttribute="user" action="getEdit/${user.id}" method="post">
                                                 <input type="hidden" name="id" value="${user.id}"/>
-                                            </form>
+                                                
+                                            </form:form>
+                                            
+                                    </td>
+                                    <td>
+                                        <form:form action="admin/getEdit" method="get">
+                                                <input type="hidden" name="id" value="${user.id}"/>
+                                                <button type="submit" class="btn btn-primary">Edit</button>
+                                            </form:form>
                                     </td>
                                 </tr>
                             </c:forEach>

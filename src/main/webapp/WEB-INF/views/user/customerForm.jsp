@@ -23,7 +23,6 @@
 
                                 <form:errors path="lastName" element="div" cssClass="error" />
                                 <form:input path="lastName" placeholder="Last Name" />
-
                                 <form:errors path="username" element="div" cssClass="error" />
                                 <form:input path="username" placeholder="Username" />
 

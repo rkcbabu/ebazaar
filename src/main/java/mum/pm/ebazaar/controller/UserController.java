@@ -71,10 +71,10 @@ public class UserController {
         if (result.hasErrors()) {
             return "user/customerForm";
         } else {
-            String md5password = DigestUtils.md5DigestAsHex(customer.getPassword().getBytes());
+              String md5password = DigestUtils.md5DigestAsHex(customer.getPassword().getBytes());
             customer.setPassword(md5password);
             customer.setEnabled(true);
-            customerService.create(customer);
+            customerService.create(customer);  
             return "redirect:/login";
         }
 

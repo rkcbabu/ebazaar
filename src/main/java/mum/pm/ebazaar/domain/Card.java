@@ -32,6 +32,8 @@ public class Card implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String creditCardNo;
+    @Transient
+    private String cardnum;
 
     private String type;
 
@@ -128,6 +130,18 @@ public class Card implements Serializable {
     public void setYear(int year) {
         this.year = year;
     }
+
+    public String getCardnum() {
+        cardnum =getCreditCardNo();
+        cardnum="************"+ cardnum.substring(13, 16);
+        return cardnum;
+    }
+
+    public void setCardnum(String cardnum) {
+        this.cardnum = cardnum;
+    }
+    
+    
     
 
     @Override

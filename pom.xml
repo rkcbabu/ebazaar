@@ -20,7 +20,7 @@
     </properties>
 
     <dependencies>
-         <dependency>
+        <dependency>
             <groupId>org.apache.httpcomponents</groupId>
             <artifactId>httpclient</artifactId>
             <version>4.0.3</version>
@@ -183,11 +183,18 @@
             <artifactId>dynamicreports-core</artifactId>			
             <version>3.1.3</version>
         </dependency>
-         <!--Excel Downloader-->
+        <!--Excel Downloader-->
         <dependency>
             <groupId>org.apache.poi</groupId>
             <artifactId>poi</artifactId>
             <version>3.7</version>
+        </dependency>
+        <!--        mail-->
+        <dependency>
+            <groupId>javax.mail</groupId>
+            <artifactId>mail</artifactId>
+            <version>1.4.3</version>
+            <type>jar</type>
         </dependency>
     </dependencies>
 

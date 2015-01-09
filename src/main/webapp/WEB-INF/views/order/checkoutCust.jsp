@@ -62,7 +62,7 @@
                                                 <hr>
                                                 <h3>${currUser.card.type}</h3>
                                                 <label>
-                                                    ${currUser.card.creditCardNo}<br/>
+                                                    ${currUser.card.cardnum}<br/>
                                                     <a class="btn btn-default"  data-toggle="modal" data-target="#myModalCard">Edit</a>
                                                 </label>
                                             </div>
