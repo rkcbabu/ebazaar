@@ -11,7 +11,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 @Repository
-@Transactional 
+//@Transactional 
 public class FinanceDaoImpl implements FinanceDao {
 
     @Autowired

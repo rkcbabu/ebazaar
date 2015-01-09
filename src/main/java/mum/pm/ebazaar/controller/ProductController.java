@@ -50,10 +50,17 @@ public class ProductController {
     @RequestMapping("/mycard")
     String validate(Model model) {
         String ccNo = "4024007182706563";
-        String exptDate = "2017-01-03";
+        String exptDate = "2016-01-03";
         String cvvNo = "549";
-        Double balance = 100.0;
-        model.addAttribute("result", Utils.isValid(ccNo, exptDate, cvvNo, balance));
+        double balance = 100;
+        //model.addAttribute("result", Utils.isValid(ccNo, exptDate, cvvNo, balance));
+        
+        Map<String,String> params= new HashMap<String,String>();
+        params.put("fullname", "Full Name");
+        params.put("emailid", "rkcbabu@gmail.com");
+        params.put("billingaddress", "fairfeild IOWA");
+        
+        model.addAttribute("result", Utils.myfinance(ccNo, exptDate, cvvNo, balance,params));
         return "test";
     }
 }

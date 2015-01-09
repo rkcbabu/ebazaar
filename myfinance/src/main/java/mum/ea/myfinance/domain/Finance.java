@@ -23,62 +23,62 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @Entity
 @Table(name = "tbl_mycompany")
-@XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "Finance.findAll", query = "SELECT f FROM Finance f"),
-    @NamedQuery(name = "Finance.findByCcno", query = "SELECT f FROM Finance f WHERE f.ccno = :ccno"),
-    @NamedQuery(name = "Finance.findByFullname", query = "SELECT f FROM Finance f WHERE f.fullname = :fullname"),
-    @NamedQuery(name = "Finance.findByEmailid", query = "SELECT f FROM Finance f WHERE f.emailid = :emailid"),
-    @NamedQuery(name = "Finance.findByBillingaddress", query = "SELECT f FROM Finance f WHERE f.billingaddress = :billingaddress"),
-    @NamedQuery(name = "Finance.findByPaidtovendor", query = "SELECT f FROM Finance f WHERE f.paidtovendor = :paidtovendor"),
-    @NamedQuery(name = "Finance.findByPaidtomycompany", query = "SELECT f FROM Finance f WHERE f.paidtomycompany = :paidtomycompany")})
+//@XmlRootElement
+//@NamedQueries({
+//    @NamedQuery(name = "Finance.findAll", query = "SELECT f FROM Finance f"),
+//    @NamedQuery(name = "Finance.findByCcno", query = "SELECT f FROM Finance f WHERE f.ccno = :ccno"),
+//    @NamedQuery(name = "Finance.findByFullname", query = "SELECT f FROM Finance f WHERE f.fullname = :fullname"),
+//    @NamedQuery(name = "Finance.findByEmailid", query = "SELECT f FROM Finance f WHERE f.emailid = :emailid"),
+//    @NamedQuery(name = "Finance.findByBillingaddress", query = "SELECT f FROM Finance f WHERE f.billingaddress = :billingaddress"),
+//    @NamedQuery(name = "Finance.findByPaidtovendor", query = "SELECT f FROM Finance f WHERE f.paidtovendor = :paidtovendor"),
+//    @NamedQuery(name = "Finance.findByPaidtomycompany", query = "SELECT f FROM Finance f WHERE f.paidtomycompany = :paidtomycompany")})
 public class Finance implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 250)
+//    @Basic(optional = false)
+//    @NotNull
+//    @Size(min = 1, max = 250)
     @Column(name = "CCNO")
     private String ccno;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 250)
+//    @Basic(optional = false)
+//    @NotNull
+//    @Size(min = 1, max = 250)
     @Column(name = "FULLNAME")
     private String fullname;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 250)
+//    @Basic(optional = false)
+//    @NotNull
+//    @Size(min = 1, max = 250)
     @Column(name = "EMAILID")
     private String emailid;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 250)
+//    @Basic(optional = false)
+//    @NotNull
+//    @Size(min = 1, max = 250)
     @Column(name = "BILLINGADDRESS")
     private String billingaddress;
-    @Basic(optional = false)
-    @NotNull
+//    @Basic(optional = false)
+//    @NotNull
     @Column(name = "PAIDTOVENDOR")
     private double paidtovendor;
-    @Basic(optional = false)
-    @NotNull
+//    @Basic(optional = false)
+//    @NotNull
     @Column(name = "PAIDTOMYCOMPANY")
     private double paidtomycompany;
 
-    public Finance() {
-    }
+//    public Finance() {
+//    }
+//
+//    public Finance(String ccno) {
+//        this.ccno = ccno;
+//    }
 
-    public Finance(String ccno) {
-        this.ccno = ccno;
-    }
-
-    public Finance(String ccno, String fullname, String emailid, String billingaddress, double paidtovendor, double paidtomycompany) {
-        this.ccno = ccno;
-        this.fullname = fullname;
-        this.emailid = emailid;
-        this.billingaddress = billingaddress;
-        this.paidtovendor = paidtovendor;
-        this.paidtomycompany = paidtomycompany;
-    }
+//    public Finance(String ccno, String fullname, String emailid, String billingaddress, double paidtovendor, double paidtomycompany) {
+//        this.ccno = ccno;
+//        this.fullname = fullname;
+//        this.emailid = emailid;
+//        this.billingaddress = billingaddress;
+//        this.paidtovendor = paidtovendor;
+//        this.paidtomycompany = paidtomycompany;
+//    }
 
     public String getCcno() {
         return ccno;

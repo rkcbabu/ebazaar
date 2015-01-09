@@ -6,6 +6,7 @@
 package mum.ea.myfinance.util;
 
 import mum.ea.myfinance.domain.Result;
+import org.springframework.util.DigestUtils;
 import org.springframework.web.client.RestTemplate;
 
 /**
@@ -14,6 +15,7 @@ import org.springframework.web.client.RestTemplate;
  */
 public class Utils {
     public static String deduct(String ccNo, String exptDate, String cvvNo, double balance) {
+//        ccNo = DigestUtils.md5DigestAsHex(ccNo.getBytes());
         // we will add encryption of data here. 
         String url = "http://localhost:8080/mycard/deduct/" + ccNo + "/" + exptDate + "/" + cvvNo + "/" + balance;
         RestTemplate restTemplate = new RestTemplate();
@@ -22,8 +24,10 @@ public class Utils {
     }
 
     public static String isValid(String ccNo, String exptDate, String cvvNo, double balance) {
+//        ccNo = DigestUtils.md5DigestAsHex(ccNo.getBytes());
         // we will add encryption of data here. 
         String url = "http://localhost:8080/mycard/validate/" + ccNo + "/" + exptDate + "/" + cvvNo + "/" + balance;
+//        System.err.println(url);
         RestTemplate restTemplate = new RestTemplate();
         Result result = restTemplate.getForObject(url, Result.class);
         return result.getResult();

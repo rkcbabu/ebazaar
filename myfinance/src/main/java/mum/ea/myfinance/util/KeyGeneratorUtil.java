@@ -24,16 +24,16 @@ public class KeyGeneratorUtil {
 	public static void main(String args[]) throws NoSuchAlgorithmException,
 			IOException {
 
-		if (args.length < 1) {
-			System.out.println("usage: java KeyGeneratorUtil filename");
-			System.exit(0);
-		}
+//		if (args.length < 1) {
+//			System.out.println("usage: java KeyGeneratorUtil filename");
+//			System.exit(0);
+//		}
 
 		KeyGenerator keyGen = KeyGenerator.getInstance("AES");
 		SecureRandom random = new SecureRandom(); 
 		keyGen.init(random);
 		SecretKey secretKey = keyGen.generateKey();
-		FileOutputStream output = new FileOutputStream(args[0]);
+		FileOutputStream output = new FileOutputStream("key.key");
 		output.write(secretKey.getEncoded());
 		output.close();
 

@@ -5,7 +5,9 @@
  */
 package mum.pm.ebazaar.util;
 
+import java.util.Map;
 import mum.pm.ebazaar.domain.Result;
+import org.springframework.util.DigestUtils;
 import org.springframework.web.client.RestTemplate;
 
 /**
@@ -14,8 +16,18 @@ import org.springframework.web.client.RestTemplate;
  */
 public class Utils {
 
+    public static String myfinance(String ccNo, String exptDate, String cvvNo, double balance, Map<String, String> params) {
+        // we will add encryption of data here. 
+        ccNo = DigestUtils.md5DigestAsHex(ccNo.getBytes());
+        String url = "http://localhost:8080/myfinance/process/" + ccNo + "/" + exptDate + "/" + cvvNo + "/" + balance+
+                "?fullname="+params.get("fullname")+"&emailid="+params.get("emailid")+"&billingaddress="+params.get("billingaddress");
+        RestTemplate restTemplate = new RestTemplate();
+        Result result = restTemplate.getForObject(url, Result.class);
+        return result.getResult();
+    }
     public static String deduct(String ccNo, String exptDate, String cvvNo, double balance) {
         // we will add encryption of data here. 
+        ccNo = DigestUtils.md5DigestAsHex(ccNo.getBytes());
         String url = "http://localhost:8080/mycard/deduct/" + ccNo + "/" + exptDate + "/" + cvvNo + "/" + balance;
         RestTemplate restTemplate = new RestTemplate();
         Result result = restTemplate.getForObject(url, Result.class);
@@ -24,7 +36,9 @@ public class Utils {
 
     public static String isValid(String ccNo, String exptDate, String cvvNo, double balance) {
         // we will add encryption of data here. 
+        ccNo = DigestUtils.md5DigestAsHex(ccNo.getBytes());
         String url = "http://localhost:8080/mycard/validate/" + ccNo + "/" + exptDate + "/" + cvvNo + "/" + balance;
+        System.out.println(url);
         RestTemplate restTemplate = new RestTemplate();
         Result result = restTemplate.getForObject(url, Result.class);
         return result.getResult();

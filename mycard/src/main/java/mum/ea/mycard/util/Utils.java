@@ -12,22 +12,22 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import mum.ea.mycard.controller.CardController;
 import mum.ea.mycard.domain.Card;
+import org.springframework.util.DigestUtils;
 
 /**
  *
  * @author Chaulagai
  */
 public class Utils {
-    public static boolean isValid(Card card, String exptDate, String cvvNo,float balance){
+    public static boolean isValid(Card card, String exptDate, String cvvNo,double balance){
         boolean found = false ;
         try {
-            
             Date exptDate1 = new SimpleDateFormat("yyyy-MM-dd").parse(exptDate);
             
             if (card != null) {
-                if (card.getCvvno().equalsIgnoreCase(cvvNo) 
+                if (card.getCvvno().equals(cvvNo) 
                         && card.getExptdate().equals(exptDate1) 
-                        && card.getTotalbalance() >=balance ) {
+                        && card.getTotalbalance() >= balance ) {
                     found = true; 
                 }
             }

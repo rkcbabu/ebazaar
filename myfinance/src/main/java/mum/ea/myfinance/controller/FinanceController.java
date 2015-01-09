@@ -29,6 +29,17 @@ public class FinanceController {
     List<String> home(Model model) {
         List<String> welcome = new ArrayList<String>();
         welcome.add("Welcome to myfinance.COM webservices.");
+        
+//        Finance finance = new Finance();
+//        finance.setCcno("12312312312312");
+//        finance.setEmailid("rkcbabu@gmail.com");
+//        finance.setFullname("Full name");
+//        finance.setBillingaddress("BIllling addres");
+//        finance.setPaidtomycompany(123);
+//        finance.setPaidtovendor(123);
+//        
+//        financeService.saveFinance(finance);
+        
         return welcome;
     }
     
@@ -41,22 +52,15 @@ public class FinanceController {
     @RequestMapping(value = "/process/{ccNo}/{exptDate}/{cvvNo}/{balance}", method = RequestMethod.GET)
     @ResponseBody
     Result process(@PathVariable("ccNo") String ccNo, @PathVariable("exptDate") String exptDate,
-            @PathVariable("cvvNo") String cvvNo, @PathVariable("balance") float balance, @RequestParam Map<String, String> params) {
+            @PathVariable("cvvNo") String cvvNo, @PathVariable("balance") double balance, @RequestParam Map<String, String> params) {
         
         Result result = new Result();
-        //result.setResult("NO");
-//        MultiValueMap<String, String> headers = new LinkedMultiValueMap<String, String>();
-//        headers.add("HeaderName", "value");
-//        headers.add("Content-Type", "application/json");
-//
-//        RestTemplate restTemplate = new RestTemplate();
-//        restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
-//
-//        HttpEntity<ObjectToPass> request = new HttpEntity<ObjectToPass>(objectToPass, headers);
-//
-//        restTemplate.postForObject(url, request, Result.class);
+        result.setResult("NO");
+//        System.err.println(params);
         
-        if ("YES".equals(Utils.isValid(ccNo, exptDate, cvvNo, balance))) {
+        
+        
+        if ("YES".equalsIgnoreCase(Utils.isValid(ccNo, exptDate, cvvNo, balance))) {
             if ("YES".equals(Utils.deduct(ccNo, exptDate, cvvNo, balance))) {
                 Finance finance = new Finance();
                 finance.setCcno(ccNo);
@@ -68,12 +72,18 @@ public class FinanceController {
                     finance.setEmailid(params.get("emailid"));
                 }
                 if (params.containsKey("billingaddress")) {
-                    finance.setBillingaddress(params.get("billingaddress"));
+//                    finance.setBillingaddress(params.get("billingaddress"));
+                    finance.setBillingaddress("Billing address");
                 }
                 if (params.containsKey("paidtovendor")) {
                     finance.setPaidtovendor(balance*.80);
                 }
-//               finance.set
+                if (params.containsKey("paidtomycompany")) {
+                    finance.setPaidtomycompany(balance*.20);
+                }
+                System.err.println(finance);
+//                financeService.saveFinance(finance);
+                result.setResult("YES");
             }
         }
         

@@ -40,8 +40,8 @@ public class Card implements Serializable {
     @Temporal(TemporalType.DATE)
     private Date exptdate;
     private String cvvno;
-    private float availablebalance;
-    private float totalbalance;
+    private double availablebalance;
+    private double totalbalance;
     private String cardtype;
 
     public Card() {
@@ -51,7 +51,7 @@ public class Card implements Serializable {
         this.ccno = ccno;
     }
 
-    public Card(String ccno, Date exptdate, String cvvno, float availablebalance, float totalbalance, String cardtype) {
+    public Card(String ccno, Date exptdate, String cvvno, double availablebalance, double totalbalance, String cardtype) {
         this.ccno = ccno;
         this.exptdate = exptdate;
         this.cvvno = cvvno;
@@ -84,19 +84,19 @@ public class Card implements Serializable {
         this.cvvno = cvvno;
     }
 
-    public float getAvailablebalance() {
+    public double getAvailablebalance() {
         return availablebalance;
     }
 
-    public void setAvailablebalance(float availablebalance) {
+    public void setAvailablebalance(double availablebalance) {
         this.availablebalance = availablebalance;
     }
 
-    public float getTotalbalance() {
+    public double getTotalbalance() {
         return totalbalance;
     }
 
-    public void setTotalbalance(float totalbalance) {
+    public void setTotalbalance(double totalbalance) {
         this.totalbalance = totalbalance;
     }
 

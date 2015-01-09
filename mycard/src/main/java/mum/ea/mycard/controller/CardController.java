@@ -15,6 +15,7 @@ import mum.ea.mycard.util.Utils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.DigestUtils;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -44,21 +45,39 @@ public class CardController {
     @RequestMapping(value = "/validate/{ccNo}/{exptDate}/{cvvNo}/{balance}", method = RequestMethod.GET)
     @ResponseBody
     Result valid(@PathVariable("ccNo") String ccNo, @PathVariable("exptDate") String exptDate,
-            @PathVariable("cvvNo") String cvvNo, @PathVariable("balance") float balance) {
+            @PathVariable("cvvNo") String cvvNo, @PathVariable("balance") double balance) {
 
-        Card card = cardService.findByCCNO(ccNo);
+        Card card = null;// = cardService.findByCCNO(ccNo);
+        for (Card c : cardService.listCards()) {
+            if (DigestUtils.md5DigestAsHex(c.getCcno().getBytes()).equals(ccNo)) {
+                card = c;
+                break;
+            }
+        }
         Result result = new Result();
-        result.setResult(Utils.isValid(card, exptDate, cvvNo, balance) ? "YES" : "NO");
+        if ((card != null) && Utils.isValid(card, exptDate, cvvNo, balance)) {
+            result.setResult("YES");
+        } else {
+            result.setResult("NO");
+        }
+
         return result;
     }
 
     @RequestMapping(value = "/deduct/{ccNo}/{exptDate}/{cvvNo}/{balance}", method = RequestMethod.GET)
     @ResponseBody
     Result deduct(@PathVariable("ccNo") String ccNo, @PathVariable("exptDate") String exptDate,
-            @PathVariable("cvvNo") String cvvNo, @PathVariable("balance") float balance) {
-        Card card = cardService.findByCCNO(ccNo);
+            @PathVariable("cvvNo") String cvvNo, @PathVariable("balance") double balance) {
+//        Card card = cardService.findByCCNO(ccNo);
+        Card card = null;// = cardService.findByCCNO(ccNo);
+        for (Card c : cardService.listCards()) {
+            if (DigestUtils.md5DigestAsHex(c.getCcno().getBytes()).equals(ccNo)) {
+                card = c;
+                break;
+            }
+        }
         Result result = new Result();
-        if (Utils.isValid(card, exptDate, cvvNo, balance)) {
+        if ((card != null) && Utils.isValid(card, exptDate, cvvNo, balance)) {
             card.setAvailablebalance(card.getAvailablebalance() - balance);
             cardService.saveCard(card);
             result.setResult("YES");
