@@ -190,7 +190,8 @@ public class DownloadService {
 
     private JRDataSource createDataSource() {
 
-        DRDataSource dataSource = new DRDataSource("id"
+        DRDataSource dataSource = new DRDataSource(
+                "id"
                 ,"orderID" 
                 ,"dateOrder"
                 ,"dateShip"
@@ -201,7 +202,13 @@ public class DownloadService {
         System.out.println("SIZE IS " + orderDao.getAll().size());
         for (int i = 0; i < orderDao.getAll().size(); i++) {
             
-          dataSource.add(orderDao.getAll().get(i).getId(), orderDao.getAll().get(i).getOrderID());
+          dataSource.add(
+                   orderDao.getAll().get(i).getId()
+                  ,orderDao.getAll().get(i).getOrderID()
+                  ,orderDao.getAll().get(i).getDateOrder()
+                  ,orderDao.getAll().get(i).getDateShip()
+                  ,orderDao.getAll().get(i).getStatus()
+          );
         }
 
         return dataSource;
@@ -211,8 +218,8 @@ public class DownloadService {
         List<ReportColumn> columns = new ArrayList<ReportColumn>();
         columns.add(new ReportColumn("Id", "id", "long"));
         columns.add(new ReportColumn("orderID", "orderID", "string"));
-        columns.add(new ReportColumn("dateOrder", "dateOrder", "string"));
-        columns.add(new ReportColumn("dateShip", "dateShip", "string"));
+        columns.add(new ReportColumn("dateOrder", "dateOrder", "date"));
+        columns.add(new ReportColumn("dateShip", "dateShip", "date"));
         columns.add(new ReportColumn("status", "status", "string"));
 //        columns.add(new ReportColumn("LastName", "lastName", "string"));
         return columns;

@@ -26,24 +26,19 @@ public class ReportController {
 
     @Resource(name = "downloadService")
     private DownloadService downloadService;
-    
-   
+
     @RequestMapping(value = "/vendor/{type}/pdf", method = RequestMethod.GET)
-    public void getPDF(@PathVariable("type") String type,HttpServletRequest request, HttpServletResponse response) throws ClassNotFoundException, JRException {
-        
-        System.out.println("Received request to download report as an PDF");
+    public void getPDF(@PathVariable("type") String type, HttpServletRequest request, HttpServletResponse response) throws ClassNotFoundException, JRException {
         downloadService.downloadPDF(request, response);
     }
-    
+
     @RequestMapping(value = "/vendor/{type}/xls", method = RequestMethod.GET)
-    public void getXLS(@PathVariable("type") String type, HttpServletRequest request, HttpServletResponse response, Model model) throws ClassNotFoundException, JRException {
-        System.out.println("Received request to download report as an XLS");
+    public void getXLS(@PathVariable("type") String type, HttpServletRequest request, HttpServletResponse response) throws ClassNotFoundException, JRException {
         downloadService.downloadXLS(request, response);
     }
-    
+
     @RequestMapping(value = "/vendor/{type}/html", method = RequestMethod.GET)
-    public void getHtml(@PathVariable("type") String type, HttpServletRequest request, HttpServletResponse response, Model model) throws ClassNotFoundException, JRException {
-        System.out.println("Received request to download report as an HTML");
+    public void getHtml(@PathVariable("type") String type, HttpServletRequest request, HttpServletResponse response) throws ClassNotFoundException, JRException {
         downloadService.downloadHTML(request, response);
     }
 }

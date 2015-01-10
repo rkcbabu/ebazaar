@@ -1,6 +1,9 @@
 package mum.pm.ebazaar.controller;
 
+import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.http.HttpServletRequest;
+import mum.pm.ebazaar.domain.Category;
 import mum.pm.ebazaar.service.CategoryService;
 import mum.pm.ebazaar.service.ProductService;
 
@@ -26,7 +29,7 @@ public class LayoutController {
     UserService userService;
 
     @RequestMapping("/layout/sidebar")
-    public String sidebar(Model model) {
+    public String sidebar(Model model){ 
         model.addAttribute("productList", productService.getAll());
         model.addAttribute("categoryList", categoryService.getAll());
         model.addAttribute("vendorList", userService.getVendors());
@@ -34,7 +37,8 @@ public class LayoutController {
     }
     @RequestMapping("/layout/header")
     public String header(Model model) {
-        model.addAttribute("categoryList", categoryService.getAll());
+        model.addAttribute("productList", productService.getAll());
+        model.addAttribute("categoryList",categoryService.getAll());
         model.addAttribute("vendorList", userService.getVendors());
         return "layout/header";
     }

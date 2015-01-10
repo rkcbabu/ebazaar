@@ -1,5 +1,8 @@
 package mum.pm.ebazaar.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+import mum.pm.ebazaar.domain.Category;
 import mum.pm.ebazaar.service.CardService;
 import mum.pm.ebazaar.service.CategoryService;
 import mum.pm.ebazaar.service.CustomerService;
@@ -40,8 +43,15 @@ public class GenericController {
     ShoppingCartService shoppingService;
 
     public void pageSetup(Model model) {
+        
+        List<Category> categories= new ArrayList<Category>();
+        for(Category c:categoryService.getAll()){
+            if(!categories.contains(c)){
+                categories.add(c);
+            }
+        }
         model.addAttribute("productList", productService.getAll());
-        model.addAttribute("categoryList", categoryService.getAll());
+        model.addAttribute("categoryList",categories);
         model.addAttribute("vendorList", userService.getVendors());
         model.addAttribute("displaySidebar", true);
     }
