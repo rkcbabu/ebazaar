@@ -37,6 +37,7 @@ import static net.sf.dynamicreports.report.builder.DynamicReports.type;
 import net.sf.dynamicreports.report.datasource.DRDataSource;
 import net.sf.dynamicreports.report.definition.datatype.DRIDataType;
 import net.sf.dynamicreports.report.exception.DRException;
+import org.apache.commons.lang3.text.WordUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 
 /**
@@ -54,10 +55,11 @@ public class DownloadService {
     private OrderDao orderDao;
     @Autowired
     private OrderService orderService;
+    private String reportType; 
 
     @SuppressWarnings("unchecked")
-    public void downloadPDF(HttpServletRequest request, HttpServletResponse response) throws ClassNotFoundException, JRException {
-
+    public void downloadPDF(HttpServletRequest request, HttpServletResponse response,String reportType) throws ClassNotFoundException, JRException {
+        this.reportType = reportType;
         String path = request.getSession().getServletContext().getRealPath(File.separator);
         String filePath = path + "report.pdf";
         JasperPdfExporterBuilder pdfExporter = export.pdfExporter(filePath);
@@ -68,7 +70,7 @@ public class DownloadService {
             }
             report
                     .setTemplate(Templates.reportTemplate)
-                    .title(Templates.createTitleComponent("Vendor Report"))
+                    .title(Templates.createTitleComponent(WordUtils.capitalizeFully(this.reportType+" Vendor Sales Report")))
                     .pageFooter(Templates.footerComponent)
                     .setDataSource(createDataSource())
                     .toPdf(pdfExporter);

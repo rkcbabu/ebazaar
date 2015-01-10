@@ -105,24 +105,24 @@
                             <li class="dropdown"><a href="#">Brands<i class="fa fa-angle-down"></i></a>
                                 <ul role="menu" class="sub-menu">
                                     <c:forEach items="${vendorList}" var="vendor">
-                                    <li><a href="<c:url value="/search/vendor"/>/${vendor.username}">${vendor.username}</a></li>
-                                    </c:forEach>
+                                        <li><a href="<c:url value="/search/vendor"/>/${vendor.username}">${vendor.username}</a></li>
+                                        </c:forEach>
                                 </ul>
                             </li> 
                             <li class="dropdown"><a href="#">Category<i class="fa fa-angle-down"></i></a>
                                 <ul role="menu" class="sub-menu">
                                     <c:forEach items="${categoryList}" var="category">
-                                    <li><a href="<c:url value="/search/category"/>/${category.id}">${category.name}</a></li>
-                                    </c:forEach>
+                                        <li><a href="<c:url value="/search/category"/>/${category.id}">${category.name}</a></li>
+                                        </c:forEach>
                                 </ul>
                             </li> 
-<!--                            <li class="dropdown"><a href="#">Blog<i class="fa fa-angle-down"></i></a>
-                                <ul role="menu" class="sub-menu">
-                                    <li><a href="<c:url value="/blog"/>">Blog List</a></li>
-                                    <li><a href="<c:url value="/blog-single"/>">Blog Single</a></li>
-                                </ul>
-                            </li> 
-                            <li><a href="<c:url value="/page404"/>">404</a></li>-->
+                            <!--                            <li class="dropdown"><a href="#">Blog<i class="fa fa-angle-down"></i></a>
+                                                            <ul role="menu" class="sub-menu">
+                                                                <li><a href="<c:url value="/blog"/>">Blog List</a></li>
+                                                                <li><a href="<c:url value="/blog-single"/>">Blog Single</a></li>
+                                                            </ul>
+                                                        </li> 
+                                                        <li><a href="<c:url value="/page404"/>">404</a></li>-->
                             <li><a href="<c:url value="/contact-us"/>">Contact</a></li>
                         </ul>
                     </div>
@@ -132,20 +132,10 @@
                         <form action="/ebazaar/search" method="get" id="search">
                             <input name="q" value="${pageContext.request.getParameter("q")}" type="text" placeholder="search"/>
                         </form>
-                        
+
                     </div>
                 </div>
             </div>
         </div>
     </div><!--/header-bottom-->
 </header><!--/header-->
-<script>
- $('#search').live("keypress", function(e) {
-     var code = (e.keyCode ? e.keyCode : e.which);
-     if (code == 13) {
-        e.preventDefault();
-        e.stopPropagation();
-        $(this).closest('form').submit();
-     }
-  });    
-</script>

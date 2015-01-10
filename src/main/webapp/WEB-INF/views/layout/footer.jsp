@@ -154,9 +154,23 @@
         </div>
     </div>
 </footer><!--/Footer-->
-
-<script src="<c:url value="/web-resources/js/jquery.js"/>"></script>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
+      <!--<script type="text/javascript" src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>-->
+<!--<script src="<c:url value="/web-resources/js/jquery.js"/>"></script>-->
 <script src="<c:url value="/web-resources/js/bootstrap.min.js"/>"></script>
 <script src="<c:url value="/web-resources/js/jquery.scrollUp.min.js"/>"></script>
 <script src="<c:url value="/web-resources/js/price-range.js"/>"></script>
 <script src="<c:url value="/web-resources/js/main.js"/>"></script>
+<script src="<c:url value="/web-resources/js/bootstrap-datepicker.js"/>"></script>
+<script>
+    $(document).ready(function () {
+        $('#search').live("keypress", function (e) {
+            var code = (e.keyCode ? e.keyCode : e.which);
+            if (code == 13) {
+                e.preventDefault();
+                e.stopPropagation();
+                $(this).closest('form').submit();
+            }
+        });
+    });
+</script>

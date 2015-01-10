@@ -29,7 +29,7 @@ public class ReportController {
 
     @RequestMapping(value = "/vendor/{type}/pdf", method = RequestMethod.GET)
     public void getPDF(@PathVariable("type") String type, HttpServletRequest request, HttpServletResponse response) throws ClassNotFoundException, JRException {
-        downloadService.downloadPDF(request, response);
+        downloadService.downloadPDF(request, response,type);
     }
 
     @RequestMapping(value = "/vendor/{type}/xls", method = RequestMethod.GET)
