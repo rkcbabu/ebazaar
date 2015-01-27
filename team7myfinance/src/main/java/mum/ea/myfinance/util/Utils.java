@@ -3,10 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package mum.pm.ebazaar.util;
+package mum.ea.myfinance.util;
 
-import java.util.Map;
-import mum.pm.ebazaar.domain.Result;
+import mum.ea.myfinance.domain.Result;
 import org.springframework.util.DigestUtils;
 import org.springframework.web.client.RestTemplate;
 
@@ -15,20 +14,9 @@ import org.springframework.web.client.RestTemplate;
  * @author Chaulagai
  */
 public class Utils {
-
-    public static String myfinance(String ccNo, String exptDate, String cvvNo, double balance, Map<String, String> params) {
-        // we will add encryption of data here. 
-        ccNo = DigestUtils.md5DigestAsHex(ccNo.getBytes());
-        String url = "http://localhost:8080/team7myfinance/process/" + ccNo + "/" + exptDate + "/" + cvvNo + "/" + balance+
-                "?fullname="+params.get("fullname")+"&emailid="+params.get("emailid")+"&billingaddress="+params.get("billingaddress");
-        System.err.println(url);
-        RestTemplate restTemplate = new RestTemplate();
-        Result result = restTemplate.getForObject(url, Result.class);
-        return result.getResult();
-    }
     public static String deduct(String ccNo, String exptDate, String cvvNo, double balance) {
+//        ccNo = DigestUtils.md5DigestAsHex(ccNo.getBytes());
         // we will add encryption of data here. 
-        ccNo = DigestUtils.md5DigestAsHex(ccNo.getBytes());
         String url = "http://localhost:8080/team7mycard/deduct/" + ccNo + "/" + exptDate + "/" + cvvNo + "/" + balance;
         RestTemplate restTemplate = new RestTemplate();
         Result result = restTemplate.getForObject(url, Result.class);
@@ -36,10 +24,10 @@ public class Utils {
     }
 
     public static String isValid(String ccNo, String exptDate, String cvvNo, double balance) {
+//        ccNo = DigestUtils.md5DigestAsHex(ccNo.getBytes());
         // we will add encryption of data here. 
-        ccNo = DigestUtils.md5DigestAsHex(ccNo.getBytes());
         String url = "http://localhost:8080/team7mycard/validate/" + ccNo + "/" + exptDate + "/" + cvvNo + "/" + balance;
-        System.out.println(url);
+//        System.err.println(url);
         RestTemplate restTemplate = new RestTemplate();
         Result result = restTemplate.getForObject(url, Result.class);
         return result.getResult();

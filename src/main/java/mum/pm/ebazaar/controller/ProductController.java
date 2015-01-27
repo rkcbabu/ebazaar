@@ -3,22 +3,15 @@ package mum.pm.ebazaar.controller;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import javax.servlet.http.HttpServletRequest;
 import mum.pm.ebazaar.domain.Product;
-import mum.pm.ebazaar.domain.Result;
 import mum.pm.ebazaar.service.ProductService;
 import mum.pm.ebazaar.service.ShoppingCartService;
-import mum.pm.ebazaar.util.Utils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpRequest;
-import org.springframework.http.converter.StringHttpMessageConverter;
-import org.springframework.http.converter.json.MappingJacksonHttpMessageConverter;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.client.RestTemplate;
 
 @Controller
 public class ProductController {
@@ -47,7 +40,7 @@ public class ProductController {
 //	public @ResponseBody ShoppingCart create(@RequestBody ShoppingCart cart) {
 //		return  cartservice.create(cart);
 //	}
-    @RequestMapping("/mycard")
+    @RequestMapping("/team7mycard")
     String validate(Model model) {
         String ccNo = "4024007182706563";
         String exptDate = "2017-01-03";
@@ -60,7 +53,7 @@ public class ProductController {
         params.put("emailid", "rkcbabu@gmail.com");
         params.put("billingaddress", "fairfeild IOWA");
         
-        model.addAttribute("result", Utils.myfinance(ccNo, exptDate, cvvNo, balance, params));
+//        model.addAttribute("result", Utils.myfinance(ccNo, exptDate, cvvNo, balance, params));
         return "test";
     }
 }

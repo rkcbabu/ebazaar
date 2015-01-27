@@ -59,13 +59,13 @@
                                     <td class="cart_quantity">
                                         <div class="cart_quantity_button">
                                             <a class="cart_quantity_up" href="#" onclick='$("#inc${item.id}").submit()' > + </a>
-                                            <form action="/ebazaar/cart/increment" method="post" id="inc${item.id}">
+                                            <form action="/team7ebazaar/cart/increment" method="post" id="inc${item.id}">
                                                 <input type="hidden" name="id" value="${item.product.id}"/>
                                             </form>
                                             <input class="cart_quantity_input" type="text" name="quantity" 
                                                    value="${item.quantity}" autocomplete="off" size="2">
                                             <a class="cart_quantity_down" href="#" onclick='$("#dec${item.id}").submit()' > - </a>
-                                            <form action="/ebazaar/cart/decrement" method="post" id="dec${item.id}">
+                                            <form action="/team7ebazaar/cart/decrement" method="post" id="dec${item.id}">
                                                 <input type="hidden" name="id" value="${item.product.id}"/>
                                             </form>
                                         </div>
@@ -75,7 +75,7 @@
                                     </td>
                                     <td class="cart_delete">
                                         <a class="cart_quantity_delete" href="#" onclick='$("#del${item.id}").submit()'><i class="fa fa-times"></i></a>
-                                        <form action="/ebazaar/cart/delete" method="post" id="del${item.id}">
+                                        <form action="/team7ebazaar/cart/delete" method="post" id="del${item.id}">
                                                 <input type="hidden" name="id" value="${item.product.id}"/>
                                             </form>
                                     </td>

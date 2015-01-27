@@ -9,7 +9,7 @@
                     <div class="contactinfo">
                         <ul class="nav nav-pills">
                             <li><a href="#"><i class="fa fa-phone"></i> +2 95 01 88 821</a></li>
-                            <li><a href="#"><i class="fa fa-envelope"></i> info@ebazaar.com</a></li>
+                            <li><a href="#"><i class="fa fa-envelope"></i> info@team7ebazaar.com</a></li>
                         </ul>
                     </div>
                 </div>
@@ -46,7 +46,7 @@
                                 </li>
                             </c:if>
                             <!--<li><a href="#"><i class="fa fa-star"></i> Wishlist</a></li>-->
-                            <li><a href="<c:url value="/template/checkout"/>"><i class="fa fa-crosshairs"></i>Checkout</a></li>
+                            <!--<li><a href="<c:url value="/checkout"/>"><i class="fa fa-crosshairs"></i>Checkout</a></li>-->
                             <li><a href="<c:url value="/cart"/>"><i class="fa fa-shopping-cart"></i>Cart
                                     <c:if test="${not empty cartItemCount}">
                                         (${cartItemCount})
@@ -129,7 +129,7 @@
                 </div>
                 <div class="col-sm-3">
                     <div class="search_box pull-right">
-                        <form action="/ebazaar/search" method="get" id="search">
+                        <form action="/team7ebazaar/search" method="get" id="search">
                             <input name="q" value="${pageContext.request.getParameter("q")}" type="text" placeholder="search"/>
                         </form>
 

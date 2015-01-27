@@ -36,11 +36,18 @@ public class OrderController extends GenericController{
     @RequestMapping("/placeOrder")
     public String placeOrder(Model model, HttpSession session) {
         Customer currUser=(Customer) session.getAttribute("currUser");
-        String expry=currUser.getCard().getYear()+"-"+currUser.getCard().getMonth()+"-"+"03";
+//        String expry=currUser.getCard().getYear()+"-"+currUser.getCard().getMonth()+"-"+"03";
+        String expry="2017-01-03";
         Double subtotal = (Double) session.getAttribute("totalPrice");
         Double total = subtotal+0.1*subtotal;
-        isValid(currUser.getCard(),expry, total);
-        return "redirect:/createOrder";
+        if(isValid(currUser.getCard(),expry, total)){
+            myFinance(currUser.getCard(), currUser, total);
+            return "redirect:/createOrder";
+        }
+        else{
+            return "redirect:/checkout";
+        }
+        
     }
      @RequestMapping("/confirmation")
     public String confirm(Model model, HttpSession session) {
@@ -56,6 +63,8 @@ public class OrderController extends GenericController{
         
         session.setAttribute("cart", null);
         model.addAttribute("cart", null);
+        session.setAttribute("totalPrice", 0);
+        session.setAttribute("cartItemCount", 0);
         return "order/confirmation";
     }
     public String myFinance(Card card, Customer customer, double total){
