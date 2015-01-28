@@ -3,11 +3,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>mum.pm</groupId>
-    <artifactId>team7ebazaar</artifactId>
+    <artifactId>ebazaar</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>war</packaging>
 
-    <name>team7ebazaar</name>
+    <name>ebazaar</name>
 
     <properties>
         <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>

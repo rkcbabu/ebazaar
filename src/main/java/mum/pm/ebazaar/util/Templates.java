@@ -123,7 +123,7 @@ public class Templates {
                         cmp.image(Templates.class.getResource("../images/myshop-logo.png")).setFixedDimension(60, 60),
                         cmp.verticalList(
                                 cmp.text("E-Bazaar Report").setStyle(bold22CenteredStyle).setHorizontalAlignment(HorizontalAlignment.RIGHT),
-                                cmp.text("http://localhost:8080/team7ebazaar/").setStyle(italicStyle).setHyperLink(link))).setFixedWidth(300);
+                                cmp.text("http://localhost:8080/ebazaar/").setStyle(italicStyle).setHyperLink(link))).setFixedWidth(300);
 
         footerComponent = cmp.pageXofY()
                 .setStyle(
